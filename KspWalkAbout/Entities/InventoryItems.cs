@@ -1,4 +1,4 @@
-﻿/*  Copyright 2016 Clive Pottinger
+﻿/*  Copyright 2017 Clive Pottinger
     This file is part of the WalkAbout Mod.
 
     WalkAbout is free software: you can redistribute it and/or modify
@@ -14,6 +14,7 @@
     You should have received a copy of the GNU General Public License
     along with WalkAbout.  If not, see<http://www.gnu.org/licenses/>.
 */
+
 using KspAccess;
 using KspWalkAbout.Extensions;
 using KspWalkAbout.Values;
@@ -21,7 +22,6 @@ using KspWalkAbout.WalkAboutFiles;
 using System;
 using System.Collections.Generic;
 using static KspWalkAbout.Entities.WalkAboutPersistent;
-
 
 namespace KspWalkAbout.Entities
 {
@@ -32,19 +32,27 @@ namespace KspWalkAbout.Entities
         private InventoryItem[] _sortedItems;
         private int _maxQueueing = 0;
 
-        /// <summary>Creates a new instance of the InventoryItems class.</summary>
+        /// <summary>
+        /// Creates a new instance of the InventoryItems class.
+        /// </summary>
         internal InventoryItems()
         {
             RefreshItems();
         }
 
-        /// <summary>The maximum volume of all items added to an inventory.</summary>
-        public float MaxVolume { get; internal set; }
+        /// <summary>
+        /// The maximum volume of all items added to an inventory.
+        /// </summary>
+        internal float MaxVolume { get; set; }
 
-        /// <summary>Whether or not the values for any items have been altered.</summary>
+        /// <summary>
+        /// Whether or not the values for any items have been altered.
+        /// </summary>
         internal bool IsChanged { get; set; }
 
-        /// <summary>Writes the information about all items to disk.</summary>
+        /// <summary>
+        /// Writes the information about all items to disk.
+        /// </summary>
         internal void Save()
         {
             if (!IsChanged || (Count == 0)) { return; }
@@ -68,7 +76,7 @@ namespace KspWalkAbout.Entities
             IsChanged = false;
         }
 
-        /// <summary>       
+        /// <summary>
         /// Determines the new order of items within a sorted list of items after a specific
         /// set of items have been chosen.</summary>
         /// <param name="items">List of items that are to move up the display queue.</param>
@@ -80,7 +88,7 @@ namespace KspWalkAbout.Entities
         /// previously chosen items.
         /// </item>
         /// <item>
-        /// Each subesequent selection of the item will move it up the list by approximately 1/2 its 
+        /// Each subesequent selection of the item will move it up the list by approximately 1/2 its
         /// "distance" to the top of the list.
         /// </item>
         /// </list>
@@ -105,7 +113,7 @@ namespace KspWalkAbout.Entities
                     $"increasing queueing for items between {0} and {_maxQueueing - 1}".Debug();
                     for (var index = 0; index < _maxQueueing; index++, this[_sortedItems[index].Name].Queueing++)
                     {
-                        $"{this[_sortedItems[index].Name]} set to {this[_sortedItems[index].Name].Queueing++}".Debug();
+                        $"{this[_sortedItems[index].Name]} set to {this[_sortedItems[index].Name].Queueing}".Debug();
                     }
                     _maxQueueing++;
                 }
@@ -114,7 +122,7 @@ namespace KspWalkAbout.Entities
                     $"decreasing queueing for items between {newQueueing} and {origQueueing - 1}".Debug();
                     for (var index = newQueueing; index < origQueueing; index++, this[_sortedItems[index].Name].Queueing--)
                     {
-                        $"{this[_sortedItems[index].Name]} set to {this[_sortedItems[index].Name].Queueing++}".Debug();
+                        $"{this[_sortedItems[index].Name]} set to {this[_sortedItems[index].Name].Queueing}".Debug();
                     }
                 }
                 this[item.Name].Queueing = newQueueing;
@@ -127,10 +135,15 @@ namespace KspWalkAbout.Entities
                 Save();
         }
 
-        /// <summary>Reevaluates the locations that can be displayed based on current facility upgrade levels.</summary>
+        /// <summary>
+        /// Reevaluates the items that can be added to a kerbal's inventory.
+        /// </summary>
         internal void RefreshItems()
         {
-            if (!WalkAboutKspAccess.DetectKisMod()) { return; }
+            if (!WalkAboutKspAccess.IsKisModDetected())
+            {
+                return;
+            }
             $"KIS detected - refreshing".Debug();
 
             if (Count == 0)
@@ -141,8 +154,11 @@ namespace KspWalkAbout.Entities
             $"examining {PartLoader.LoadedPartsList.Count} parts from PartLoader".Debug();
             foreach (var part in PartLoader.LoadedPartsList)
             {
-                var boundsSize = PartGeometryUtil.MergeBounds(part.partPrefab.GetRendererBounds(), part.partPrefab.transform).size;
-                var volume = boundsSize.x * boundsSize.y * boundsSize.z * 1000f;
+                var volume = CalculatePartVolume(part.partPrefab);
+                if (volume == 0.0f)
+                {
+                    volume = EstimatePartVolume(part.partPrefab);
+                }
 
                 if (volume <= GetModConfig().MaxInventoryVolume)
                 {
@@ -183,6 +199,57 @@ namespace KspWalkAbout.Entities
             SortItems();
         }
 
+        /// <summary>Obtains a sorted list of the items in this collection.</summary>
+        /// <returns>Items sorted in the proper order for displaying.</returns>
+        internal IEnumerable<InventoryItem> GetSorted()
+        {
+            return _sortedItems;
+        }
+
+        private static float CalculatePartVolume(Part part)
+        {
+            var volume = 0.0f;
+
+            var module = GetPartKisModule(part);
+            if (module != null)
+            {
+                var volumeText = module.Fields["volumeOverride"].originalValue.ToString();
+                if (!float.TryParse(volumeText, out volume))
+                {
+                    $"Part [{part.name}]: unable to translate KIS volumeOverride value [{volumeText}] to a valid number".Debug();
+                }
+            }
+
+            return volume;
+        }
+
+        private static PartModule GetPartKisModule(Part part)
+        {
+            PartModule module = null;
+
+            if ((part.Modules != null) && (part.Modules.Count > 0))
+            {
+                foreach (var moduleName in WalkAboutPersistent.KisModuleNames)
+                {
+                    if (part.Modules.Contains(moduleName))
+                    {
+                        module = part.Modules[moduleName];
+                        break;
+                    }
+                }
+            }
+
+            return module;
+        }
+
+        private static float EstimatePartVolume(Part part)
+        {
+            var boundsSize = PartGeometryUtil.MergeBounds(part.GetRendererBounds(), part.transform).size;
+            var volume = boundsSize.x * boundsSize.y * boundsSize.z * 1000f;
+
+            return volume;
+        }
+
         /// <summary>
         /// Determines if a part is available for the current game mode and researched techs.
         /// </summary>
@@ -200,7 +267,9 @@ namespace KspWalkAbout.Entities
             return available;
         }
 
-        /// <summary>Adds any recorded information about items that have already been selected </summary>
+        /// <summary>
+        /// Adds any recorded information about items that have already been selected.
+        /// </summary>
         private void LoadItemsFromFile()
         {
             $"Refresh: No items detected - loading (_file={_file})".Debug();
@@ -222,20 +291,15 @@ namespace KspWalkAbout.Entities
             }
         }
 
-        /// <summary>Sort the items in this collection.</summary>
+        /// <summary>
+        /// Sort the items in this collection.
+        /// </summary>
         private void SortItems()
         {
             _sortedItems = new InventoryItem[Count];
             Values.CopyTo(_sortedItems, 0);
             Array.Sort(_sortedItems, CompareItems);
             IsChanged = true;
-        }
-
-        /// <summary>Obtains a sorted list of the items in this collection.</summary>
-        /// <returns>Items sorted in the proper order for displaying.</returns>
-        internal IEnumerable<InventoryItem> GetSorted()
-        {
-            return _sortedItems;
         }
 
         /// <summary> Compares two items ordering them by queueing and name.</summary>

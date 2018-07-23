@@ -1,4 +1,4 @@
-﻿/*  Copyright 2016 Clive Pottinger
+﻿/*  Copyright 2017 Clive Pottinger
     This file is part of the WalkAbout Mod.
 
     WalkAbout is free software: you can redistribute it and/or modify
@@ -14,6 +14,7 @@
     You should have received a copy of the GNU General Public License
     along with WalkAbout.  If not, see<http://www.gnu.org/licenses/>.
 */
+
 using KspWalkAbout.Extensions;
 using KspWalkAbout.KspFiles;
 using KspWalkAbout.Values;
@@ -42,6 +43,17 @@ namespace KspWalkAbout.WalkAboutFiles
         /// </summary>
         [Persistent]
         public string Mode;
+
+        /// <summary>The key that activates the Add Utility GUI.</summary>
+        [Persistent]
+        public KeyCode AUActivationHotKey;
+
+        /// <summary>
+        /// Any additional keys needs that need to be pressed at the same time as the <seealso cref="AUActivationHotKey"/>
+        /// (e.g. Shift, Ctrl, etc).
+        /// </summary>
+        [Persistent]
+        public List<KeyCode> AUActivationHotKeyModifiers;
 
         /// <summary>The x-coordinate the GUI's top left corner</summary>
         [Persistent]

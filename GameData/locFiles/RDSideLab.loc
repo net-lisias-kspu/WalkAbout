@@ -1,135 +1,135 @@
 ﻿Locations
 {
-	Item
-	{
-		LocationName = R+D_SideLab_E1A
-		FacilityName = SpaceCenter/ResearchAndDevelopment
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.110558387396882
-		Longitude = 285.346027700096
-		Altitude = 68.0067731277086
-		Normal = 2.005449E-05,1,-0.0003178008
-		Rotation = 0.6834421,-0.6658423,-0.183718,0.2362388
-	}
-	Item
-	{
-		LocationName = R+D_SideLab_E1B
-		FacilityName = SpaceCenter/ResearchAndDevelopment
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.113407766705219
-		Longitude = 285.346332324348
-		Altitude = 68.0116643275833
-		Normal = 0.000141632,1,-0.0002435319
-		Rotation = -0.5955312,0.7062081,0.3821825,-0.02343666
-	}
-	Item
-	{
-		LocationName = R+D_SideLab_S1A
-		FacilityName = SpaceCenter/ResearchAndDevelopment
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.115768364279775
-		Longitude = 285.345984290566
-		Altitude = 68.0227075207513
-		Normal = -6.950604E-05,1,-0.0002119318
-		Rotation = -0.6246626,0.3245616,-0.3327869,-0.6274625
-	}
-	Item
-	{
-		LocationName = R+D_SideLab_W1A
-		FacilityName = SpaceCenter/ResearchAndDevelopment
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.110538336917495
-		Longitude = 285.343553725594
-		Altitude = 68.0315304450924
-		Normal = -0.0002763373,1,-0.0003573466
-		Rotation = 0.2107351,0.2100488,0.6754972,0.6746656
-	}
-	Item
-	{
-		LocationName = R+D_SideLab_QuonsetE_S1A
-		FacilityName = SpaceCenter/ResearchAndDevelopment
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.115885843109953
-		Longitude = 285.348090815445
-		Altitude = 67.9876936670626
-		Normal = -0.0001614491,1,-0.0001101461
-		Rotation = 0.6283689,-0.3316211,0.325658,0.6238003
-	}
-	Item
-	{
-		LocationName = R+D_SideLab_QuonsetE_N1A
-		FacilityName = SpaceCenter/ResearchAndDevelopment
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.114327188758895
-		Longitude = 285.348106924646
-		Altitude = 67.9823560672812
-		Normal = -2.791454E-05,1,-9.912199E-05
-		Rotation = -0.3475018,0.6350754,0.6164724,0.3096507
-	}
-	Item
-	{
-		LocationName = R+D_SideLab_QuonsetF_S1A
-		FacilityName = SpaceCenter/ResearchAndDevelopment
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.115847313106631
-		Longitude = 285.343890649332
-		Altitude = 68.0287390502635
-		Normal = -6.195161E-05,1,-8.973161E-05
-		Rotation = 0.6244532,-0.3242613,0.3330872,0.6276668
-	}
-	Item
-	{
-		LocationName = R+D_SideLab_QuonsetF_N1A
-		FacilityName = SpaceCenter/ResearchAndDevelopment
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.114281098888962
-		Longitude = 285.343913260959
-		Altitude = 68.0232947574696
-		Normal = -0.0001670058,1,9.856583E-05
-		Rotation = 0.3839333,-0.6524164,-0.5945615,-0.2710071
-	}
-	Item
-	{
-		LocationName = R+D_SideLab_Storage
-		FacilityName = SpaceCenter/ResearchAndDevelopment
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.113972138337985
-		Longitude = 285.344829552619
-		Altitude = 68.028231192613
-		Normal = -1.857404E-05,1,-0.000239003
-		Rotation = -0.3744372,-0.03290388,-0.6005762,-0.705707
-	}
-	Item
-	{
-		LocationName = R+D_SideLab_N4A
-		FacilityName = SpaceCenter/ResearchAndDevelopment
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.109834742652665
-		Longitude = 285.34452355074
-		Altitude = 82.9803590634838
-		Normal = -0.0002711506,1,-9.116256E-05
-		Rotation = -0.3302589,0.6261535,0.6258817,0.3273117
-	}
-	Item
-	{
-		LocationName = R+D_SideLab_S4A
-		FacilityName = SpaceCenter/ResearchAndDevelopment
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.111253739900378
-		Longitude = 285.344517738023
-		Altitude = 82.983954284573
-		Normal = 0.0003633703,0.9999999,-0.0004178186
-		Rotation = 0.6106732,-0.2989729,0.3579793,0.6399565
-	}
+    Item
+    {
+        LocationName = R+D_SideLab_E1A
+        FacilityName = SpaceCenter/ResearchAndDevelopment
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 181.623101675511
+        Distance = 171.716313728964 
+        DeltaAltitude = 3.6227662515594
+        Normal = 2.005449E-05,1,-0.0003178008
+        Rotation = 0.6834421,-0.6658423,-0.183718,0.2362388
+    }
+    Item
+    {
+        LocationName = R+D_SideLab_E1B
+        FacilityName = SpaceCenter/ResearchAndDevelopment
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 180.475855266508
+        Distance = 201.49619844402 
+        DeltaAltitude = 3.6276574514341
+        Normal = 0.000141632,1,-0.0002435319
+        Rotation = -0.5955312,0.7062081,0.3821825,-0.02343666
+    }
+    Item
+    {
+        LocationName = R+D_SideLab_N4A
+        FacilityName = SpaceCenter/ResearchAndDevelopment
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 187.162255114575
+        Distance = 165.358901242176 
+        DeltaAltitude = 18.5963521873346
+        Normal = -0.0002711506,1,-9.116256E-05
+        Rotation = -0.3302589,0.6261535,0.6258817,0.3273117
+    }
+    Item
+    {
+        LocationName = R+D_SideLab_S1A
+        FacilityName = SpaceCenter/ResearchAndDevelopment
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 181.346825172093
+        Distance = 226.274533769721 
+        DeltaAltitude = 3.6387006446021
+        Normal = -6.950604E-05,1,-0.0002119318
+        Rotation = -0.6246626,0.3245616,-0.3327869,-0.6274625
+    }
+    Item
+    {
+        LocationName = R+D_SideLab_S4A
+        FacilityName = SpaceCenter/ResearchAndDevelopment
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 186.592057681676
+        Distance = 180.120747688759 
+        DeltaAltitude = 18.5999474084238
+        Normal = 0.0003633703,0.9999999,-0.0004178186
+        Rotation = 0.6106732,-0.2989729,0.3579793,0.6399565
+    }
+    Item
+    {
+        LocationName = R+D_SideLab_W1A
+        FacilityName = SpaceCenter/ResearchAndDevelopment
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 190.176521603116
+        Distance = 174.177573521059 
+        DeltaAltitude = 3.6475235689432
+        Normal = -0.0002763373,1,-0.0003573466
+        Rotation = 0.2107351,0.2100488,0.6754972,0.6746656
+    }
+    Item
+    {
+        LocationName = R+D_SideLab_QuonsetE_N1A
+        FacilityName = SpaceCenter/ResearchAndDevelopment
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 175.419985069071
+        Distance = 211.794752770693 
+        DeltaAltitude = 3.598349191132
+        Normal = -2.791454E-05,1,-9.912199E-05
+        Rotation = -0.3475018,0.6350754,0.6164724,0.3096507
+    }
+    Item
+    {
+        LocationName = R+D_SideLab_QuonsetE_S1A
+        FacilityName = SpaceCenter/ResearchAndDevelopment
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 175.789718486954
+        Distance = 228.057845070415 
+        DeltaAltitude = 3.6036867909134
+        Normal = -0.0001614491,1,-0.0001101461
+        Rotation = 0.6283689,-0.3316211,0.325658,0.6238003
+    }
+    Item
+    {
+        LocationName = R+D_SideLab_QuonsetF_N1A
+        FacilityName = SpaceCenter/ResearchAndDevelopment
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 187.306806865477
+        Distance = 212.360250244499 
+        DeltaAltitude = 3.6392878813204
+        Normal = -0.0001670058,1,9.856583E-05
+        Rotation = 0.3839333,-0.6524164,-0.5945615,-0.2710071
+    }
+    Item
+    {
+        LocationName = R+D_SideLab_QuonsetF_S1A
+        FacilityName = SpaceCenter/ResearchAndDevelopment
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 186.84293382254
+        Distance = 228.667775570893 
+        DeltaAltitude = 3.6447321741143
+        Normal = -6.195161E-05,1,-8.973161E-05
+        Rotation = 0.6244532,-0.3242613,0.3330872,0.6276668
+    }
+    Item
+    {
+        LocationName = R+D_SideLab_Storage
+        FacilityName = SpaceCenter/ResearchAndDevelopment
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 184.798968490174
+        Distance = 208.129596008736 
+        DeltaAltitude = 3.64422431646381
+        Normal = -1.857404E-05,1,-0.000239003
+        Rotation = -0.3744372,-0.03290388,-0.6005762,-0.705707
+    }
 }

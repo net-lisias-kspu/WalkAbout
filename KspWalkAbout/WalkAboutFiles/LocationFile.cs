@@ -1,4 +1,4 @@
-﻿/*  Copyright 2016 Clive Pottinger
+﻿/*  Copyright 2017 Clive Pottinger
     This file is part of the WalkAbout Mod.
 
     WalkAbout is free software: you can redistribute it and/or modify
@@ -14,9 +14,11 @@
     You should have received a copy of the GNU General Public License
     along with WalkAbout.  If not, see<http://www.gnu.org/licenses/>.
 */
+
 using KspWalkAbout.Entities;
 using KspWalkAbout.KspFiles;
 using System.Collections.Generic;
+using System.IO;
 
 namespace KspWalkAbout.WalkAboutFiles
 {
@@ -26,5 +28,7 @@ namespace KspWalkAbout.WalkAboutFiles
         /// <summary>Collection of all locations where kerbals may be placed.</summary>
         [Persistent]
         public List<Location> Locations;
+
+        public object Filename { get { return Path.GetFileName(this.FilePath); } }
     }
 }

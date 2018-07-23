@@ -1,4 +1,4 @@
-﻿/*  Copyright 2016 Clive Pottinger
+﻿/*  Copyright 2017 Clive Pottinger
     This file is part of the WalkAbout Mod.
 
     WalkAbout is free software: you can redistribute it and/or modify
@@ -14,6 +14,7 @@
     You should have received a copy of the GNU General Public License
     along with WalkAbout.  If not, see<http://www.gnu.org/licenses/>.
 */
+
 using KspWalkAbout.Extensions;
 using System;
 using System.IO;
@@ -21,16 +22,24 @@ using System.IO;
 namespace KspWalkAbout.KspFiles
 
 {
-    /// <summary>Represents a set of values that can read from, or written to, a standard KSP settings file.</summary>
+    /// <summary>
+    /// Represents a set of values that can read from, or written to, a standard KSP settings file.
+    /// </summary>
     public class SettingsFile
     {
-        /// <summary>Where the settings file is stored on disk.</summary>
+        /// <summary>
+        /// Where the settings file is stored on disk.
+        /// </summary>
         public string FilePath { get; private set; }
 
-        /// <summary>Indicates if any values in the settings file have changed.</summary>
+        /// <summary>
+        /// Indicates if any values in the settings file have changed.
+        /// </summary>
         public bool IsChanged { get; internal set; }
 
-        /// <summary>Text summary of the result of the last action performed on the settings file.</summary>
+        /// <summary>
+        /// Text summary of the result of the last action performed on the settings file.
+        /// </summary>
         public string StatusMessage { get; private set; }
 
         /// <summary>
@@ -38,10 +47,12 @@ namespace KspWalkAbout.KspFiles
         /// </summary>
         /// <param name="settingsFilePath">The full path of the file containing the settings information.</param>
         /// <param name="defaultNode">
-        /// A representation of the values to be used as defaults in case the <paramref name="settingsFilePath"/>
-        /// could not be found or read.
+        /// A representation of the values to be used as defaults in case the <paramref
+        /// name="settingsFilePath"/> could not be found or read.
         /// </param>
-        /// <returns>A value indicating whether the settings where loaded (either from the file or from the defaults)</returns>
+        /// <returns>
+        /// A value indicating whether the settings where loaded (either from the file or from the defaults)
+        /// </returns>
         public bool Load(string settingsFilePath, ConfigNode defaultNode = null)
         {
             var isLoaded = false;
@@ -80,7 +91,9 @@ namespace KspWalkAbout.KspFiles
         /// <summary>
         /// Writes the current settings to the associated disk file (see <see cref="Load(string, ConfigNode)"/>)
         /// </summary>
-        /// <returns>A value indicating whether or not the settings information was written to disk.</returns>
+        /// <returns>
+        /// A value indicating whether or not the settings information was written to disk.
+        /// </returns>
         public bool Save()
         {
             var saved = ConfigNode.CreateConfigFromObject(this, new ConfigNode()).Save(FilePath);

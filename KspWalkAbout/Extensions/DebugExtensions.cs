@@ -1,4 +1,4 @@
-﻿/*  Copyright 2016 Clive Pottinger
+﻿/*  Copyright 2017 Clive Pottinger
     This file is part of the WalkAbout Mod.
 
     WalkAbout is free software: you can redistribute it and/or modify
@@ -14,9 +14,9 @@
     You should have received a copy of the GNU General Public License
     along with WalkAbout.  If not, see<http://www.gnu.org/licenses/>.
 */
+
 using KspWalkAbout.Values;
 using UnityEngine;
-using System.Reflection;
 
 namespace KspWalkAbout.Extensions
 {
@@ -43,7 +43,7 @@ namespace KspWalkAbout.Extensions
         /// <param name="message">Text to be written.</param>
         /// <param name="at">An additional identifier added to the prefix of the message (default is calling method name).</param>
         public static void Debug(
-            this string message, 
+            this string message,
             [System.Runtime.CompilerServices.CallerMemberName] string at = "")
         {
             if (DebugIsOn) MonoBehaviour.print($"{Constants.ModName} ({at}): {message}");

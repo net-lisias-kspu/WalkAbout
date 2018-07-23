@@ -1,7 +1,7 @@
 ﻿
-WalkAbout (version 1.6.1)
+WalkAbout (version 1.7)
 
-The WalkAbout mod allows you to take an available kerbal from the Astronaut Complex and have him/her placed outside any door at the KSC (see Placement).
+The WalkAbout mod allows you to take an available kerbal from the Astronaut Complex and have him/her placed outside any door at the KSC (see Placement, see note 6).
 It also allows you to move your kerbal around without having to hold down the W-A-S-D keys (see Perpetual Motion below).
 
 Placement:
@@ -48,6 +48,9 @@ You can activate WalkAbout from the Space Centre scene by pressing ctrl-W. The W
     Note 5:
     The Top 5 button is not limited to 5 entries. The number of locations selected by this button can be set by altering the value for TopFew in the settings.cfg file.
 
+    Note 6:
+    Placing kerbals in locations where a portion of the building is above them has proven problematic. As a result locations for doors on all but the bottom and top levels of most stairwells have been omitted. This is also why kerbals are placed beyond any projecting awnings and eaves.
+
 Perpetual Motion:
     When a kerbal is on EVA, it is now possible to walk/swim or run without having to hold down the movement keys. To do this enter Perpetual Motion mode by pressing the activation key (single quote ['] - see note 1). Your kerbal should now start walking forward (see note 2).
     The movement keys (W-A-S-D) will now change your kerbal's direction of movement. See note 2.
@@ -89,17 +92,26 @@ Adding your own Locations:
     Make sure you note difference between Level_... and Levels_... - using the wrong pluralization can result in the loss of data in the .loc file.
 
     Note 3:
-    This utility, and, in fact, the WalkAbout mod, were intended for use in placing kerbals in and around the area of the KSC. Though the utility can be used to create locations far from the KSC, doing so is not supported by the author (but I'm willing to close a blind eye). If you want to create locations off the surface of Kerbin - you are utterly on your own. Doing so is unsupported, probably won't work, and will void any and all warranties held for your kerbal's EVA suit, this mod, and probably even your coffee maker - so... you've been warned.
+    This utility, and, in fact, the WalkAbout mod, were intended for use in placing kerbals in and around the area of the KSC. Though the utility can be used to create locations far from the KSC, doing so is not supported by the author (but I'm willing to close a blind eye). If you want to create locations off the surface of Kerbin (or whichever world the KSC is located on) - you are utterly on your own. Doing so is unsupported, probably won't work, and will void any and all warranties held for your kerbal's EVA suit, this mod, and probably even your coffee maker - so... you've been warned.
+
+v1.7
+  Version 1.7 incorporates a new method for storing locations. This method is incompatible with the previous method. As a result, any custom-made locations (i.e. those stored in the user.loc file) will no longer work and must be recreated using the Add Location Utility (see Adding your own Locations below).
+  Some previously defined locations have been removed. In particular, location within stairwells and walkways were problematic and caused kerbals to appear on top of buildings instead of inside them. Those locations that could not be shifted to reasonably close alternate locations were removed.
+
+  New Features:
+    Works with relocated KSC. Tested with Galileo Planetary Pack and Alien Space Program.
+    Incorporated code by LabRats (http://forum.kerbalspaceprogram.com/index.php?/profile/158208-labrats/) to honour KIS mod's volume settings for items.
+
 v1.6.1
   Fixed Issues:
-      WA013 Some users are reporting that most (or all) locations are not loading.
+    WA013 Some users are reporting that most (or all) locations are not loading.
 
 v1.6
   New Features:
-        Added Perpetual Motion mode.
+    Added Perpetual Motion mode.
   
   Fixed Issues:
-      WA012 Some users report that the game crashes after placing a kerbal. Not fixed, but a workaround is in place.
+    WA012 Some users report that the game crashes after placing a kerbal. Not fixed, but a workaround is in place.
 
 v1.5
   New Features:
@@ -166,10 +178,9 @@ WishList
  - While on EVA, get another kerbal on WalkAbout.
  - Select location by pointing to the map (need to find location under cursor in SPACECENTER scene - current method only finds centre of facility under cursor).
  - Find a way to place kerbals on moving tracking dishes (need to detect current dish orientation).
- - Work with relocated KSC (need to detect new KSC world and coordinates and transform each location in .loc files).
  - Perpetual Motion mode: walk toward target or waypoint.
 
- Many thanks to Diazo, Crzyrndm, and IgorZ for helping me out in the forums.
+ Many thanks to Diazo, Crzyrndm, IgorZ, and LabRats for helping me out in the forums.
  And thanks too to mod creators KospY (KIS), MSK (EVA-Follower), MrHappyFace (Better Time Warp), The kOS Team (kOS), and Qberticus (Haystack Continued) for creating the code that helped me figure out how to do most of this.
 
  This software is licenced under the GNU General Public License

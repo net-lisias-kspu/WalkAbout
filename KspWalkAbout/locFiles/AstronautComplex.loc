@@ -4,13 +4,13 @@ Locations
 	{
 		LocationName = AC_MainEntrance
 		FacilityName = SpaceCenter/AstronautComplex
-		AvailableAtLevels = Levels_1_2
+		AvailableAtLevels = Level_1
 		Queueing = 0
-		Latitude = -0.090315686218315
-		Longitude = 285.353472097395
-		Altitude = 67.98
-		Normal = 0.0002520749,1,4.367542E-05
-		Rotation = -0.3928907,-0.01099074,-0.5887821,-0.7062944
+		ForwardAzimuth = 61.0988462999997
+		Distance = 83.501744057852605
+		DeltaAltitude = 3.5959931238507998
+		Normal = 0.000252074911,1,4.36754199E-05
+		Rotation = -0.392890692,-0.0109907398,-0.588782072,-0.706294417
 	}
 	Item
 	{
@@ -18,11 +18,11 @@ Locations
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_1
 		Queueing = 0
-		Latitude = -0.0900292278304614
-		Longitude = 285.353989593252
-		Altitude = 72.88
-		Normal = 1.509116E-05,1,-0.0001389372
-		Rotation = -0.3455061,-0.06629634,-0.6176627,-0.7033657
+		ForwardAzimuth = 61.094325200059998
+		Distance = 89.6964674382656
+		DeltaAltitude = 8.4959931238507895
+		Normal = 1.50911601E-05,1,-0.000138937205
+		Rotation = -0.345506102,-0.066296339,-0.617662728,-0.703365684
 	}
 	Item
 	{
@@ -30,11 +30,11 @@ Locations
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_1
 		Queueing = 0
-		Latitude = -0.0889023707002245
-		Longitude = 285.353660453169
-		Altitude = 68
-		Normal = 1.117398E-05,1,4.409724E-05
-		Rotation = 0.3852071,0.0199612,0.5936769,0.7062328
+		ForwardAzimuth = 53.694865648812097
+		Distance = 93.159175111853301
+		DeltaAltitude = 3.6159931238507999
+		Normal = 1.11739801E-05,1,4.40972399E-05
+		Rotation = 0.385207087,0.0199612007,0.593676925,0.706232786
 	}
 	Item
 	{
@@ -42,11 +42,11 @@ Locations
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_1
 		Queueing = 0
-		Latitude = -0.087407907904247
-		Longitude = 285.35246202781
-		Altitude = 68.01
-		Normal = 0.0003418147,1,-0.0001162389
-		Rotation = 0.4552178,-0.06691764,0.542021,0.7032155
+		ForwardAzimuth = 41.443761359595698
+		Distance = 94.462784276225605
+		DeltaAltitude = 3.6259931238508001
+		Normal = 0.00034181471,1,-0.000116238902
+		Rotation = 0.455217808,-0.066917643,0.542020977,0.70321548
 	}
 	Item
 	{
@@ -54,11 +54,11 @@ Locations
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_1
 		Queueing = 0
-		Latitude = -0.0908992864166852
-		Longitude = 285.354780961577
-		Altitude = 67.99
-		Normal = 0.0005325436,0.9999999,0.0003804389
-		Rotation = 0.3702978,0.03721825,0.6032142,0.7054269
+		ForwardAzimuth = 68.472020505576197
+		Distance = 93.319992635512904
+		DeltaAltitude = 3.6059931238507898
+		Normal = 0.000532543578,0.999999881,0.000380438898
+		Rotation = 0.37029779,0.0372182503,0.603214204,0.705426872
 	}
 	Item
 	{
@@ -66,11 +66,11 @@ Locations
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_1
 		Queueing = 0
-		Latitude = -0.0926945168983447
-		Longitude = 285.355426212771
-		Altitude = 67.98
-		Normal = 0.0005310389,0.9999998,-0.0004966623
-		Rotation = -0.2534707,-0.1665953,-0.6609805,-0.6863698
+		ForwardAzimuth = 80.628228694221903
+		Distance = 94.833402728461607
+		DeltaAltitude = 3.5959931238507998
+		Normal = 0.00053103891,0.999999821,-0.00049666228
+		Rotation = -0.253470689,-0.166595295,-0.660980523,-0.686369777
 	}
 	Item
 	{
@@ -78,11 +78,11 @@ Locations
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_1
 		Queueing = 0
-		Latitude = -0.0887162401871173
-		Longitude = 285.355087941879
-		Altitude = 68.04
-		Normal = -0.0001327219,0.9999999,-0.0005211005
-		Rotation = -0.604682,0.7054017,0.3676167,-0.04032605
+		ForwardAzimuth = 57.671190398238707
+		Distance = 106.53242533629796
+		DeltaAltitude = 3.7091675136471167
+		Normal = -0.000132721907,0.999999881,-0.000521100475
+		Rotation = -0.604682028,0.705401719,0.367616713,-0.0403260514
 	}
 	Item
 	{
@@ -90,11 +90,11 @@ Locations
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_1
 		Queueing = 0
-		Latitude = -0.089756391265465
-		Longitude = 285.355684511974
-		Altitude = 68
-		Normal = 5.861003E-05,1,6.747332E-05
-		Rotation = -0.5953591,0.7061343,0.3826042,-0.02315165
+		ForwardAzimuth = 64.35879742367149
+		Distance = 106.79536304659845
+		DeltaAltitude = 3.7184324045665562
+		Normal = 5.86100286E-05,1,6.74733164E-05
+		Rotation = -0.595359087,0.706134319,0.382604212,-0.0231516492
 	}
 	Item
 	{
@@ -102,11 +102,23 @@ Locations
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_1
 		Queueing = 0
-		Latitude = -0.0888721937360561
-		Longitude = 285.356000610068
-		Altitude = 68.03
-		Normal = 0.0002349577,0.9999993,-0.001124617
-		Rotation = 0.3715716,0.03686383,0.6026229,0.705281
+		ForwardAzimuth = 60.879422894671599
+		Distance = 113.992241185873
+		DeltaAltitude = 3.6459931238508001
+		Normal = 0.000234957697,0.999999285,-0.00112461695
+		Rotation = 0.3715716,0.0368638299,0.602622926,0.705281019
+	}
+	Item
+	{
+		LocationName = AC_MainEntrance
+		FacilityName = SpaceCenter/AstronautComplex
+		AvailableAtLevels = Level_2
+		Queueing = 0
+		ForwardAzimuth = 61.206492831805747
+		Distance = 76.535543620587248
+		DeltaAltitude = 3.6933184820227325
+		Normal = -0.000445619226,0.99999994,-0.000276505947
+		Rotation = -0.375515044,-0.0311818086,-0.599828303,-0.705848634
 	}
 	Item
 	{
@@ -114,11 +126,11 @@ Locations
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_2
 		Queueing = 0
-		Latitude = -0.0900292272445306
-		Longitude = 285.353991291178
-		Altitude = 76.68
-		Normal = -2.964504E-05,1,-5.535861E-05
-		Rotation = 0.3477685,0.06368844,0.6163687,0.7036268
+		ForwardAzimuth = 61.099811415965299
+		Distance = 89.712037933310498
+		DeltaAltitude = 12.295993123850799
+		Normal = -2.96450398E-05,1,-5.53586106E-05
+		Rotation = 0.347768486,0.0636884421,0.616368711,0.703626812
 	}
 	Item
 	{
@@ -126,11 +138,11 @@ Locations
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_2
 		Queueing = 0
-		Latitude = -0.0889341634667721
-		Longitude = 285.353589801176
-		Altitude = 68
-		Normal = 0.0004980049,0.9999999,0.0001597366
-		Rotation = 0.3471912,0.06409208,0.6168444,0.7034582
+		ForwardAzimuth = 53.589549335085998
+		Distance = 92.365882323680395
+		DeltaAltitude = 3.6159931238507999
+		Normal = 0.000498004898,0.999999881,0.000159736606
+		Rotation = 0.347191215,0.0640920773,0.616844416,0.70345819
 	}
 	Item
 	{
@@ -138,11 +150,11 @@ Locations
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_2
 		Queueing = 0
-		Latitude = -0.0881699674186849
-		Longitude = 285.353045167891
-		Altitude = 68.01
-		Normal = 0.0005792666,1,4.254452E-05
-		Rotation = 0.4153282,-0.01662805,0.5732056,0.7061595
+		ForwardAzimuth = 47.527132296684599
+		Distance = 93.046365746889094
+		DeltaAltitude = 3.6259931238508001
+		Normal = 0.000579266576,1,4.25445214E-05
+		Rotation = 0.415328205,-0.0166280493,0.57320559,0.706159472
 	}
 	Item
 	{
@@ -150,11 +162,11 @@ Locations
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_2
 		Queueing = 0
-		Latitude = -0.0874805296152959
-		Longitude = 285.352437753992
-		Altitude = 68.02
-		Normal = 0.000508754,1,0.0001137126
-		Rotation = 0.4722154,-0.0894729,0.5272432,0.7007295
+		ForwardAzimuth = 41.6350104212828
+		Distance = 93.724909919418906
+		DeltaAltitude = 3.6359931238507999
+		Normal = 0.00050875399,1,0.000113712602
+		Rotation = 0.472215414,-0.0894728974,0.527243197,0.700729489
 	}
 	Item
 	{
@@ -162,11 +174,11 @@ Locations
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_2
 		Queueing = 0
-		Latitude = -0.0868831983821084
-		Longitude = 285.351704765557
-		Altitude = 68.03
-		Normal = 0.0004545391,1,3.407552E-05
-		Rotation = 0.5005494,-0.1279043,0.5004127,0.6947502
+		ForwardAzimuth = 35.581848109373702
+		Distance = 93.823406799028504
+		DeltaAltitude = 3.6459931238508001
+		Normal = 0.000454539113,1,3.40755214E-05
+		Rotation = 0.500549376,-0.127904296,0.500412703,0.69475019
 	}
 	Item
 	{
@@ -174,11 +186,11 @@ Locations
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_2
 		Queueing = 0
-		Latitude = -0.0909448532742063
-		Longitude = 285.3547062679
-		Altitude = 67.9280928970547
-		Normal = 2.456763E-05,1,1.533089E-05
-		Rotation = -0.3780073,-0.02850474,-0.5982987,-0.7059296
+		ForwardAzimuth = 68.569277713797902
+		Distance = 92.417304206547698
+		DeltaAltitude = 3.5440860209055001
+		Normal = 2.45676292E-05,1,1.53308902E-05
+		Rotation = -0.378007293,-0.0285047404,-0.598298728,-0.705929577
 	}
 	Item
 	{
@@ -186,11 +198,11 @@ Locations
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_2
 		Queueing = 0
-		Latitude = -0.091792498857772
-		Longitude = 285.355070833778
-		Altitude = 67.98
-		Normal = -0.0007062387,0.9999983,-0.001726971
-		Rotation = 0.3017673,0.1161698,0.6400581,0.6969697
+		ForwardAzimuth = 74.515891325684393
+		Distance = 93.229510859094503
+		DeltaAltitude = 3.5959931238507998
+		Normal = -0.000706238672,0.999998271,-0.00172697101
+		Rotation = 0.30176729,0.116169803,0.6400581,0.696969688
 	}
 	Item
 	{
@@ -198,11 +210,11 @@ Locations
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_2
 		Queueing = 0
-		Latitude = -0.0927022656794789
-		Longitude = 285.355348074094
-		Altitude = 67.9288598534185
-		Normal = 0.0004604498,0.9999999,-0.0001203991
-		Rotation = 0.2817369,0.13655,0.6493919,0.6930141
+		ForwardAzimuth = 80.595812121652003
+		Distance = 94.012772635267893
+		DeltaAltitude = 3.5448529772692998
+		Normal = 0.00046044981,0.999999881,-0.000120399098
+		Rotation = 0.28173691,0.136549994,0.64939189,0.693014085
 	}
 	Item
 	{
@@ -210,47 +222,47 @@ Locations
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_2
 		Queueing = 0
-		Latitude = -0.0936244381015639
-		Longitude = 285.355468824155
-		Altitude = 67.9272501585074
-		Normal = -0.001008036,0.9999993,-0.0003858203
-		Rotation = 0.1912012,0.2293805,0.6810077,0.6686219
+		ForwardAzimuth = 86.528315128632798
+		Distance = 94.186732138241695
+		DeltaAltitude = 3.5432432823581999
+		Normal = -0.00100803596,0.999999285,-0.000385820313
+		Rotation = 0.191201195,0.229380503,0.681007683,0.668621898
 	}
 	Item
 	{
 		LocationName = AC_CentralRear_2A
 		FacilityName = SpaceCenter/AstronautComplex
-		AvailableAtLevels = Level_1
-		Queueing = 0
-		Latitude = -0.0887162465600015
-		Longitude = 285.355089639261
-		Altitude = 72.14
-		Normal = -0.0003657317,1,-0.0004260568
-		Rotation = -0.6008908,0.7056999,0.3739421,-0.032945
+		AvailableAtLevels = Level_2
+		Queueing = 6
+		ForwardAzimuth = 57.616029531404102
+		Distance = 106.625256135302
+		DeltaAltitude = 7.7559931238508
+		Normal = -0.000365731714,1,-0.000426056795
+		Rotation = -0.600890815,0.705699921,0.373942107,-0.0329449996
 	}
 	Item
 	{
 		LocationName = AC_CentralRear_2B
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_2
-		Queueing = 0
-		Latitude = -0.0897624651115952
-		Longitude = 285.35568865744
-		Altitude = 72.12
-		Normal = -2.865001E-05,1,-6.156455E-05
-		Rotation = -0.6004034,0.7057649,0.3746459,-0.03243652
+		Queueing = 5
+		ForwardAzimuth = 64.398391991656595
+		Distance = 106.802006549797
+		DeltaAltitude = 7.7359931238508004
+		Normal = -2.86500108E-05,1,-6.15645477E-05
+		Rotation = -0.600403428,0.70576489,0.374645889,-0.0324365199
 	}
 	Item
 	{
 		LocationName = AC_AnnexEntrance
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_2
-		Queueing = 0
-		Latitude = -0.0888721937360561
-		Longitude = 285.356000610068
-		Altitude = 68.03
-		Normal = 0.0002349577,0.9999993,-0.001124617
-		Rotation = 0.3715716,0.03686383,0.6026229,0.705281
+		Queueing = 7
+		ForwardAzimuth = 60.879422894671599
+		Distance = 113.992241185873
+		DeltaAltitude = 3.6459931238508001
+		Normal = 0.000234957697,0.999999285,-0.00112461695
+		Rotation = 0.3715716,0.0368638299,0.602622926,0.705281019
 	}
 	Item
 	{
@@ -258,11 +270,11 @@ Locations
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_3
 		Queueing = 0
-		Latitude = -0.0906500407868964
-		Longitude = 285.352652995251
-		Altitude = 67.9681274017785
-		Normal = 0.000728739,0.9999998,0.0001140862
-		Rotation = 0.3298178,0.08375194,0.6264092,0.701297
+		ForwardAzimuth = 60.186136734825709
+		Distance = 54.131127696334921
+		DeltaAltitude = 3.6321017298614606
+		Normal = 0.000728739018,0.999999821,0.0001140862
+		Rotation = 0.329817802,0.0837519392,0.626409173,0.701296985
 	}
 	Item
 	{
@@ -270,11 +282,11 @@ Locations
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_3
 		Queueing = 0
-		Latitude = -0.0879225466170202
-		Longitude = 285.357445235154
-		Altitude = 67.95
-		Normal = -0.0003414645,0.9999999,-0.0001883138
-		Rotation = 0.601634,-0.7055935,-0.3728107,0.03444826
+		ForwardAzimuth = 60.27414844832424
+		Distance = 134.85759901546567
+		DeltaAltitude = 3.5846698441309854
+		Normal = -0.000341464503,0.999999881,-0.000188313803
+		Rotation = 0.601634026,-0.705593526,-0.372810692,0.0344482586
 	}
 	Item
 	{
@@ -282,47 +294,11 @@ Locations
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_3
 		Queueing = 0
-		Latitude = -0.0865613965549495
-		Longitude = 285.348484905142
-		Altitude = 68.4103003862547
-		Normal = 0.0001900612,0.9999998,0.0004919902
-		Rotation = -0.3818887,-0.02354937,-0.5957881,-0.7061466
-	}
-	Item
-	{
-		LocationName = AC_NorthWing_2D
-		FacilityName = SpaceCenter/AstronautComplex
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.0865613965549495
-		Longitude = 285.348484905142
-		Altitude = 72.4103003862547
-		Normal = 0.0001900612,0.9999998,0.0004919902
-		Rotation = -0.3818887,-0.02354937,-0.5957881,-0.7061466
-	}
-	Item
-	{
-		LocationName = AC_NorthWing_3D
-		FacilityName = SpaceCenter/AstronautComplex
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.0865613965549495
-		Longitude = 285.348484905142
-		Altitude = 76.4103003862547
-		Normal = 0.0001900612,0.9999998,0.0004919902
-		Rotation = -0.3818887,-0.02354937,-0.5957881,-0.7061466
-	}
-	Item
-	{
-		LocationName = AC_NorthWing_4D
-		FacilityName = SpaceCenter/AstronautComplex
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.0865613965549495
-		Longitude = 285.348484905142
-		Altitude = 80.4103003862547
-		Normal = 0.0001900612,0.9999998,0.0004919902
-		Rotation = -0.3818887,-0.02354937,-0.5957881,-0.7061466
+		ForwardAzimuth = 12.563403509950433
+		Distance = 79.374680094190353
+		DeltaAltitude = 3.6550009296042845
+		Normal = 0.000190061197,0.999999821,0.000491990184
+		Rotation = -0.381888688,-0.0235493705,-0.595788121,-0.706146598
 	}
 	Item
 	{
@@ -330,11 +306,11 @@ Locations
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_3
 		Queueing = 0
-		Latitude = -0.0865613965549495
-		Longitude = 285.348484905142
-		Altitude = 84.4103003862547
-		Normal = 0.0001900612,0.9999998,0.0004919902
-		Rotation = -0.3818887,-0.02354937,-0.5957881,-0.7061466
+		ForwardAzimuth = 14.678634420046
+		Distance = 82.363606360207498
+		DeltaAltitude = 20.0262935101055
+		Normal = 0.000190061197,0.999999821,0.000491990184
+		Rotation = -0.381888688,-0.0235493705,-0.595788121,-0.706146598
 	}
 	Item
 	{
@@ -342,47 +318,11 @@ Locations
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_3
 		Queueing = 0
-		Latitude = -0.0963073996821954
-		Longitude = 285.354038104728
-		Altitude = 68.3514777371893
-		Normal = -0.0007286231,0.9999996,0.0002036418
-		Rotation = -0.3977053,-0.005019121,-0.5850769,-0.7067463
-	}
-	Item
-	{
-		LocationName = AC_SouthWing_2D
-		FacilityName = SpaceCenter/AstronautComplex
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.0963073996821954
-		Longitude = 285.354038104728
-		Altitude = 72.3514777371893
-		Normal = -0.0007286231,0.9999996,0.0002036418
-		Rotation = -0.3977053,-0.005019121,-0.5850769,-0.7067463
-	}
-	Item
-	{
-		LocationName = AC_SouthWing_3D
-		FacilityName = SpaceCenter/AstronautComplex
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.0963073996821954
-		Longitude = 285.354038104728
-		Altitude = 76.3514777371893
-		Normal = -0.0007286231,0.9999996,0.0002036418
-		Rotation = -0.3977053,-0.005019121,-0.5850769,-0.7067463
-	}
-	Item
-	{
-		LocationName = AC_SouthWing_4D
-		FacilityName = SpaceCenter/AstronautComplex
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.0963073996821954
-		Longitude = 285.354038104728
-		Altitude = 80.3514777371893
-		Normal = -0.0007286231,0.9999996,0.0002036418
-		Rotation = -0.3977053,-0.005019121,-0.5850769,-0.7067463
+		ForwardAzimuth = 107.65092527164131
+		Distance = 79.497890017071569
+		DeltaAltitude = 3.6009973438922316
+		Normal = -0.000728623127,0.999999583,0.000203641801
+		Rotation = -0.397705287,-0.00501912087,-0.585076928,-0.70674628
 	}
 	Item
 	{
@@ -390,11 +330,11 @@ Locations
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_3
 		Queueing = 0
-		Latitude = -0.0892216635949123
-		Longitude = 285.353058469512
-		Altitude = 85.49
-		Normal = 0.0002518491,1,-0.0003843224
-		Rotation = -0.3861866,-0.01906161,-0.5932246,-0.7061028
+		ForwardAzimuth = 53.004114785741997
+		Distance = 86.104764586418497
+		DeltaAltitude = 21.105993123850801
+		Normal = 0.000251849095,1,-0.000384322397
+		Rotation = -0.3861866,-0.0190616101,-0.593224585,-0.706102788
 	}
 	Item
 	{
@@ -402,11 +342,11 @@ Locations
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_3
 		Queueing = 0
-		Latitude = -0.0877546678600274
-		Longitude = 285.351644519816
-		Altitude = 86.01
-		Normal = 0.000290581,1,-0.0003061419
-		Rotation = 0.4899765,-0.1130329,0.5108626,0.6972561
+		ForwardAzimuth = 38.773556580312302
+		Distance = 86.167090274384606
+		DeltaAltitude = 21.625993123850801
+		Normal = 0.000290580996,1,-0.000306141912
+		Rotation = 0.489976496,-0.1130329,0.510862589,0.697256088
 	}
 	Item
 	{
@@ -414,23 +354,11 @@ Locations
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_3
 		Queueing = 0
-		Latitude = -0.0868482994316848
-		Longitude = 285.349819399251
-		Altitude = 85.52
-		Normal = 0.0005092974,0.9999999,-8.930339E-05
-		Rotation = 0.5613432,-0.2171469,0.4311258,0.672214
-	}
-	Item
-	{
-		LocationName = AC_SouthWing_5D
-		FacilityName = SpaceCenter/AstronautComplex
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.0963073996821954
-		Longitude = 285.354038104728
-		Altitude = 84.3514777371893
-		Normal = -0.0007286231,0.9999996,0.0002036418
-		Rotation = -0.3977053,-0.005019121,-0.5850769,-0.7067463
+		ForwardAzimuth = 24.441893281191
+		Distance = 84.218205938152906
+		DeltaAltitude = 21.135993123850799
+		Normal = 0.000509297417,0.999999881,-8.93033866E-05
+		Rotation = 0.561343193,-0.217146903,0.43112579,0.672213972
 	}
 	Item
 	{
@@ -438,11 +366,11 @@ Locations
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_3
 		Queueing = 0
-		Latitude = -0.0853891711995618
-		Longitude = 285.349117555203
-		Altitude = 85.53
-		Normal = -0.0001507514,1,-0.0002038809
-		Rotation = -0.1809166,0.5365748,0.6840982,0.4597459
+		ForwardAzimuth = 16.648253886100001
+		Distance = 95.9754134937739
+		DeltaAltitude = 21.145993123850801
+		Normal = -0.000150751395,1,-0.000203880903
+		Rotation = -0.180916607,0.536574781,0.684098184,0.459745914
 	}
 	Item
 	{
@@ -450,11 +378,11 @@ Locations
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_3
 		Queueing = 0
-		Latitude = -0.0883291344284257
-		Longitude = 285.354500525175
-		Altitude = 85.48
-		Normal = -0.000458519,1,-0.0001099231
-		Rotation = -0.1542666,0.518237,0.6905684,0.4803619
+		ForwardAzimuth = 53.899717442175799
+		Distance = 103.804667596497
+		DeltaAltitude = 21.0959931238508
+		Normal = -0.000458519004,1,-0.000109923101
+		Rotation = -0.154266596,0.518236995,0.690568388,0.480361909
 	}
 	Item
 	{
@@ -462,11 +390,11 @@ Locations
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_3
 		Queueing = 0
-		Latitude = -0.0910338034890573
-		Longitude = 285.354070809755
-		Altitude = 85.48
-		Normal = 0.0003447462,0.9999999,-0.0002079076
-		Rotation = -0.3562281,-0.0540138,-0.6116779,-0.7042969
+		ForwardAzimuth = 67.525655991776205
+		Distance = 85.896107633822496
+		DeltaAltitude = 21.0959931238508
+		Normal = 0.000344746193,0.999999881,-0.000207907593
+		Rotation = -0.356228113,-0.0540137999,-0.611677885,-0.704296887
 	}
 	Item
 	{
@@ -474,11 +402,11 @@ Locations
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_3
 		Queueing = 0
-		Latitude = -0.0929966198705524
-		Longitude = 285.354610556952
-		Altitude = 85.47
-		Normal = -0.001305381,0.999999,-0.00061184
-		Rotation = 0.1823888,0.2381229,0.6833015,0.6656808
+		ForwardAzimuth = 81.782578277490003
+		Distance = 85.907205996527097
+		DeltaAltitude = 21.085993123850798
+		Normal = -0.00130538095,0.999998987,-0.000611839991
+		Rotation = 0.182388797,0.238122895,0.683301508,0.665680826
 	}
 	Item
 	{
@@ -486,11 +414,11 @@ Locations
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_3
 		Queueing = 0
-		Latitude = -0.0950375083971839
-		Longitude = 285.354472476158
-		Altitude = 85.47
-		Normal = -0.0003510921,0.9999999,-0.0002971458
-		Rotation = -0.1395031,-0.278841,-0.6936723,-0.6493114
+		ForwardAzimuth = 96.210929019243693
+		Distance = 84.072520774680399
+		DeltaAltitude = 21.085993123850798
+		Normal = -0.000351092109,0.999999881,-0.000297145802
+		Rotation = -0.139503106,-0.278840989,-0.693672299,-0.649311423
 	}
 	Item
 	{
@@ -498,11 +426,11 @@ Locations
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_3
 		Queueing = 0
-		Latitude = -0.0962746863905651
-		Longitude = 285.354074345739
-		Altitude = 84.38
-		Normal = 0.0001035506,1,-0.000177836
-		Rotation = 0.3951243,0.008239962,0.5872092,0.7063952
+		ForwardAzimuth = 105.82123921748718
+		Distance = 82.148236513909097
+		DeltaAltitude = 20.045065093436278
+		Normal = -0.000728623127,0.999999583,0.000203641801
+		Rotation = -0.397705287,-0.00501912087,-0.585076928,-0.70674628
 	}
 	Item
 	{
@@ -510,11 +438,11 @@ Locations
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_3
 		Queueing = 0
-		Latitude = -0.0964216013519649
-		Longitude = 285.355383464844
-		Altitude = 85.4219859180739
-		Normal = 0.0002456876,0.9999998,0.0001860113
-		Rotation = 0.6880624,-0.4719984,0.1651506,0.525845
+		ForwardAzimuth = 104.21648412011599
+		Distance = 96.061820935420101
+		DeltaAltitude = 21.0379790419247
+		Normal = 0.00024568761,0.999999821,0.000186011297
+		Rotation = 0.688062429,-0.471998394,0.165150598,0.525844991
 	}
 	Item
 	{
@@ -522,10 +450,10 @@ Locations
 		FacilityName = SpaceCenter/AstronautComplex
 		AvailableAtLevels = Level_3
 		Queueing = 0
-		Latitude = -0.0902226022406437
-		Longitude = 285.355582104212
-		Altitude = 85.4244397928705
-		Normal = 0.0001824674,1,0.0002183185
-		Rotation = 0.69109,-0.4819118,0.1519842,0.516775
+		ForwardAzimuth = 66.531893097278797
+		Distance = 103.78520135331399
+		DeltaAltitude = 21.040432916721301
+		Normal = 0.000182467396,1,0.000218318499
+		Rotation = 0.691089988,-0.481911808,0.1519842,0.516775012
 	}
 }

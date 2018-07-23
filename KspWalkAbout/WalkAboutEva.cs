@@ -1,4 +1,4 @@
-﻿/*  Copyright 2016 Clive Pottinger
+﻿/*  Copyright 2017 Clive Pottinger
     This file is part of the WalkAbout Mod.
 
     WalkAbout is free software: you can redistribute it and/or modify
@@ -14,6 +14,8 @@
     You should have received a copy of the GNU General Public License
     along with WalkAbout.  If not, see<http://www.gnu.org/licenses/>.
 */
+
+using KspAccess;
 using KspWalkAbout.Entities;
 using KspWalkAbout.Extensions;
 using KspWalkAbout.Values;
@@ -24,59 +26,45 @@ using static KspWalkAbout.Entities.WalkAboutPersistent;
 namespace KspWalkAbout
 {
     /// <summary>
-    /// Module to determine if a kerbal on EVA has been assigned inventory items and to 
-    /// add the items to the kerbal's inventory.
+    /// Module to manage walking and inventory for a kerbal on EVA.
     /// </summary>
     [KSPAddon(KSPAddon.Startup.Flight, false)]
-    class WalkAboutEva : MonoBehaviour
+    public class WalkAboutEva : MonoBehaviour
     {
-        private MotionState _motion = MotionState.normal;
-        private bool _inRunMode = false;
+        private static KeyCombination _perpetualMotionKeys;
+        private static MotionSettings _currentMotion;
 
         /// <summary>Detects if the scene is for a kerbal on EVA and adds any outstanding inventory items.</summary>
         public void Start()
         {
             var kerbalEva = GetKerbalEva();
-
             if (kerbalEva == null)
             {
                 "WalkAboutEva deactivated: not a valid Kerbal EVA".Debug();
                 return;
             }
 
+            SetPerpetualMotionKeyCombo();
+            _currentMotion = new MotionSettings()
+            {
+                State = MotionState.normal,
+                IsRunning = false,
+            };
+
             var kerbalPcm = FlightGlobals.ActiveVessel.GetVesselCrew()[0];
             $"Flight scene started for {kerbalPcm.name}".Debug();
 
-            System.Reflection.Assembly KIS = null;
-            var foundKis = false;
-            if (IsModInstalled("KIS"))
-            {
-                KIS = GetMod("KIS");
-                foundKis = true;
-                $"obtained KIS mod assembly [{KIS}]".Debug();
-            }
-            else
+            System.Reflection.Assembly KisMod = null;
+            if (!WalkAboutKspAccess.TryGetKisMod(ref KisMod))
             {
                 $"KIS not installed".Debug();
+                return;
             }
+            $"obtained KIS mod assembly [{KisMod}]".Debug();
 
-            if (foundKis && WalkAboutPersistent.AllocatedItems.ContainsKey(kerbalPcm.name))
+            if (WalkAboutPersistent.AllocatedItems.ContainsKey(kerbalPcm.name))
             {
-                $"{kerbalPcm.name} has {WalkAboutPersistent.AllocatedItems[kerbalPcm.name].Count} items to be assigned".Debug();
-                var ModuleKISInventoryType = KIS.GetType("KIS.ModuleKISInventory");
-                "found KIS inventory type".Debug();
-                var inventory = FlightGlobals.ActiveVessel.GetComponent(ModuleKISInventoryType);
-                "obtained modules for the active vessel".Debug();
-
-                if (inventory != null)
-                {
-                    foreach (var itemName in WalkAboutPersistent.AllocatedItems[kerbalPcm.name])
-                    {
-                        AddItemToInventory(kerbalPcm, itemName, ModuleKISInventoryType, inventory);
-                    }
-                }
-
-                WalkAboutPersistent.AllocatedItems.Remove(kerbalPcm.name);
+                AddInventoryItems(kerbalPcm, KisMod);
             }
             else
             {
@@ -88,150 +76,27 @@ namespace KspWalkAbout
         public void FixedUpdate()
         {
             var kerbalEva = GetKerbalEva();
-
-            // Exit if the the FlightScene conditions are not right.
-            if ((kerbalEva == null) // not a kerbal on EVA
-                || (!FlightGlobals.ActiveVessel.LandedOrSplashed)
-                || (kerbalEva.isRagdoll)
-                || (FlightGlobals.currentMainBody?.GeeASL == null)) // avoids null reference on exit
+            if (!AreFlightConditionsMet(kerbalEva))
             {
                 return;
             }
 
-            // Check if the Perpetual Motion activation key has been pressed.
-            if (CheckForKeyCombo(GetModConfig().PmActivationHotKey, GetModConfig().PmActivationHotKeyModifiers)) 
+            AlterMotionAsPerUserKeystrokes(_currentMotion, _perpetualMotionKeys);
+
+            if (_currentMotion.State != MotionState.normal)
             {
-                // change moving to stopping or normal to moving.
-                _motion = (_motion == MotionState.perpetual) ? MotionState.stopping : MotionState.perpetual;
-                $"Set motion state to {_motion}".Debug();
-
-                // ensure that only physics time warp is used.
-                if (_motion == MotionState.perpetual)
-                {
-                    TimeWarp.fetch.Mode = TimeWarp.Modes.LOW;
-                }
-            }
-
-            if (GameSettings.EVA_Run.GetKeyDown())
-            {
-                _inRunMode = !_inRunMode;
-            }
-            
-            if (_motion == MotionState.normal) { return; }
-
-            // If the user changed the time warp setting treat the new setting as a physics time warp setting
-            // and enact it. E.g. if the user chooses 10x (HIGH rate=3), set the time warp to 3x (LOW rate=3)).
-            if ((TimeWarp.WarpMode == TimeWarp.Modes.HIGH) && (TimeWarp.CurrentRate != 1))
-            {
-                var rate = Mathf.Min(4, TimeWarp.CurrentRateIndex);
-                $"Forcing TimeWarp from mode:HIGH rate:{TimeWarp.CurrentRateIndex} to mode:LOW, rate {rate}".Debug();
-                TimeWarp.fetch.Mode = TimeWarp.Modes.LOW;
-                TimeWarp.SetRate(rate, true, true);
-            }
-
-            // Determine speed and animation
-            float speed;
-            string animation;
-            SetSpeedAndAnimation(kerbalEva, out speed, out animation);
-
-            // move the kerbal in the direction it is facing
-            MoveKerbal(kerbalEva, speed, animation);
-        }
-
-        /// <summary>Includes an allocated item in the kerbal's inventory.</summary>
-        /// <param name="kerbalPcm">The EVA vessel of the kerbal.</param>
-        /// <param name="itemName">The name of the item to be added to the kerbal's inventory.</param>
-        /// <param name="KisType">The class type of the KIS mod.</param>
-        /// <param name="inventory">The class type of a KIS inventory container.</param>
-        private static void AddItemToInventory(ProtoCrewMember kerbalPcm, string itemName, System.Type KisType, Component inventory)
-        {
-            $"{kerbalPcm.name} has a {itemName} to be added".Debug();
-
-            var part = PartLoader.getPartInfoByName(itemName)?.partPrefab;
-            if (part != null)
-            {
-                $"invoking AddItem member using (part [{part.GetType()}])".Debug();
-                var item = 
-                    KisType.InvokeMember(
-                        "AddItem", 
-                        System.Reflection.BindingFlags.InvokeMethod, 
-                        null, 
-                        inventory, 
-                        new object[] { part, 1f, -1 });
-                $"{itemName} is in the inventory as {item}".Debug();
-            }
-            else
-            {
-                "Cannot add item to inventory".Debug();
+                ChangeHighWarpToPhysicsWarp();
+                MoveKerbal(kerbalEva, _currentMotion);
             }
         }
 
-        /// <summary>Moves a kerbal on EVA forward.</summary>
-        /// <param name="kerbalEva">The EVA vessel of the kerbal to move.</param>
-        /// <param name="speed">The speed at which the kerbal should move.</param>
-        /// <param name="animation">The animation to display while moving.</param>
-        private static void MoveKerbal(KerbalEVA kerbalEva, float speed, string animation)
-        {
-            Animation currentAnimation = null;
-            kerbalEva.GetComponentCached<Animation>(ref currentAnimation);
-
-            Rigidbody rigidbody = null;
-            kerbalEva.GetComponentCached<Rigidbody>(ref rigidbody);
-
-            if ((currentAnimation != null) && (rigidbody != null))
-            {
-                var orientation = kerbalEva.part.vessel.transform.rotation;
-                var deltaPosition = orientation * Vector3.forward.normalized * (TimeWarp.deltaTime * speed);
-
-                currentAnimation.CrossFade(animation);
-                rigidbody.interpolation = RigidbodyInterpolation.Extrapolate;
-                rigidbody.MovePosition(rigidbody.position + deltaPosition);
-            }
-        }
-
-        /// <summary>
-        /// Determines the appropriate speed and animation for a moving kerbal based on the current 
-        /// motion mode and the kerbal's current environ.
-        /// </summary>
-        /// <param name="kerbal">The EVA vessel of kerbal.</param>
-        /// <param name="speed">Will be set to the kerbal's speed.</param>
-        /// <param name="animation">Will be set to the animation to display.</param>
-        private void SetSpeedAndAnimation(KerbalEVA kerbal, out float speed, out string animation)
-        {
-            var gforce = FlightGlobals.currentMainBody.GeeASL;
-            speed = kerbal.walkSpeed;
-            animation = "wkC_forward";
-            if (_motion == MotionState.stopping)
-            {
-                speed = 0;
-                animation = (kerbal.part.WaterContact) ? "swim_idle" : "idle";
-                _motion = MotionState.normal;
-            }
-            else if (kerbal.part.WaterContact)
-            {
-                speed = kerbal.swimSpeed;
-                animation = "swim_forward";
-            }
-            else if (_inRunMode && (gforce >= kerbal.minRunningGee))
-            {
-                speed = kerbal.runSpeed;
-                animation = "wkC_run";
-            }
-            else if (gforce < kerbal.minWalkingGee)
-            {
-                speed = kerbal.boundSpeed;
-                animation = "wkC_loG_forward";
-            }
-        }
-
-        /// <summary>Obtains the EVA vessel of the kerbal currently being displayed.</summary>
-        /// <returns>An object represent the kerbal on EVA.</returns>
         private KerbalEVA GetKerbalEva()
         {
             if (!(FlightGlobals.ActiveVessel?.isEVA ?? false))
             {
                 return null;
             }
+
             var crew = FlightGlobals.ActiveVessel.GetVesselCrew();
             if ((crew?.Count ?? 0) != 1)
             {
@@ -239,6 +104,157 @@ namespace KspWalkAbout
             }
 
             return FlightGlobals.ActiveVessel.GetComponent<KerbalEVA>();
+        }
+
+        private void SetPerpetualMotionKeyCombo()
+        {
+            if (_perpetualMotionKeys == null)
+            {
+                _perpetualMotionKeys = new KeyCombination()
+                {
+                    Key = GetModConfig().PmActivationHotKey,
+                    Modifiers = GetModConfig().PmActivationHotKeyModifiers
+                };
+                $"Perpetual Motion Key set to {(_perpetualMotionKeys?.Key ?? KeyCode.None)}".Debug();
+            }
+        }
+
+        private void AddInventoryItems(ProtoCrewMember kerbalPcm, System.Reflection.Assembly KIS)
+        {
+            $"{kerbalPcm.name} has {WalkAboutPersistent.AllocatedItems[kerbalPcm.name].Count} items to be assigned".Debug();
+            var ModuleKISInventoryType = KIS.GetType("KIS.ModuleKISInventory");
+            "found KIS inventory type".Debug();
+            var inventory = FlightGlobals.ActiveVessel.GetComponent(ModuleKISInventoryType);
+            "obtained modules for the active vessel".Debug();
+
+            if (inventory != null)
+            {
+                foreach (var itemName in WalkAboutPersistent.AllocatedItems[kerbalPcm.name])
+                {
+                    AddItemToInventory(kerbalPcm, itemName, ModuleKISInventoryType, inventory);
+                }
+            }
+
+            WalkAboutPersistent.AllocatedItems.Remove(kerbalPcm.name);
+        }
+
+        private void AddItemToInventory(ProtoCrewMember kerbalPcm, string itemName, System.Type KisType, Component inventory)
+        {
+            $"{kerbalPcm.name} has a {itemName} to be added".Debug();
+
+            var part = PartLoader.getPartInfoByName(itemName)?.partPrefab;
+            if (part == null)
+            {
+                "Cannot add item to inventory".Debug();
+                return;
+            }
+
+            $"invoking AddItem member using (part [{part.GetType()}])".Debug();
+            var item =
+                KisType.InvokeMember(
+                    "AddItem",
+                    System.Reflection.BindingFlags.InvokeMethod,
+                    null,
+                    inventory,
+                    new object[] { part, 1f, -1 });
+            $"{itemName} is in the inventory as {item}".Debug();
+        }
+
+        private bool AreFlightConditionsMet(KerbalEVA kerbalEva)
+        {
+            return ((kerbalEva != null) // not a kerbal on EVA
+                && (FlightGlobals.ActiveVessel.LandedOrSplashed)
+                && (!kerbalEva.isRagdoll)
+                && (FlightGlobals.currentMainBody?.GeeASL != null)); // avoids null reference on exit
+        }
+
+        private void AlterMotionAsPerUserKeystrokes(MotionSettings motion, KeyCombination perpetualMotionKeys)
+        {
+            if (IsKeyCombinationPressed(perpetualMotionKeys))
+            {
+                motion.State = (motion.State == MotionState.perpetual) ? MotionState.stopping : MotionState.perpetual;
+                $"Set motion state to {motion.State}".Debug();
+            }
+
+            if (GameSettings.EVA_Run.GetKeyDown())
+            {
+                motion.IsRunning = !motion.IsRunning;
+            }
+        }
+
+        private void ChangeHighWarpToPhysicsWarp()
+        {
+            if ((TimeWarp.WarpMode == TimeWarp.Modes.HIGH) && (TimeWarp.CurrentRate != 1))
+            {
+                var rate = Mathf.Min(4, TimeWarp.CurrentRateIndex);
+                $"Forcing TimeWarp from mode:HIGH rate:{TimeWarp.CurrentRateIndex} to mode:LOW, rate {rate}".Debug();
+                TimeWarp.fetch.Mode = TimeWarp.Modes.LOW;
+                TimeWarp.SetRate(rate, true, true);
+            }
+        }
+
+        private void MoveKerbal(KerbalEVA kerbalEva, MotionSettings currentMotion)
+        {
+            Animation currentAnimation = null;
+            kerbalEva.GetComponentCached<Animation>(ref currentAnimation);
+
+            Rigidbody rigidbody = null;
+            kerbalEva.GetComponentCached<Rigidbody>(ref rigidbody);
+
+            if ((currentAnimation == null) || (rigidbody == null))
+            {
+                return;
+            }
+
+            currentMotion = GetNewMotionSettings(kerbalEva, currentMotion);
+
+            var orientation = kerbalEva.part.vessel.transform.rotation;
+            var deltaPosition = orientation * Vector3.forward.normalized * (TimeWarp.deltaTime * currentMotion.Speed);
+
+            currentAnimation.CrossFade(currentMotion.Animation);
+            rigidbody.interpolation = RigidbodyInterpolation.Extrapolate;
+            rigidbody.MovePosition(rigidbody.position + deltaPosition);
+        }
+
+        private MotionSettings GetNewMotionSettings(KerbalEVA kerbal, MotionSettings currentMotion)
+        {
+            var gforce = FlightGlobals.currentMainBody.GeeASL;
+            var newMotion = new MotionSettings
+            {
+                Animation = currentMotion.Animation,
+                IsRunning = currentMotion.IsRunning,
+                Speed = currentMotion.Speed,
+                State = currentMotion.State,
+            };
+
+            if (currentMotion.State == MotionState.stopping)
+            {
+                newMotion.Animation = (kerbal.part.WaterContact) ? "swim_idle" : "idle";
+                newMotion.Speed = 0;
+                newMotion.State = MotionState.normal;
+            }
+            else if (kerbal.part.WaterContact)
+            {
+                newMotion.Animation = "swim_forward";
+                newMotion.Speed = kerbal.swimSpeed;
+            }
+            else if (currentMotion.IsRunning && (gforce >= kerbal.minRunningGee))
+            {
+                newMotion.Animation = "wkC_run";
+                newMotion.Speed = kerbal.runSpeed;
+            }
+            else if (gforce < kerbal.minWalkingGee)
+            {
+                newMotion.Animation = "wkC_loG_forward";
+                newMotion.Speed = kerbal.boundSpeed;
+            }
+            else {
+                newMotion.Animation = "wkC_forward";
+                newMotion.IsRunning = false;
+                newMotion.Speed = kerbal.walkSpeed;
+            };
+
+            return newMotion;
         }
     }
 }

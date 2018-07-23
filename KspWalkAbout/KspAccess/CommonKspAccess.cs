@@ -1,4 +1,4 @@
-/*  Copyright 2016 Clive Pottinger
+/*  Copyright 2017 Clive Pottinger
     This file is part of the WalkAbout Mod.
 
     WalkAbout is free software: you can redistribute it and/or modify
@@ -25,8 +25,8 @@ namespace KspAccess
     /// <summary>Presents common internal methods to access and manipulate KSP's game state.</summary>
     internal static class CommonKspAccess
     {
-        /// <summary>Gets the object representing the planet Kerbin.</summary>
-        public static CelestialBody Kerbin { get; } = Planetarium.fetch.Home;
+        /// <summary>Gets the object representing the planet on which the KSC is located (e.g. Kerbin).</summary>
+        public static CelestialBody Homeworld { get; } = Planetarium.fetch.Home;
 
         /// <summary>Gets a value indicating whether the game is currently paused.</summary>
         internal static bool IsPauseMenuOpen
@@ -91,7 +91,7 @@ namespace KspAccess
             return (IsModInstalled(modName)) ? $"{KSPUtil.ApplicationRootPath}GameData/{modName}" : string.Empty;
         }
 
-        internal static bool CheckForKeyCombo(KeyCode key, List<KeyCode> modifiers = null)
+        internal static bool IsKeyCombinationPressed(KeyCode key, List<KeyCode> modifiers = null)
         {
             var requiredKeysPressed = (modifiers?.Count ?? 0) == 0;
 
@@ -109,6 +109,18 @@ namespace KspAccess
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// Determines if a key or key combination has been pressed.
+        /// </summary>
+        /// <param name="keys">The key and an modifiers that are to be checked.</param>
+        /// A list of keys of which one must be pressed at the same time as <paramref name="key"/>, or null if no modifier is needed. 
+        /// </param>
+        /// <returns>A value indicating whether the key or key combination was pressed.</returns>
+        internal static bool IsKeyCombinationPressed(KeyCombination keys)
+        {
+            return IsKeyCombinationPressed(keys.Key, keys.Modifiers);
         }
     }
 }

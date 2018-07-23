@@ -1,4 +1,4 @@
-﻿/*  Copyright 2016 Clive Pottinger
+﻿/*  Copyright 2017 Clive Pottinger
     This file is part of the WalkAbout Mod.
 
     WalkAbout is free software: you can redistribute it and/or modify
@@ -14,11 +14,13 @@
     You should have received a copy of the GNU General Public License
     along with WalkAbout.  If not, see<http://www.gnu.org/licenses/>.
 */
+
 using KspWalkAbout.Entities;
 using KspWalkAbout.Extensions;
 using KspWalkAbout.Guis;
 using KspWalkAbout.WalkAboutFiles;
 using UnityEngine;
+using static KspAccess.CommonKspAccess;
 using static KspWalkAbout.Entities.WalkAboutPersistent;
 
 namespace KspWalkAbout
@@ -50,9 +52,9 @@ namespace KspWalkAbout
                 return;
             }
 
-            _config = GetModConfig(); "Add Utility obtained config".Debug();
+            _config = GetModConfig(); "Add Location utility obtained config".Debug();
             if (_config == null) { return; }
-            
+
             if (_config.Mode != "utility")
             {
                 "Add Location utility deactivated: not in utility mode".Debug();
@@ -61,20 +63,35 @@ namespace KspWalkAbout
 
             $"Add Location utility activated on EVA for {FlightGlobals.ActiveVessel.GetVesselCrew()[0].name}".Debug();
 
-            _map = GetLocationMap(); "Add Utility obtained map object".Debug();
-            _addUtilityGui = new AddUtilityGui();
+            _map = GetLocationMap(); "Add Location utility obtained map object".Debug();
+            _addUtilityGui = AddUtilityGui.Instance;
         }
 
-        /// <summary>Called each time the game state is updated.</summary>
+        /// <summary>
+        /// Called each time the game state is updated.
+        /// </summary>
         public void Update()
         {
-            if (_addUtilityGui == null) return;
-            CheckForModUtilityActivation();
-            _addUtilityGui.GuiCoordinates = GuiResizer.HandleResizing(_addUtilityGui.GuiCoordinates);
-            SaveFiles();
+            if (_addUtilityGui == null)
+            {
+                return;
+            }
+
+            if (CheckForModUtilityActivation())
+            {
+                _addUtilityGui.GuiCoordinates = GuiResizer.HandleResizing(_addUtilityGui.GuiCoordinates);
+                SaveFiles();
+            }
+
+            if (!Input.GetMouseButton(0))
+            {
+                SaveFiles();
+            }
         }
 
-        /// <summary>Called each time the game's GUIs are to be refreshed.</summary>
+        /// <summary>
+        /// Called each time the game's GUIs are to be refreshed.
+        /// </summary>
         public void OnGUI()
         {
             _addUtilityGui?.Display();
@@ -86,32 +103,28 @@ namespace KspWalkAbout
             _addUtilityGui.RequestedLocation = null;
         }
 
-        /// <summary>Determines if the user has requested the WalkAbout mod's utility GUI.</summary>
-        private void CheckForModUtilityActivation()
+        /// <summary>
+        /// Determines if the user has requested the WalkAbout mod's utility GUI.
+        /// </summary>
+        private bool CheckForModUtilityActivation()
         {
-            if (Input.GetKeyDown(KeyCode.X))
-            {
-                var requiredKeysPressed = _config.ActivationHotKeyModifiers.Count == 0;
-                if (!requiredKeysPressed)
-                {
-                    foreach (var modifier in _config.ActivationHotKeyModifiers)
-                    {
-                        requiredKeysPressed |= Input.GetKey(modifier);
-                    }
-                }
+            var wasActive = _addUtilityGui.IsActive;
+            _addUtilityGui.IsActive |= IsKeyCombinationPressed(_config.AUActivationHotKey, _config.AUActivationHotKeyModifiers);
 
-                _addUtilityGui.IsActive = requiredKeysPressed;
-                if (requiredKeysPressed)
-                {
-                    _map.RefreshLocations();
-                }
+            if (wasActive != _addUtilityGui.IsActive)
+            {
+                _map.RefreshLocations();
             }
+
+            return _addUtilityGui.IsActive;
         }
 
-        /// <summary>Saves all settings files with pending changes.</summary>
+        /// <summary>
+        /// Saves all settings files with pending changes.
+        /// </summary>
         private void SaveFiles()
         {
-            if (_map.IsChanged && !Input.GetMouseButton(0))
+            if (_map.IsChanged)
             {
                 "Saving map changes".Debug();
                 _map.Save();

@@ -1,663 +1,651 @@
 Locations
 {
-	Item
-	{
-		LocationName = VAB_Main_E1A
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_1
-		Queueing = 0
-		Latitude = -0.0983785426058269
-		Longitude = 285.379407957794
-		Altitude = 67.9701721463352
-		Normal = 0.0012294,0.9999993,0.000338529
-		Rotation = 0.6898001,-0.6561283,-0.1558899,0.2633814
-	}
-	Item
-	{
-		LocationName = VAB_Main_W1A
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_1
-		Queueing = 0
-		Latitude = -0.0978034836882198
-		Longitude = 285.3738259191
-		Altitude = 67.9934805860976
-		Normal = 0.001345633,0.999999,-0.000438917
-		Rotation = -0.1564828,-0.2630207,-0.6907064,-0.6551778
-	}
-	Item
-	{
-		LocationName = VAB_NorthComplex_1A
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_1
-		Queueing = 0
-		Latitude = -0.0933798322360266
-		Longitude = 285.374880538621
-		Altitude = 67.9657837863779
-		Normal = 0.0005393015,0.9999999,-0.0002360556
-		Rotation = -0.6983162,0.6380563,0.1116445,-0.3045885
-	}
-	Item
-	{
-		LocationName = VAB_NorthComplex_1B
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_1
-		Queueing = 0
-		Latitude = -0.0933834606047309
-		Longitude = 285.374073407283
-		Altitude = 67.9655785146169
-		Normal = 0.001687857,0.9999987,0.0001519282
-		Rotation = 0.1641392,0.2556865,0.6887748,0.658234
-	}
-	Item
-	{
-		LocationName = VAB_NorthHelipad
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_1
-		Queueing = 0
-		Latitude = -0.0953095017557987
-		Longitude = 285.378852478141
-		Altitude = 135.265705595259
-		Normal = -0.0001743269,1,0.0003192494
-		Rotation = -0.2883735,0.6027596,0.6466318,0.3679525
-	}
-	Item
-	{
-		LocationName = VAB_SouthHelipad
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_1
-		Queueing = 0
-		Latitude = -0.0982567842107622
-		Longitude = 285.378829477873
-		Altitude = 135.265706503182
-		Normal = 0.0004257029,0.9999999,-0.0005028411
-		Rotation = -0.6229896,0.3222017,-0.335696,-0.6287912
-	}
-	Item
-	{
-		LocationName = VAB_Main_N1A
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_2
-		Queueing = 0
-		Latitude = -0.092874244196121
-		Longitude = 285.383371458807
-		Altitude = 67.771015261882
-		Normal = -0.0009496369,0.9999995,0.0004164974
-		Rotation = 0.3915616,-0.6554835,-0.5897688,-0.263047
-	}
-	Item
-	{
-		LocationName = VAB_NorthComplex
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_2
-		Queueing = 0
-		Latitude = -0.0915975106781696
-		Longitude = 285.381313365825
-		Altitude = 68.7556955396431
-		Normal = -0.0001926467,0.9999999,0.0004042985
-		Rotation = -0.3493085,0.6357287,0.6156615,0.3078856
-	}
-	Item
-	{
-		LocationName = VAB_Main_N1B
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_2
-		Queueing = 0
-		Latitude = -0.0928640760828656
-		Longitude = 285.377780440792
-		Altitude = 67.790479749674
-		Normal = 0.0005256414,0.999999,-0.001267961
-		Rotation = -0.3757589,0.6493836,0.5991508,0.2795078
-	}
-	Item
-	{
-		LocationName = VAB_Main_N1C
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_2
-		Queueing = 0
-		Latitude = -0.0928557784822089
-		Longitude = 285.37758676318
-		Altitude = 67.7912585325539
-		Normal = 0.0005188528,0.999999,-0.001296508
-		Rotation = -0.3483527,0.6361488,0.6154903,0.3084427
-	}
-	Item
-	{
-		LocationName = VAB_Main_S1A
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_2
-		Queueing = 0
-		Latitude = -0.100678414591697
-		Longitude = 285.383322338481
-		Altitude = 68.7300847298466
-		Normal = 0.0005585749,0.9999999,0.000133679
-		Rotation = 0.6292831,-0.334035,0.3236912,0.6226134
-	}
-	Item
-	{
-		LocationName = VAB_SouthComplex_1A
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_2
-		Queueing = 0
-		Latitude = -0.100793714635401
-		Longitude = 285.378168747578
-		Altitude = 68.7659250531578
-		Normal = -0.0006807667,0.9999998,-7.905618E-05
-		Rotation = 0.2135957,0.2070326,0.6744424,0.6757528
-	}
-	Item
-	{
-		LocationName = VAB_ArchHanger_1
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_2
-		Queueing = 0
-		Latitude = -0.107829117902943
-		Longitude = 285.384606004026
-		Altitude = 67.752091252245
-		Normal = -7.065559E-05,0.9999995,-0.000946745
-		Rotation = -0.6161642,0.3082359,-0.3487969,-0.6353527
-	}
-	Item
-	{
-		LocationName = VAB_ArchHanger_2
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_2
-		Queueing = 0
-		Latitude = -0.107815632749824
-		Longitude = 285.381369767313
-		Altitude = 67.7619069785578
-		Normal = -0.0002451508,0.9999995,-0.001137604
-		Rotation = -0.605315,0.2885765,-0.3674099,-0.6444589
-	}
-	Item
-	{
-		LocationName = VAB_ArchHanger_3
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_2
-		Queueing = 0
-		Latitude = -0.10781611280841
-		Longitude = 285.378476162615
-		Altitude = 67.772323253681
-		Normal = -0.0001085255,0.9999992,-0.001286842
-		Rotation = 0.6115049,-0.2995276,0.3571357,0.6393741
-	}
-	Item
-	{
-		LocationName = VAB_WestHelipad
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_2
-		Queueing = 0
-		Latitude = -0.0968885627118433
-		Longitude = 285.380024989219
-		Altitude = 152.331314579002
-		Normal = 0.0001302128,0.9999995,-0.001032689
-		Rotation = -0.6791879,0.6710854,0.1987528,-0.2210105
-	}
-	Item
-	{
-		LocationName = VAB_EastHelipad
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_2
-		Queueing = 0
-		Latitude = -0.0966275313743483
-		Longitude = 285.38058575784
-		Altitude = 152.329351688153
-		Normal = -0.0001043428,0.9999993,-0.001055561
-		Rotation = -0.2088908,-0.2123617,-0.6761324,-0.6738784
-	}
-	Item
-	{
-		LocationName = VAB_CommDishes
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_2
-		Queueing = 0
-		Latitude = -0.098888900023185
-		Longitude = 285.378717318376
-		Altitude = 152.336524696555
-		Normal = -0.0006046747,0.9999998,-0.0002465656
-		Rotation = 0.3253058,-0.623506,-0.6284062,-0.3324488
-	}
-	Item
-	{
-		LocationName = VAB_SouthComplex_8A
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_2
-		Queueing = 0
-		Latitude = -0.102286846113449
-		Longitude = 285.381780396792
-		Altitude = 98.7320783836767
-		Normal = -0.0006226874,1,-0.0002156918
-		Rotation = -0.2082518,-0.2124301,-0.6761381,-0.6740489
-	}
-	Item
-	{
-		LocationName = VAB_SouthComplex_8B
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_2
-		Queueing = 0
-		Latitude = -0.102288496922398
-		Longitude = 285.380814172457
-		Altitude = 98.735321365064
-		Normal = 0.0003648786,0.9999998,-0.0008324154
-		Rotation = 0.678443,-0.6718532,-0.200969,0.218952
-	}
-	Item
-	{
-		LocationName = VAB_WestLoadingDoors_1A
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.0962402879027162
-		Longitude = 285.37704293517
-		Altitude = 67.7585536888801
-		Normal = 0.0002041471,0.9999987,-0.001650046
-		Rotation = -0.1834899,-0.2361717,-0.6835303,-0.6658385
-	}
-	Item
-	{
-		LocationName = VAB_WestLoadingDoors_1B
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.0977255680040052
-		Longitude = 285.377058571079
-		Altitude = 67.7295740845148
-		Normal = -0.0006103019,0.9999995,0.0008058872
-		Rotation = 0.007008026,0.3948196,0.7076465,0.5859222
-	}
-	Item
-	{
-		LocationName = VAB_NorthComplex_W1A
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.0904482040438116
-		Longitude = 285.378537159177
-		Altitude = 67.7807823079638
-		Normal = 6.871665E-05,1,0.0003145139
-		Rotation = -0.2027362,-0.2175561,-0.6780725,-0.6721497
-	}
-	Item
-	{
-		LocationName = VAB_NorthComplex_1A
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.090482130945967
-		Longitude = 285.382533168742
-		Altitude = 67.766803108505
-		Normal = -0.0002405668,0.9999999,-0.000573957
-		Rotation = 0.6850432,-0.6638162,-0.1780721,0.2415664
-	}
-	Item
-	{
-		LocationName = VAB_NorthComplex_Loading
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.0898575293153053
-		Longitude = 285.380032546707
-		Altitude = 67.7759501485853
-		Normal = -0.0008053777,0.9999998,0.000238108
-		Rotation = 0.3315619,-0.6265272,-0.6253284,-0.3263355
-	}
-	Item
-	{
-		LocationName = VAB_NorthComplex_E1A
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.0912838935730964
-		Longitude = 285.383077548889
-		Altitude = 67.7642458716873
-		Normal = 0.000653624,0.9999998,0.0002771751
-		Rotation = -0.2263339,-0.1939205,-0.6707761,-0.6791372
-	}
-	Item
-	{
-		LocationName = VAB_NorthComplex_E1B
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.0881322214408056
-		Longitude = 285.383474380681
-		Altitude = 67.7672092673602
-		Normal = -0.0005927946,0.9999994,-0.001020063
-		Rotation = 0.3259613,-0.6241688,-0.6277584,-0.3317862
-	}
-	Item
-	{
-		LocationName = VAB_NorthComplex_E1C
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.0920145117428589
-		Longitude = 285.384270615991
-		Altitude = 67.760064932052
-		Normal = -9.120756E-05,0.9999999,-0.0005348139
-		Rotation = -0.6757627,0.6745874,0.2103255,-0.209857
-	}
-	Item
-	{
-		LocationName = VAB_SouthComplex_E1A
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.102507504379541
-		Longitude = 285.384176422345
-		Altitude = 67.7610186511884
-		Normal = 0.0002572925,0.9999999,-0.000616584
-		Rotation = -0.6747673,0.6755864,0.2130794,-0.2070493
-	}
-	Item
-	{
-		LocationName = VAB_SouthComplex_E1B
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.106795758450114
-		Longitude = 285.384172832827
-		Altitude = 67.7671036447864
-		Normal = -0.0001591164,1,-0.0004194607
-		Rotation = 0.6783576,-0.6718665,-0.2018555,0.2183596
-	}
-	Item
-	{
-		LocationName = VAB_SouthComplex_EastLoading
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.107457066528872
-		Longitude = 285.383201312818
-		Altitude = 67.7711699909996
-		Normal = 0.0001090882,0.9999996,-0.0009304776
-		Rotation = -0.6260496,0.326716,-0.3307416,-0.6260419
-	}
-	Item
-	{
-		LocationName = VAB_SouthComplex_1A
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.108102625074793
-		Longitude = 285.382056392312
-		Altitude = 67.7489947713912
-		Normal = 0.001032754,0.9999995,0.0002514563
-		Rotation = 0.6276225,-0.3312218,0.3268099,0.6241615
-	}
-	Item
-	{
-		LocationName = VAB_SouthComplex_Loading
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.108105079444801
-		Longitude = 285.379920228416
-		Altitude = 67.7562718177214
-		Normal = 0.0006653785,0.9999998,-0.0001727117
-		Rotation = 0.6229056,-0.3217336,0.3360479,0.6289261
-	}
-	Item
-	{
-		LocationName = VAB_SouthComplex_W1A
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.107452258156678
-		Longitude = 285.378001579842
-		Altitude = 67.7622255135793
-		Normal = 0.0003654727,0.9999999,-0.0003326821
-		Rotation = 0.6249257,-0.3252279,0.3323882,0.6270669
-	}
-	Item
-	{
-		LocationName = VAB_SouthComplex_W1B
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.106507898967628
-		Longitude = 285.376845565466
-		Altitude = 67.7651695534587
-		Normal = -0.000616228,0.9999998,-0.0004616542
-		Rotation = -0.1981886,-0.2225707,-0.6791521,-0.6707727
-	}
-	Item
-	{
-		LocationName = VAB_SouthComplex_W1C
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.103072532150635
-		Longitude = 285.376872880209
-		Altitude = 67.7601076008286
-		Normal = -0.00108871,0.9999993,-0.0006539015
-		Rotation = -0.1979641,-0.222916,-0.6790411,-0.6708366
-	}
-	Item
-	{
-		LocationName = VAB_SouthComplex_W1D
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.101539394020518
-		Longitude = 285.376756495753
-		Altitude = 67.7590788161615
-		Normal = -0.001042825,0.9999992,-0.0007810732
-		Rotation = 0.2080795,0.2129847,0.6760339,0.6740317
-	}
-	Item
-	{
-		LocationName = VAB_SouthComplex_E5A
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.10248800449747
-		Longitude = 285.38346003708
-		Altitude = 87.2247740735766
-		Normal = 0.001002561,0.9999995,-0.0003562997
-		Rotation = 0.6708649,-0.6791448,-0.2242205,0.1960302
-	}
-	Item
-	{
-		LocationName = VAB_SouthComplex_E5B
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.105633066761637
-		Longitude = 285.382600835544
-		Altitude = 87.2314901597565
-		Normal = 0.0009025799,0.9999997,-0.0001784858
-		Rotation = -0.6243157,0.3245287,-0.3334225,-0.6274874
-	}
-	Item
-	{
-		LocationName = VAB_SouthComplex_W5A
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.102452478129668
-		Longitude = 285.377461286825
-		Altitude = 87.2586582864169
-		Normal = 0.00186578,0.9999983,-0.0003891408
-		Rotation = -0.03056231,-0.3761246,-0.7074428,-0.5975961
-	}
-	Item
-	{
-		LocationName = VAB_Main_S10A
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.101429765375342
-		Longitude = 285.382098708621
-		Altitude = 107.227981682285
-		Normal = -0.0003296501,0.9999992,-0.001276569
-		Rotation = -0.6381673,0.3497877,-0.3069839,-0.6133122
-	}
-	Item
-	{
-		LocationName = VAB_SouthComplex_E10A
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.104012263741987
-		Longitude = 285.382121878091
-		Altitude = 107.73065782676
-		Normal = 0.0007107881,0.9999998,-0.0003590781
-		Rotation = 0.6675412,-0.6818943,-0.2342303,0.1858634
-	}
-	Item
-	{
-		LocationName = VAB_Main_S10B
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.101407348880929
-		Longitude = 285.378848240342
-		Altitude = 107.245522871031
-		Normal = 0.001154906,0.9999994,1.098536E-05
-		Rotation = 0.656828,-0.3909,0.2633273,0.5885855
-	}
-	Item
-	{
-		LocationName = VAB_SouthComplex_W10A
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.103999817995539
-		Longitude = 285.378800057147
-		Altitude = 107.748441901407
-		Normal = 0.001544491,0.9999987,-0.0003486035
-		Rotation = 0.3877891,0.0170054,0.5924399,0.705936
-	}
-	Item
-	{
-		LocationName = VAB_SouthComplex_W10A
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.104000946026598
-		Longitude = 285.378799529881
-		Altitude = 107.755182488589
-		Normal = 0.001388316,0.999999,-0.0003522291
-		Rotation = 0.2146885,0.2060879,0.6749359,0.6752023
-	}
-	Item
-	{
-		LocationName = VAB_NorthComplex_6A
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.0918312209457822
-		Longitude = 285.382583365235
-		Altitude = 87.2250032287557
-		Normal = 0.000779364,0.9999997,-0.0003427798
-		Rotation = -0.6749147,0.6753855,0.2120059,-0.2083223
-	}
-	Item
-	{
-		LocationName = VAB_SouthComplex_W5B
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.105619693463383
-		Longitude = 285.378311522027
-		Altitude = 87.2629284536233
-		Normal = 0.0006380702,0.9999999,-0.0001994882
-		Rotation = 0.6318181,-0.3387227,0.3189684,0.6199453
-	}
-	Item
-	{
-		LocationName = VAB_EastHelipad_North_1A
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.093326035079206
-		Longitude = 285.382544019049
-		Altitude = 168.211493122857
-		Normal = -0.01060578,0.9809687,0.1938766
-		Rotation = -0.1902414,-0.2312663,-0.6816275,-0.6676137
-	}
-	Item
-	{
-		LocationName = VAB_EastHelipad_North_1B
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.0939680794516067
-		Longitude = 285.3825664741
-		Altitude = 168.223488897318
-		Normal = -5.437394E-05,0.9999996,-0.001136303
-		Rotation = 0.2086287,0.212681,0.6762316,0.6737593
-	}
-	Item
-	{
-		LocationName = VAB_WestHeliPad_North_1A
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.0933204781146452
-		Longitude = 285.380045753171
-		Altitude = 168.162411936093
-		Normal = -0.01027939,0.9807985,0.1947523
-		Rotation = 0.681774,-0.6680843,-0.1897938,0.2298391
-	}
-	Item
-	{
-		LocationName = VAB_WestHeliPad_North_1B
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.0939388203099839
-		Longitude = 285.380139693781
-		Altitude = 167.731623854022
-		Normal = 1.215467E-05,0.9999999,-0.0004694028
-		Rotation = 0.6754758,-0.6748588,-0.2111208,0.2091081
-	}
-	Item
-	{
-		LocationName = VAB_EastHeliPad_South_1A
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.100257825807717
-		Longitude = 285.38251631769
-		Altitude = 168.223877128563
-		Normal = -0.0008551109,0.9999997,-0.0002856005
-		Rotation = 0.1874264,0.2330128,0.682113,0.6673067
-	}
-	Item
-	{
-		LocationName = VAB_EastHeliPad_South_1B
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.0996161759734139
-		Longitude = 285.382408894619
-		Altitude = 167.723878904828
-		Normal = -0.0006731891,0.9999996,-0.0006027327
-		Rotation = 0.189055,0.2316365,0.6817233,0.6677245
-	}
-	Item
-	{
-		LocationName = VAB_WestHeliPad_South_1A
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.100230951822171
-		Longitude = 285.379965429997
-		Altitude = 168.249874734785
-		Normal = 0.001738013,0.9807932,0.1950427
-		Rotation = 0.675662,-0.6749408,-0.210624,0.2087427
-	}
-	Item
-	{
-		LocationName = VAB_WestHeliPad_South_1B
-		FacilityName = SpaceCenter/VehicleAssemblyBuilding
-		AvailableAtLevels = Level_3
-		Queueing = 0
-		Latitude = -0.0996046388645911
-		Longitude = 285.380099684277
-		Altitude = 167.750932462979
-		Normal = -0.0007218456,0.9999995,-0.0008008789
-		Rotation = -0.680997,0.6690062,0.193575,-0.2262799
-	}
+    Item
+    {
+        LocationName = VAB_Main_E1A
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_1
+        Queueing = 0
+        ForwardAzimuth = 97.2878783720058
+        Distance = 347.538079643525 
+        DeltaAltitude = 3.586165270186
+        Normal = 0.0012294,0.9999993,0.000338529
+        Rotation = 0.6898001,-0.6561283,-0.1558899,0.2633814
+    }
+    Item
+    {
+        LocationName = VAB_Main_W1A
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_1
+        Queueing = 0
+        ForwardAzimuth = 97.5739788217476
+        Distance = 288.788807575758 
+        DeltaAltitude = 3.6094737099484
+        Normal = 0.001345633,0.999999,-0.000438917
+        Rotation = -0.1564828,-0.2630207,-0.6907064,-0.6551778
+    }
+    Item
+    {
+        LocationName = VAB_NorthComplex_1A
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_1
+        Queueing = 0
+        ForwardAzimuth = 87.520485409592823
+        Distance = 298.49639699118393
+        DeltaAltitude = 3.6548955556936562
+        Normal = -0.0012630485,0.999999166,-0.000108838081
+        Rotation = -0.682972312,0.666153967,0.184059352,-0.236452639
+    }
+    Item
+    {
+        LocationName = VAB_NorthComplex_1B
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_1
+        Queueing = 0
+        ForwardAzimuth = 88.3685754083669
+        Distance = 288.978409185677 
+        DeltaAltitude = 3.58157163846769
+        Normal = 0.001687857,0.9999987,0.0001519282
+        Rotation = 0.1641392,0.2556865,0.6887748,0.658234
+    }
+    Item
+    {
+        LocationName = VAB_NorthHelipad
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_1
+        Queueing = 0
+        ForwardAzimuth = 92.0184695076674
+        Distance = 339.123287552929 
+        DeltaAltitude = 70.8816987191098
+        Normal = -0.0001743269,1,0.0003192494
+        Rotation = -0.2883735,0.6027596,0.6466318,0.3679525
+    }
+    Item
+    {
+        LocationName = VAB_SouthHelipad
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_1
+        Queueing = 0
+        ForwardAzimuth = 97.2045705469151
+        Distance = 341.367153170758 
+        DeltaAltitude = 70.8816996270328
+        Normal = 0.0004257029,0.9999999,-0.0005028411
+        Rotation = -0.6229896,0.3222017,-0.335696,-0.6287912
+    }
+    Item
+    {
+        LocationName = VAB_ArchHanger_1
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_2
+        Queueing = 0
+        ForwardAzimuth = 109.717838420026
+        Distance = 424.032814962908 
+        DeltaAltitude = 3.36808437609579
+        Normal = -7.065559E-05,0.9999995,-0.000946745
+        Rotation = -0.6161642,0.3082359,-0.3487969,-0.6353527
+    }
+    Item
+    {
+        LocationName = VAB_ArchHanger_2
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_2
+        Queueing = 0
+        ForwardAzimuth = 111.369014198262
+        Distance = 392.241971164857 
+        DeltaAltitude = 3.3779001024086
+        Normal = -0.0002451508,0.9999995,-0.001137604
+        Rotation = -0.605315,0.2885765,-0.3674099,-0.6444589
+    }
+    Item
+    {
+        LocationName = VAB_ArchHanger_3
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_2
+        Queueing = 0
+        ForwardAzimuth = 113.107233506348
+        Distance = 364.189793234064 
+        DeltaAltitude = 3.38831637753179
+        Normal = -0.0001085255,0.9999992,-0.001286842
+        Rotation = 0.6115049,-0.2995276,0.3571357,0.6393741
+    }
+    Item
+    {
+        LocationName = VAB_CommDishes
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_2
+        Queueing = 0
+        ForwardAzimuth = 98.3326356148651
+        Distance = 341.098130383833 
+        DeltaAltitude = 87.9525178204058
+        Normal = -0.0006046747,0.9999998,-0.0002465656
+        Rotation = 0.3253058,-0.623506,-0.6284062,-0.3324488
+    }
+    Item
+    {
+        LocationName = VAB_Main_N1A
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_2
+        Queueing = 0
+        ForwardAzimuth = 87.9892808183536
+        Distance = 386.478526889223 
+        DeltaAltitude = 3.3870083857328
+        Normal = -0.0009496369,0.9999995,0.0004164974
+        Rotation = 0.3915616,-0.6554835,-0.5897688,-0.263047
+    }
+    Item
+    {
+        LocationName = VAB_Main_N1B
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_2
+        Queueing = 0
+        ForwardAzimuth = 87.611759228015
+        Distance = 327.970228839262 
+        DeltaAltitude = 3.40647287352481
+        Normal = 0.0005256414,0.999999,-0.001267961
+        Rotation = -0.3757589,0.6493836,0.5991508,0.2795078
+    }
+    Item
+    {
+        LocationName = VAB_Main_N1C
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_2
+        Queueing = 0
+        ForwardAzimuth = 87.5816384532079
+        Distance = 325.947254951658 
+        DeltaAltitude = 3.4072516564047
+        Normal = 0.0005188528,0.999999,-0.001296508
+        Rotation = -0.3483527,0.6361488,0.6154903,0.3084427
+    }
+    Item
+    {
+        LocationName = VAB_Main_S1A
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_2
+        Queueing = 0
+        ForwardAzimuth = 100.023016835325
+        Distance = 391.704258573328 
+        DeltaAltitude = 4.34607785369739
+        Normal = 0.0005585749,0.9999999,0.000133679
+        Rotation = 0.6292831,-0.334035,0.3236912,0.6226134
+    }
+    Item
+    {
+        LocationName = VAB_EastHelipad
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_2
+        Queueing = 0
+        ForwardAzimuth = 94.1245159169937
+        Distance = 357.992807466301 
+        DeltaAltitude = 87.9453448120038
+        Normal = -0.0001043428,0.9999993,-0.001055561
+        Rotation = -0.2088908,-0.2123617,-0.6761324,-0.6738784
+    }
+    Item
+    {
+        LocationName = VAB_NorthComplex_1A
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_2
+        Queueing = 0
+        ForwardAzimuth = 85.7764542940279
+        Distance = 365.679070140743 
+        DeltaAltitude = 4.3716886634939
+        Normal = -0.0001926467,0.9999999,0.0004042985
+        Rotation = -0.3493085,0.6357287,0.6156615,0.3078856
+    }
+    Item
+    {
+        LocationName = VAB_SouthComplex_1A
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_2
+        Queueing = 0
+        ForwardAzimuth = 101.812339720034
+        Distance = 338.929447415518 
+        DeltaAltitude = 4.3819181770086
+        Normal = -0.0006807667,0.9999998,-7.905618E-05
+        Rotation = 0.2135957,0.2070326,0.6744424,0.6757528
+    }
+    Item
+    {
+        LocationName = VAB_SouthComplex_8A
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_2
+        Queueing = 0
+        ForwardAzimuth = 102.955149214891
+        Distance = 379.230111464615 
+        DeltaAltitude = 34.3480715075275
+        Normal = -0.0006226874,1,-0.0002156918
+        Rotation = -0.2082518,-0.2124301,-0.6761381,-0.6740489
+    }
+    Item
+    {
+        LocationName = VAB_SouthComplex_8B
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_2
+        Queueing = 0
+        ForwardAzimuth = 103.3096603232
+        Distance = 369.379287790829 
+        DeltaAltitude = 34.3513144889148
+        Normal = 0.0003648786,0.9999998,-0.0008324154
+        Rotation = 0.678443,-0.6718532,-0.200969,0.218952
+    }
+    Item
+    {
+        LocationName = VAB_WestHelipad
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_2
+        Queueing = 0
+        ForwardAzimuth = 94.6366103865695
+        Distance = 352.345737863988 
+        DeltaAltitude = 87.9473077028528
+        Normal = 0.0001302128,0.9999995,-0.001032689
+        Rotation = -0.6791879,0.6710854,0.1987528,-0.2210105
+    }
+    Item
+    {
+        LocationName = VAB_Main_S10A
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 101.525533251323
+        Distance = 380.585057549964 
+        DeltaAltitude = 42.8439748061358
+        Normal = -0.0003296501,0.9999992,-0.001276569
+        Rotation = -0.6381673,0.3497877,-0.3069839,-0.6133122
+    }
+    Item
+    {
+        LocationName = VAB_Main_S10B
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 102.609947699377
+        Distance = 347.24435124265 
+        DeltaAltitude = 42.8615159948818
+        Normal = 0.001154906,0.9999994,1.098536E-05
+        Rotation = 0.656828,-0.3909,0.2633273,0.5885855
+    }
+    Item
+    {
+        LocationName = VAB_WestLoadingDoors_1A
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 93.8785932300315
+        Distance = 320.695879675255 
+        DeltaAltitude = 3.3745468127309
+        Normal = 0.0002041471,0.9999987,-0.001650046
+        Rotation = -0.1834899,-0.2361717,-0.6835303,-0.6658385
+    }
+    Item
+    {
+        LocationName = VAB_WestLoadingDoors_1B
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 96.6368090385509
+        Distance = 322.284827549635 
+        DeltaAltitude = 3.34556720836559
+        Normal = -0.0006103019,0.9999995,0.0008058872
+        Rotation = 0.007008026,0.3948196,0.7076465,0.5859222
+    }
+    Item
+    {
+        LocationName = VAB_NorthComplex_Loading
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 82.6750327039327
+        Distance = 354.162207848493 
+        DeltaAltitude = 3.39194327243609
+        Normal = -0.0008053777,0.9999998,0.000238108
+        Rotation = 0.3315619,-0.6265272,-0.6253284,-0.3263355
+    }
+    Item
+    {
+        LocationName = VAB_NorthComplex_1A
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 84.1591497578443
+        Distance = 379.430957999118 
+        DeltaAltitude = 3.3827962323558
+        Normal = -0.0002405668,0.9999999,-0.000573957
+        Rotation = 0.6850432,-0.6638162,-0.1780721,0.2415664
+    }
+    Item
+    {
+        LocationName = VAB_NorthComplex_6A
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 86.2938788179774
+        Distance = 378.778937764836 
+        DeltaAltitude = 22.8409963526065
+        Normal = 0.000779364,0.9999997,-0.0003427798
+        Rotation = -0.6749147,0.6753855,0.2120059,-0.2083223
+    }
+    Item
+    {
+        LocationName = VAB_NorthComplex_E1A
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 85.4910041687105
+        Distance = 384.352006371403 
+        DeltaAltitude = 3.38023899553809
+        Normal = 0.000653624,0.9999998,0.0002771751
+        Rotation = -0.2263339,-0.1939205,-0.6707761,-0.6791372
+    }
+    Item
+    {
+        LocationName = VAB_NorthComplex_E1B
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 80.7291034221752
+        Distance = 392.444766119734 
+        DeltaAltitude = 3.383202391211
+        Normal = -0.0005927946,0.9999994,-0.001020063
+        Rotation = 0.3259613,-0.6241688,-0.6277584,-0.3317862
+    }
+    Item
+    {
+        LocationName = VAB_NorthComplex_E1C
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 86.7359758679215
+        Distance = 396.300416901623 
+        DeltaAltitude = 3.3760580559028
+        Normal = -9.120756E-05,0.9999999,-0.0005348139
+        Rotation = -0.6757627,0.6745874,0.2103255,-0.209857
+    }
+    Item
+    {
+        LocationName = VAB_NorthComplex_W1A
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 83.3769363483546
+        Distance = 337.865325932365 
+        DeltaAltitude = 3.3967754318146
+        Normal = 6.871665E-05,1,0.0003145139
+        Rotation = -0.2027362,-0.2175561,-0.6780725,-0.6721497
+    }
+    Item
+    {
+        LocationName = VAB_SouthComplex_EastLoading
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 109.899364119439
+        Distance = 408.871374376663 
+        DeltaAltitude = 3.3871631148504
+        Normal = 0.0001090882,0.9999996,-0.0009304776
+        Rotation = -0.6260496,0.326716,-0.3307416,-0.6260419
+    }
+    Item
+    {
+        LocationName = VAB_SouthComplex_Loading
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 112.63112905351
+        Distance = 379.301066033024 
+        DeltaAltitude = 3.3722649415722
+        Normal = 0.0006653785,0.9999998,-0.0001727117
+        Rotation = 0.6229056,-0.3217336,0.3360479,0.6289261
+    }
+    Item
+    {
+        LocationName = VAB_SouthComplex_1Ax
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 111.394628717278
+        Distance = 400.033921101476 
+        DeltaAltitude = 3.364987895242
+        Normal = 0.001032754,0.9999995,0.0002514563
+        Rotation = 0.6276225,-0.3312218,0.3268099,0.6241615
+    }
+    Item
+    {
+        LocationName = VAB_SouthComplex_E1A
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 102.476959829767
+        Distance = 404.217319458978 
+        DeltaAltitude = 3.37701177503919
+        Normal = 0.0002572925,0.9999999,-0.000616584
+        Rotation = -0.6747673,0.6755864,0.2130794,-0.2070493
+    }
+    Item
+    {
+        LocationName = VAB_SouthComplex_E1B
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 108.525954872245
+        Distance = 416.200862980014 
+        DeltaAltitude = 3.3830967686372
+        Normal = -0.0001591164,1,-0.0004194607
+        Rotation = 0.6783576,-0.6718665,-0.2018555,0.2183596
+    }
+    Item
+    {
+        LocationName = VAB_SouthComplex_E5A
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 102.682197034371
+        Distance = 396.850172909964 
+        DeltaAltitude = 22.8407671974274
+        Normal = 0.001002561,0.9999995,-0.0003562997
+        Rotation = 0.6708649,-0.6791448,-0.2242205,0.1960302
+    }
+    Item
+    {
+        LocationName = VAB_SouthComplex_E5B
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 107.614009546124
+        Distance = 396.771576233526 
+        DeltaAltitude = 22.8474832836073
+        Normal = 0.0009025799,0.9999997,-0.0001784858
+        Rotation = -0.6243157,0.3245287,-0.3334225,-0.6274874
+    }
+    Item
+    {
+        LocationName = VAB_SouthComplex_E10A
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 105.443636506574
+        Distance = 387.131687490589 
+        DeltaAltitude = 43.3466509506108
+        Normal = 0.0007107881,0.9999998,-0.0003590781
+        Rotation = 0.6675412,-0.6818943,-0.2342303,0.1858634
+    }
+    Item
+    {
+        LocationName = VAB_SouthComplex_S1A
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 112.858557300605
+        Distance = 358.126069071261 
+        DeltaAltitude = 3.37821863743009
+        Normal = 0.0003654727,0.9999999,-0.0003326821
+        Rotation = 0.6249257,-0.3252279,0.3323882,0.6270669
+    }
+    Item
+    {
+        LocationName = VAB_SouthComplex_W1A
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 112.122113816582
+        Distance = 343.156205196993 
+        DeltaAltitude = 3.3811626773095
+        Normal = -0.000616228,0.9999998,-0.0004616542
+        Rotation = -0.1981886,-0.2225707,-0.6791521,-0.6707727
+    }
+    Item
+    {
+        LocationName = VAB_SouthComplex_W1B
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 106.334005207405
+        Distance = 331.562650320065 
+        DeltaAltitude = 3.3761007246794
+        Normal = -0.00108871,0.9999993,-0.0006539015
+        Rotation = -0.1979641,-0.222916,-0.6790411,-0.6708366
+    }
+    Item
+    {
+        LocationName = VAB_SouthComplex_W1C
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 103.687011638205
+        Distance = 326.225300968023 
+        DeltaAltitude = 3.3750719400123
+        Normal = -0.001042825,0.9999992,-0.0007810732
+        Rotation = 0.2080795,0.2129847,0.6760339,0.6740317
+    }
+    Item
+    {
+        LocationName = VAB_SouthComplex_W5A
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 104.974647704344
+        Distance = 335.7445359375 
+        DeltaAltitude = 22.8746514102677
+        Normal = 0.00186578,0.9999983,-0.0003891408
+        Rotation = -0.03056231,-0.3761246,-0.7074428,-0.5975961
+    }
+    Item
+    {
+        LocationName = VAB_SouthComplex_W5B
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 109.792045055664
+        Distance = 354.168822890331 
+        DeltaAltitude = 22.8789215774741
+        Normal = 0.0006380702,0.9999999,-0.0001994882
+        Rotation = 0.6318181,-0.3387227,0.3189684,0.6199453
+    }
+    Item
+    {
+        LocationName = VAB_SouthComplex_W10A
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 106.924220116991
+        Distance = 353.681502080514 
+        DeltaAltitude = 43.3644350252578
+        Normal = 0.001544491,0.9999987,-0.0003486035
+        Rotation = 0.3877891,0.0170054,0.5924399,0.705936
+    }
+    Item
+    {
+        LocationName = VAB_EastHelipad_North_1A
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 88.6605432014926
+        Distance = 377.677913323564 
+        DeltaAltitude = 103.827486246708
+        Normal = -0.01060578,0.9809687,0.1938766
+        Rotation = -0.1902414,-0.2312663,-0.6816275,-0.6676137
+    }
+    Item
+    {
+        LocationName = VAB_EastHelipad_North_1B
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 89.6808767325194
+        Distance = 377.81573935016 
+        DeltaAltitude = 103.839482021169
+        Normal = -5.437394E-05,0.9999996,-0.001136303
+        Rotation = 0.2086287,0.212681,0.6762316,0.6737593
+    }
+    Item
+    {
+        LocationName = VAB_EastHeliPad_South_1A
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 99.5934908599519
+        Distance = 382.635686213641 
+        DeltaAltitude = 103.839870252414
+        Normal = -0.0008551109,0.9999997,-0.0002856005
+        Rotation = 0.1874264,0.2330128,0.682113,0.6673067
+    }
+    Item
+    {
+        LocationName = VAB_EastHeliPad_South_1B
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 98.6238209301396
+        Distance = 380.460916935013 
+        DeltaAltitude = 103.339872028679
+        Normal = -0.0006731891,0.9999996,-0.0006027327
+        Rotation = 0.189055,0.2316365,0.6817233,0.6677245
+    }
+    Item
+    {
+        LocationName = VAB_WestHeliPad_North_1A
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 88.5513660256822
+        Distance = 351.522510383013 
+        DeltaAltitude = 103.778405059944
+        Normal = -0.01027939,0.9807985,0.1947523
+        Rotation = 0.681774,-0.6680843,-0.1897938,0.2298391
+    }
+    Item
+    {
+        LocationName = VAB_WestHeliPad_North_1B
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 89.6080357807218
+        Distance = 352.402248653379 
+        DeltaAltitude = 103.347616977873
+        Normal = 1.215467E-05,0.9999999,-0.0004694028
+        Rotation = 0.6754758,-0.6748588,-0.2111208,0.2091081
+    }
+    Item
+    {
+        LocationName = VAB_WestHeliPad_South_1A
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 100.264900397561
+        Distance = 356.271196884784 
+        DeltaAltitude = 103.865867858636
+        Normal = 0.001738013,0.9807932,0.1950427
+        Rotation = 0.675662,-0.6749408,-0.210624,0.2087427
+    }
+    Item
+    {
+        LocationName = VAB_WestHeliPad_South_1B
+        FacilityName = SpaceCenter/VehicleAssemblyBuilding
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 99.1873726852881
+        Distance = 356.548917212271 
+        DeltaAltitude = 103.36692558683
+        Normal = -0.0007218456,0.9999995,-0.0008008789
+        Rotation = -0.680997,0.6690062,0.193575,-0.2262799
+    }
 }

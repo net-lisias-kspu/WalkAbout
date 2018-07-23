@@ -1,4 +1,4 @@
-﻿/*  Copyright 2016 Clive Pottinger
+﻿/*  Copyright 2017 Clive Pottinger
     This file is part of the WalkAbout Mod.
 
     WalkAbout is free software: you can redistribute it and/or modify
@@ -14,6 +14,7 @@
     You should have received a copy of the GNU General Public License
     along with WalkAbout.  If not, see<http://www.gnu.org/licenses/>.
 */
+
 using KspAccess;
 using KspWalkAbout.Entities;
 using KspWalkAbout.Extensions;
@@ -27,8 +28,10 @@ using static KspWalkAbout.Entities.WalkAboutPersistent;
 namespace KspWalkAbout.Guis
 {
     /// <summary>Represents the GUI used to place kerbals at locations.</summary>
-    internal class MainGui
+    internal class PlaceKerbalGui
     {
+        private static readonly PlaceKerbalGui _instance = new PlaceKerbalGui();
+
         private Rect _coordinates;
         private Vector2 _kerbalSelectorScrollPosition;
         private Vector2 _facilitySelectorScrollPosition;
@@ -47,8 +50,10 @@ namespace KspWalkAbout.Guis
         private Dictionary<string, List<InventoryItem>> _itemsSelected;
         private bool _itemSelectorIsOpen;
 
+        static PlaceKerbalGui() { }
+
         /// <summary>Initializes a new instance of the MainGui class.</summary>
-        internal MainGui()
+        internal PlaceKerbalGui()
         {
             _kerbalSelectorScrollPosition = Vector2.zero;
             _facilitySelectorScrollPosition = Vector2.zero;
@@ -56,7 +61,7 @@ namespace KspWalkAbout.Guis
             _itemsSelectorScrollPosition = Vector2.zero;
             _itemsSelectedScrollPosition = Vector2.zero;
 
-            _isKisPresent = WalkAboutKspAccess.DetectKisMod(ref _KisMod);
+            _isKisPresent = WalkAboutKspAccess.TryGetKisMod(ref _KisMod);
             _itemsSelected = new Dictionary<string, List<InventoryItem>>();
 
             _windowTitle = $"{Constants.ModName} v{Constants.Version}";
@@ -65,6 +70,8 @@ namespace KspWalkAbout.Guis
 
             IsActive = false;
         }
+
+        internal static PlaceKerbalGui Instance { get { return _instance; } }
 
         /// <summary>Gets or sets the screen coordinates and size of the GUI.</summary>
         internal Rect GuiCoordinates
@@ -182,15 +189,16 @@ namespace KspWalkAbout.Guis
             {
                 GUILayout.BeginVertical();
                 {
-                    foreach (var facilityName in GetLocationMap().AvailableFacilities)
+                    foreach (var facility in GetLocationMap().AvailableFacilitiesLevel)
                     {
-                        var buttonText = facilityName.Substring(facilityName.IndexOf('/') + 1);
-                        var buttonStyle = (facilityName == (_selectedFacility ?? string.Empty))
+                        var buttonText = facility.Key.Substring(facility.Key.IndexOf('/') + 1) +
+                                         (DebugExtensions.DebugIsOn ? $" ({facility.Value})" : string.Empty);
+                        var buttonStyle = (facility.Key == (_selectedFacility ?? string.Empty))
                             ? _elementStyles.SelectedButton
                             : _elementStyles.ValidButton;
                         if (GUILayout.Button(buttonText, buttonStyle))
                         {
-                            _selectedFacility = (facilityName == _selectedFacility) ? null : facilityName;
+                            _selectedFacility = (facility.Key == _selectedFacility) ? null : facility.Key;
                             $"selected {_selectedFacility}".Debug();
                         }
                     }
@@ -220,12 +228,14 @@ namespace KspWalkAbout.Guis
                         {
                             if (string.IsNullOrEmpty(_selectedFacility) || (location.FacilityName == _selectedFacility))
                             {
-                                var buttonStyle = (location.LocationName == ((_selectedLocation?.LocationName) ?? string.Empty))
+                                var buttonStyle =
+                                    (location.LocationName == ((_selectedLocation?.LocationName) ?? string.Empty))
                                     ? _elementStyles.SelectedButton
                                     : _elementStyles.ValidButton;
                                 if (GUILayout.Button(location.LocationName, buttonStyle))
                                 {
-                                    _selectedLocation = location; $"selected {_selectedLocation.LocationName}".Debug();
+                                    _selectedLocation = location;
+                                    $"selected {_selectedLocation.LocationName}".Debug();
                                 }
                                 if ((++locationButtonsDrawn == TopFew) && _showTopFewOnly) break;
                             }
@@ -267,6 +277,7 @@ namespace KspWalkAbout.Guis
                             };
                         "PlacementRequest created - deactivating GUI".Debug();
                         IsActive = false;
+                        _selectedKerbal = null;
                     }
                 }
             }
@@ -336,7 +347,7 @@ namespace KspWalkAbout.Guis
                             cost += item.Cost;
                         }
                         fundsRemaining -= cost;
-                        var costText = (Funding.Instance == null) ? string.Empty : $", {Math.Round(cost,2, MidpointRounding.ToEven)} funds";
+                        var costText = (Funding.Instance == null) ? string.Empty : $", {Math.Round(cost, 2, MidpointRounding.ToEven)} funds";
                         GUILayout.Label($"Selected: {numItems} item{pluralization}{costText}");
                     }
 

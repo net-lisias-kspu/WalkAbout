@@ -1,4 +1,4 @@
-﻿/*  Copyright 2016 Clive Pottinger
+﻿/*  Copyright 2017 Clive Pottinger
     This file is part of the WalkAbout Mod.
 
     WalkAbout is free software: you can redistribute it and/or modify
@@ -24,9 +24,13 @@ using static KspWalkAbout.Entities.WalkAboutPersistent;
 
 namespace KspWalkAbout.Guis
 {
-    /// <summary>Represents the GUI used to add new locations.</summary>
+    /// <summary>
+    /// Represents the GUI used to add new locations.
+    /// </summary>
     internal class AddUtilityGui
     {
+        private static readonly AddUtilityGui _instance = new AddUtilityGui();
+
         private Rect _coordinates;
         private Vector2 _facilitySelectorScrollPosition;
         private string _enteredLocationName;
@@ -38,7 +42,11 @@ namespace KspWalkAbout.Guis
         private string _selectedFacility;
         private GuiElementStyles _elementStyles;
 
-        /// <summary>Initializes a new instance of the GUI with a collection of locations.</summary>
+        static AddUtilityGui() { }
+
+        /// <summary>
+        /// Initializes a new instance of the GUI with a collection of locations.
+        /// </summary>
         internal AddUtilityGui()
         {
             _facilitySelectorScrollPosition = Vector2.zero;
@@ -52,7 +60,11 @@ namespace KspWalkAbout.Guis
             IsActive = false;
         }
 
-        /// <summary>Gets or sets the screen coordinates and size of the GUI.</summary>
+        internal static AddUtilityGui Instance {  get { return _instance; } }
+
+        /// <summary>
+        /// Gets or sets the screen coordinates and size of the GUI.
+        /// </summary>
         internal Rect GuiCoordinates
         {
             get { return _coordinates; }
@@ -64,13 +76,19 @@ namespace KspWalkAbout.Guis
             }
         }
 
-        /// <summary>Gets or sets a value indicating whether the main GUI is displayed and usable.</summary>
+        /// <summary>
+        /// Gets or sets a value indicating whether the main GUI is displayed and usable.
+        /// </summary>
         internal bool IsActive { get; set; }
 
-        /// <summary>Gets or sets the user's current request for a new location.</summary>
+        /// <summary>
+        /// Gets or sets the user's current request for a new location.
+        /// </summary>
         internal LocationRequest RequestedLocation { get; set; }
 
-        /// <summary>Called regularly to draw the GUI on screen.</summary>
+        /// <summary>
+        /// Called regularly to draw the GUI on screen.
+        /// </summary>
         /// <returns>A value indicating whether or not the GUI was displayed.</returns>
         internal bool Display()
         {
@@ -80,7 +98,9 @@ namespace KspWalkAbout.Guis
             return true;
         }
 
-        /// <summary>Draws the GUI on screen and handles user selections.</summary>
+        /// <summary>
+        /// Draws the GUI on screen and handles user selections.
+        /// </summary>
         /// <param name="id">Required parameter: purpose unknown.</param>
         private void DrawSelectorHandler(int id)
         {
@@ -100,15 +120,17 @@ namespace KspWalkAbout.Guis
             GUI.DragWindow(new Rect(0, 0, GuiCoordinates.width, GuiCoordinates.height));
         }
 
-        /// <summary>Draws the portion of the GUI that allows the user to name a location.</summary>
+        /// <summary>
+        /// Draws the portion of the GUI that allows the user to name a location.
+        /// </summary>
         private void DrawLocationNameInput()
         {
-            var beganWithUserText = (_enteredLocationName != _unenteredText);
+            var textWasDefault = (_enteredLocationName == _unenteredText);
 
             GUILayout.BeginHorizontal();
             {
                 GUILayout.Label("Enter new location Name");
-                _enteredLocationName = GUILayout.TextField(_enteredLocationName, beganWithUserText ? _elementStyles.ValidTextInput : _elementStyles.InvalidTextInput).Trim();
+                _enteredLocationName = GUILayout.TextField(_enteredLocationName, textWasDefault ? _elementStyles.InvalidTextInput : _elementStyles.ValidTextInput).Trim();
             }
             GUILayout.EndHorizontal();
 
@@ -119,9 +141,9 @@ namespace KspWalkAbout.Guis
 
             if (string.IsNullOrEmpty(_enteredLocationName))
             {
-                _enteredLocationName = _unenteredText;
+                _enteredLocationName = _previousText = _unenteredText;
             }
-            else if (!beganWithUserText)
+            else if (textWasDefault)
             {
                 foreach (var letter in _unenteredText)
                 {
@@ -136,7 +158,9 @@ namespace KspWalkAbout.Guis
             _existingName = _map.HasLocation(_enteredLocationName);
         }
 
-        /// <summary>Draws the portion of the GUI that displays available facilities and handles user selection.</summary>
+        /// <summary>
+        /// Draws the portion of the GUI that displays available facilities and handles user selection.
+        /// </summary>
         private void DrawFacilitySelector()
         {
             GUILayout.BeginHorizontal();
@@ -164,7 +188,10 @@ namespace KspWalkAbout.Guis
             GUILayout.EndHorizontal();
         }
 
-        /// <summary>Draws the portion of the GUI that displays the user's confimation of action button and handles its selection.</summary>
+        /// <summary>
+        /// Draws the portion of the GUI that displays the user's confimation of action button and
+        /// handles its selection.
+        /// </summary>
         private void DrawActionButton()
         {
             string label = null;
@@ -191,7 +218,9 @@ namespace KspWalkAbout.Guis
             }
         }
 
-        /// <summary>Draws the button to cancel the user's action and handles its selection.</summary>
+        /// <summary>
+        /// Draws the button to cancel the user's action and handles its selection.
+        /// </summary>
         private void DrawCancelButton()
         {
             if (GUILayout.Button("Cancel"))
@@ -200,7 +229,10 @@ namespace KspWalkAbout.Guis
             }
         }
 
-        /// <summary>Draws the portion of the GUI that displays the existing locations closest to the current EVA location.</summary>
+        /// <summary>
+        /// Draws the portion of the GUI that displays the existing locations closest to the current
+        /// EVA location.
+        /// </summary>
         private void DrawClosestLocation()
         {
             var closest = _map.FindClosest(FlightGlobals.ActiveVessel.latitude,

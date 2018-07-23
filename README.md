@@ -18,7 +18,7 @@ But explicitly forbids you to:
 
 You are authorized to fork this repository under GitHub [ToS](https://help.github.com/articles/github-terms-of-service/), and to commit on it (creating a derivative), as long as you do not claim being the original author, by the GPL.
 
-## KSP 1.1
+## KSP 1.2
 Sources only. Binaries on [master](https://github.com/net-lisias-ksp/WalkAbout).
 
 ## References

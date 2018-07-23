@@ -52,24 +52,26 @@ namespace KspAccess
             "adjusted vesselNode".Debug();
 
             // add the new ship/kerbal to the game
-            HighLogic.CurrentGame.AddVessel(vesselNode);
-            request.Kerbal.rosterStatus = ProtoCrewMember.RosterStatus.Assigned;
-            "Added kerbalEvaNode to CurrentGame".Debug();
-
             $"{request.Kerbal.name} is being placed at {request.Location.LocationName}".Log();
             ScreenMessages.PostScreenMessage(new ScreenMessage($"{request.Kerbal.name} is being placed at {request.Location.LocationName}", 4.0f, ScreenMessageStyle.UPPER_LEFT));
+            HighLogic.CurrentGame.AddVessel(vesselNode);
+            request.Kerbal.rosterStatus = ProtoCrewMember.RosterStatus.Assigned;
+            HighLogic.CurrentGame.CrewRoster[request.Kerbal.name].rosterStatus = ProtoCrewMember.RosterStatus.Assigned;
 
-            WalkAboutPersistent.InventoryItems.Remove(request.Kerbal.name);
+            // Record the items for the kerbals's inventory. Reduce funds accordingly
+            // Items will be added to the kerbal's inventory when the EVA scene is activated.
+            WalkAboutPersistent.AllocatedItems.Remove(request.Kerbal.name);
             if (request.Items.Count > 0)
             {
                 var itemNames = new List<string>();
                 var cost = 0f;
                 foreach (var item in request.Items)
                 {
+                    $"Recording that {item.Title} is to be added to {request.Kerbal.name}'s inventory".Debug();
                     itemNames.Add(item.Name);
                     cost -= item.Cost;
                 }
-                WalkAboutPersistent.InventoryItems.Add(request.Kerbal.name, itemNames);
+                WalkAboutPersistent.AllocatedItems.Add(request.Kerbal.name, itemNames);
                 if (Funding.Instance != null)
                 {
                     $"Subtracting {cost * -1} funds for inventory items".Debug();

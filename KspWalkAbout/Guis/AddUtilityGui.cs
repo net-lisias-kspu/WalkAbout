@@ -20,6 +20,7 @@ using KspWalkAbout.Entities;
 using KspWalkAbout.Extensions;
 using KspWalkAbout.Values;
 using UnityEngine;
+using static KspWalkAbout.Entities.WalkAboutPersistent;
 
 namespace KspWalkAbout.Guis
 {
@@ -33,13 +34,13 @@ namespace KspWalkAbout.Guis
         private string _previousText;
         private bool _textChanged;
         private bool _existingName;
+        private KnownPlaces _map;
 
         private string _selectedFacility;
         private GuiElementStyles _elementStyles;
 
         /// <summary>Initializes a new instance of the GUI with a collection of locations.</summary>
-        /// <param name="locationMap">A collection of all currently known locations for placing kerbals.</param>
-        internal AddUtilityGui(KnownPlaces locationMap)
+        internal AddUtilityGui()
         {
             _facilitySelectorScrollPosition = Vector2.zero;
             _unenteredText = "Location Name";
@@ -47,7 +48,7 @@ namespace KspWalkAbout.Guis
             _enteredLocationName = _unenteredText;
             _selectedFacility = string.Empty;
 
-            Map = locationMap;
+            _map = GetLocationMap();
             GuiCoordinates = new Rect();
             IsActive = false;
         }
@@ -66,9 +67,6 @@ namespace KspWalkAbout.Guis
 
         /// <summary>Gets or sets a value indicating whether the main GUI is displayed and usable.</summary>
         internal bool IsActive { get; set; }
-
-        /// <summary>Gets or sets the collection of locations that kerbals can be placed at.</summary>
-        internal KnownPlaces Map { get; set; }
 
         /// <summary>Gets or sets the user's current request for a new location.</summary>
         internal LocationRequest RequestedLocation { get; set; }
@@ -136,7 +134,7 @@ namespace KspWalkAbout.Guis
                 }
             }
 
-            _existingName = Map.HasLocation(_enteredLocationName);
+            _existingName = _map.HasLocation(_enteredLocationName);
         }
 
         /// <summary>Draws the portion of the GUI that displays available facilities and handles user selection.</summary>
@@ -206,10 +204,9 @@ namespace KspWalkAbout.Guis
         /// <summary>Draws the portion of the GUI that displays the existing locations closest to the current EVA location.</summary>
         private void DrawClosestLocation()
         {
-            var closest = KnownPlaces.FindClosest(FlightGlobals.ActiveVessel.latitude,
-                                              FlightGlobals.ActiveVessel.longitude,
-                                              FlightGlobals.ActiveVessel.altitude,
-                                              Map);
+            var closest = _map.FindClosest(FlightGlobals.ActiveVessel.latitude,
+                                           FlightGlobals.ActiveVessel.longitude,
+                                           FlightGlobals.ActiveVessel.altitude);
             var text = "Closest known locations:";
             var suffix = " none found";
             for (var level = 1; level < closest.Length; level++)

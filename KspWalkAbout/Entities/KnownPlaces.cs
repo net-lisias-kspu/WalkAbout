@@ -19,6 +19,7 @@ using KspWalkAbout.Values;
 using KspWalkAbout.WalkAboutFiles;
 using System;
 using System.Collections.Generic;
+using static KspWalkAbout.Entities.WalkAboutPersistent;
 
 namespace KspWalkAbout.Entities
 {
@@ -31,6 +32,11 @@ namespace KspWalkAbout.Entities
         public List<Location> AvailableLocations { get; private set; }
         public List<string> AvailableFacilities { get; private set; }
         internal bool IsChanged { get; set; }
+
+        internal KnownPlaces()
+        {
+            RefreshLocations();
+        }
 
         /// <summary>Writes the information about all the locations to their respective disk files.</summary>
         internal void Save()
@@ -52,7 +58,7 @@ namespace KspWalkAbout.Entities
         }
 
         /// <summary>Reevaluates the locations that can be displayed based on current facility upgrade levels.</summary>
-        internal void Refresh()
+        internal void RefreshLocations()
         {
             "Refresh()".Debug();
             AllLocations = new List<Location>();
@@ -134,7 +140,6 @@ namespace KspWalkAbout.Entities
 
             if (IsChanged)
                 Save();
-            Refresh();
         }
 
         /// <summary>Includes a new location in the collection of all known locations.</summary>
@@ -173,7 +178,7 @@ namespace KspWalkAbout.Entities
             userLocationFile.IsChanged = true; $"location file {userLocationFile.FilePath} needs saving".Debug();
             IsChanged = true;
 
-            Refresh();
+            RefreshLocations();
 
             $"{request.Name} added to known locations.".Debug();
             ScreenMessages.PostScreenMessage(new ScreenMessage($"{request.Name} added to known locations.", 4.0f, ScreenMessageStyle.UPPER_LEFT));
@@ -202,7 +207,7 @@ namespace KspWalkAbout.Entities
         /// <param name="targetAltitude">The target's altitude (ASL).</param>
         /// <param name="places">The population of locations to choose from.</param>
         /// <returns>An array of locations (one for each possible facility upgrade level) that are closest to the target coordinates.</returns>
-        internal static Locale[] FindClosest(double targetLatitude, double targetLongitude, double targetAltitude, KnownPlaces places)
+        internal Locale[] FindClosest(double targetLatitude, double targetLongitude, double targetAltitude)
         {
             var closest = new Locale[]
             {
@@ -213,7 +218,7 @@ namespace KspWalkAbout.Entities
             };
             var conv = Math.PI / 180;
 
-            foreach (var location in places.AllLocations)
+            foreach (var location in AllLocations)
             {
                 var dlon = (location.Longitude - targetLongitude) * conv;
                 var dlat = (location.Latitude - targetLatitude) * conv;

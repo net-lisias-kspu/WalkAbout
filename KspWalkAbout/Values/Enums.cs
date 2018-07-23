@@ -34,4 +34,8 @@ namespace KspWalkAbout.Values
 
     /// <summary>Enumerates the GUI's internal processing states.</summary>
     public enum GuiState { force, offNotActive, offPauseOpen, displayed };
+
+    public enum MotionState { perpetual, stopping, normal };
+
+    public enum PostPlacementMode { reload, noreload, jumpto };
 }

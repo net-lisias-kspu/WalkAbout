@@ -1,5 +1,8 @@
 # WalkAbout :: Change Log
 
+* 2016-1101 : Version 1.6 for KSP 1.2.1
+	- Added Perpetual Motion mode
+		- walk/run/swim kerbals on EVA without holding down W-A-S-D
 * 2016-1027 : Version 1.5.1 for KSP 1.2
 	- Corrected file contents of release package
 * 2016-1027 : Version 1.5 for KSP 1.2

@@ -22,6 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
+using static KspWalkAbout.Entities.WalkAboutPersistent;
 
 namespace KspWalkAbout.Guis
 {
@@ -63,8 +64,6 @@ namespace KspWalkAbout.Guis
             _itemSelectorIsOpen = false;
 
             IsActive = false;
-            Locations = new List<Location>();
-            Items = new InventoryItems();
         }
 
         /// <summary>Gets or sets the screen coordinates and size of the GUI.</summary>
@@ -83,23 +82,21 @@ namespace KspWalkAbout.Guis
         /// <summary>Gets or sets a value indicating whether the main GUI is displayed and usable.</summary>
         internal bool IsActive { get; set; }
 
-        /// <summary>Gets or sets the collection of facility names from which the the user may select.</summary>
-        internal List<string> Facilities { get; set; }
-
-        /// <summary>Gets or sets the collection of locations were kerbals can be placed.</summary>
-        internal List<Location> Locations { get; set; }
-
-        /// <summary>The max number of locations to display in the GUI as the most likely locations the user wants to select from.</summary>
+        /// <summary>
+        /// Gets or sets the max number of locations to display in the GUI as the most likely locations the user wants to select from.
+        /// </summary>
         public int TopFew { get; internal set; }
 
+        /// <summary>Gets or sets the maximum number of items that can be assigned to a kerbal's inventory.</summary>
         public int MaxItems { get; internal set; }
 
+        /// <summary>
+        /// Gets or sets the maximum volume that all items that can be assigned to a kerbal's inventory may occupy.
+        /// </summary>
         public float MaxVolume { get; internal set; }
 
         /// <summary>Gets or sets the user's current request to place a kerbal at a location.</summary>
         public PlacementRequest RequestedPlacement { get; set; }
-
-        public InventoryItems Items { get; internal set; }
 
         /// <summary>Called regularly to draw the GUI on screen.</summary>
         /// <returns>A value indicating whether or not the GUI was displayed.</returns>
@@ -185,7 +182,7 @@ namespace KspWalkAbout.Guis
             {
                 GUILayout.BeginVertical();
                 {
-                    foreach (var facilityName in Facilities)
+                    foreach (var facilityName in GetLocationMap().AvailableFacilities)
                     {
                         var buttonText = facilityName.Substring(facilityName.IndexOf('/') + 1);
                         var buttonStyle = (facilityName == (_selectedFacility ?? string.Empty))
@@ -211,7 +208,7 @@ namespace KspWalkAbout.Guis
 
             GUILayout.BeginVertical();
             {
-                _showTopFewOnly = ((TopFew > 0) && (Locations.Count > TopFew))
+                _showTopFewOnly = ((TopFew > 0) && (GetLocationMap().AvailableLocations.Count > TopFew))
                     ? (GUILayout.Toggle(_showTopFewOnly, $"Top {TopFew} Only"))
                     : false;
 
@@ -219,7 +216,7 @@ namespace KspWalkAbout.Guis
                 {
                     GUILayout.BeginVertical();
                     {
-                        foreach (var location in Locations)
+                        foreach (var location in GetLocationMap().AvailableLocations)
                         {
                             if (string.IsNullOrEmpty(_selectedFacility) || (location.FacilityName == _selectedFacility))
                             {
@@ -363,7 +360,7 @@ namespace KspWalkAbout.Guis
                     {
                         GUILayout.BeginVertical();
                         {
-                            foreach (var item in Items.GetSorted())
+                            foreach (var item in GetAllItems().GetSorted())
                             {
                                 if (item.IsAvailable)
                                 {
@@ -401,10 +398,10 @@ namespace KspWalkAbout.Guis
             if (GUI.Button(
                 new Rect(0, guiCoordinates.height - 10, 10, 10), "*", style))
             {
-                var state = (DebugExtensions.DebugIsOn) ? "ON" : "OFF";
-                $"Debugging messages are being turned {state}".Debug();
+                $"Debugging messages are being turned OFF".Debug();
                 DebugExtensions.SetDebug(!DebugExtensions.DebugIsOn);
-                $"Debugging messages have been turned {state}".Debug();
+                $"Debugging messages have been turned ON".Debug();
+                var state = (DebugExtensions.DebugIsOn) ? "ON" : "OFF";
                 ScreenMessages.PostScreenMessage(new ScreenMessage($"WalkAbout debugging is {state}", 4.0f, ScreenMessageStyle.UPPER_LEFT));
             }
         }

@@ -16,6 +16,7 @@
 */
 using KspWalkAbout.Extensions;
 using KspWalkAbout.KspFiles;
+using KspWalkAbout.Values;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -62,11 +63,27 @@ namespace KspWalkAbout.WalkAboutFiles
         [Persistent]
         public int TopFew;
 
+        /// <summary>The maximum number of items that a kerbal can have in his/her inventory.</summary>
         [Persistent]
         public int MaxInventoryItems;
 
+        /// <summary>The maximum total volume of all items that a kerbal can have in his/her inventory.</summary>
         [Persistent]
         public float MaxInventoryVolume;
+
+        /// <summary>The key that activates the Perpetual Motion mode.</summary>
+        [Persistent]
+        public KeyCode PmActivationHotKey;
+
+        /// <summary>
+        /// Any additional keys needs that need to be pressed at the same time as the <seealso cref="PmActivationHotKey"/>
+        /// (e.g. Shift, Ctrl, etc).
+        /// </summary>
+        [Persistent]
+        public List<KeyCode> PmActivationHotKeyModifiers;
+
+        [Persistent]
+        public PostPlacementMode PostPlacementAction;
 
         /// <summary>Loads the settings from disk.</summary>
         /// <param name="filePath">The full path of the file containing the settings information.</param>
@@ -76,6 +93,7 @@ namespace KspWalkAbout.WalkAboutFiles
         {
             var result = base.Load(filePath, defaultNode);
 
+            // Set values that may be missing in older config files.
             if (TopFew == 0)
             {
                 TopFew = 5;
@@ -92,6 +110,12 @@ namespace KspWalkAbout.WalkAboutFiles
             {
                 MaxInventoryVolume = 300f;
                 IsChanged = true;
+            }
+
+            if (PmActivationHotKey == KeyCode.None)
+            {
+                PmActivationHotKey = KeyCode.Quote;
+                PmActivationHotKeyModifiers = new List<KeyCode>();
             }
 
             return result;

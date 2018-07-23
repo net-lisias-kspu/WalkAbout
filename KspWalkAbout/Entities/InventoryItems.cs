@@ -20,6 +20,8 @@ using KspWalkAbout.Values;
 using KspWalkAbout.WalkAboutFiles;
 using System;
 using System.Collections.Generic;
+using static KspWalkAbout.Entities.WalkAboutPersistent;
+
 
 namespace KspWalkAbout.Entities
 {
@@ -30,6 +32,11 @@ namespace KspWalkAbout.Entities
         private InventoryItem[] _sortedItems;
 
         private int _maxQueueing = 0;
+
+        internal InventoryItems()
+        {
+            RefreshItems();
+        }
 
         /// <summary>The maximum volume of all items added to an inventory.</summary>
         public float MaxVolume { get; internal set; }
@@ -83,7 +90,7 @@ namespace KspWalkAbout.Entities
             {
                 foreach (var item in items)
                 {
-                    $"UpdateQueueing: requeueing item {item.Name} from queue {this[item.Name].Queueing}".Debug();
+                    $"requeueing item {item.Name} from queue {this[item.Name].Queueing}".Debug();
                 }
             }
 
@@ -91,26 +98,26 @@ namespace KspWalkAbout.Entities
             {
                 var origQueueing = this[item.Name].Queueing;
                 var newQueueing = (origQueueing == 0) ? 1 : Math.Min(_maxQueueing, _maxQueueing - (_maxQueueing - origQueueing) / 2 + 1);
-                $"UpdateQueueing: requeuing operation to change {item.Name} from {origQueueing} to {newQueueing} ".Debug();
+                $"requeuing operation to change {item.Name} from {origQueueing} to {newQueueing} ".Debug();
                 if (origQueueing == 0)
                 {
-                    $"UpdateQueueing: increasing queueing for items between {0} and {_maxQueueing - 1}".Debug();
+                    $"increasing queueing for items between {0} and {_maxQueueing - 1}".Debug();
                     for (var index = 0; index < _maxQueueing; index++, this[_sortedItems[index].Name].Queueing++)
                     {
-                        $"UpdateQueueing: {this[_sortedItems[index].Name]} set to {this[_sortedItems[index].Name].Queueing++}".Debug();
+                        $"{this[_sortedItems[index].Name]} set to {this[_sortedItems[index].Name].Queueing++}".Debug();
                     }
                     _maxQueueing++;
                 }
                 else
                 {
-                    $"UpdateQueueing: decreasing queueing for items between {newQueueing} and {origQueueing - 1}".Debug();
+                    $"decreasing queueing for items between {newQueueing} and {origQueueing - 1}".Debug();
                     for (var index = newQueueing; index < origQueueing; index++, this[_sortedItems[index].Name].Queueing--)
                     {
-                        $"UpdateQueueing: {this[_sortedItems[index].Name]} set to {this[_sortedItems[index].Name].Queueing++}".Debug();
+                        $"{this[_sortedItems[index].Name]} set to {this[_sortedItems[index].Name].Queueing++}".Debug();
                     }
                 }
                 this[item.Name].Queueing = newQueueing;
-                $"UpdateQueueing: {item.Name} set to {newQueueing}".Debug();
+                $"{item.Name} set to {newQueueing}".Debug();
 
                 SortItems();
             }
@@ -120,38 +127,23 @@ namespace KspWalkAbout.Entities
         }
 
         /// <summary>Reevaluates the locations that can be displayed based on current facility upgrade levels.</summary>
-        internal void Refresh()
+        internal void RefreshItems()
         {
             if (!WalkAboutKspAccess.DetectKisMod()) { return; }
-            $"Refresh: KIS detected - refreshing".Debug();
+            $"KIS detected - refreshing".Debug();
 
             if (Count == 0)
             {
-                $"Refresh: No items detected - loading (_file={_file})".Debug();
-                var loaded = _file.Load($"{WalkAbout.GetModDirectory()}/Items.cfg", Constants.DefaultItems);
-                $"Refresh: loaded={loaded} status={_file.StatusMessage}".Debug();
-                if (loaded)
-                {
-                    if (_file.Items == null)
-                    {
-                        _file.Items = new List<InventoryItem>();
-                        "Initialized items to null list due to unresolved bug in Settings".Debug();
-                    }
-
-                    foreach (var item in _file.Items)
-                    {
-                        Add(item.Name, item);
-                        $"added previously selected part [{item.Name}".Debug();
-                    }
-                }
+                LoadItemsFromFile();
             }
 
+            $"examining {PartLoader.LoadedPartsList.Count} parts from PartLoader".Debug();
             foreach (var part in PartLoader.LoadedPartsList)
             {
                 var boundsSize = PartGeometryUtil.MergeBounds(part.partPrefab.GetRendererBounds(), part.partPrefab.transform).size;
                 var volume = boundsSize.x * boundsSize.y * boundsSize.z * 1000f;
 
-                if (volume <= MaxVolume)
+                if (volume <= GetModConfig().MaxInventoryVolume)
                 {
                     var tech = AssetBase.RnDTechTree.FindTech(part.TechRequired);
                     if (tech == null)
@@ -160,12 +152,7 @@ namespace KspWalkAbout.Entities
                         continue;
                     }
 
-                    var available = true;
-                    if ((HighLogic.CurrentGame.Mode == Game.Modes.CAREER) ||
-                        (HighLogic.CurrentGame.Mode == Game.Modes.SCIENCE_SANDBOX))
-                    {
-                        available = ResearchAndDevelopment.PartModelPurchased(part);
-                    }
+                    var available = GetPartAvailability(part);
 
                     $"info for part {part.name}: cost={part.cost} volume={volume} title={part.title} required tech={(part?.TechRequired) ?? "null"} available={available}".Debug();
 
@@ -193,6 +180,45 @@ namespace KspWalkAbout.Entities
             }
 
             SortItems();
+        }
+
+        /// <summary>
+        /// Determines if a part is available for the current game mode and researched techs.
+        /// </summary>
+        /// <param name="part">The part to be evaluated.</param>
+        /// <returns>A value indicating if the part is available.</returns>
+        private static bool GetPartAvailability(AvailablePart part)
+        {
+            var available = true;
+            if ((HighLogic.CurrentGame.Mode == Game.Modes.CAREER) ||
+                (HighLogic.CurrentGame.Mode == Game.Modes.SCIENCE_SANDBOX))
+            {
+                available = ResearchAndDevelopment.PartModelPurchased(part);
+            }
+
+            return available;
+        }
+
+        /// <summary>Adds any recorded information about items that have already been selected </summary>
+        private void LoadItemsFromFile()
+        {
+            $"Refresh: No items detected - loading (_file={_file})".Debug();
+            var loaded = _file.Load($"{WalkAbout.GetModDirectory()}/Items.cfg", Constants.DefaultItems);
+            $"Refresh: loaded={loaded} status={_file.StatusMessage}".Debug();
+            if (loaded)
+            {
+                if (_file.Items == null)
+                {
+                    _file.Items = new List<InventoryItem>();
+                    "Initialized items to null list due to unresolved bug in Settings".Debug();
+                }
+
+                foreach (var item in _file.Items)
+                {
+                    Add(item.Name, item);
+                    $"added previously selected part [{item.Name}]".Debug();
+                }
+            }
         }
 
         /// <summary>Sort the items in this collection.</summary>

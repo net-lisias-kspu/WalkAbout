@@ -16,7 +16,9 @@
 */
 
 using System;
+using System.Collections.Generic;
 using System.Reflection;
+using UnityEngine;
 
 namespace KspAccess
 {
@@ -87,6 +89,26 @@ namespace KspAccess
         internal static string GetModDirectory(string modName)
         {
             return (IsModInstalled(modName)) ? $"{KSPUtil.ApplicationRootPath}GameData/{modName}" : string.Empty;
+        }
+
+        internal static bool CheckForKeyCombo(KeyCode key, List<KeyCode> modifiers = null)
+        {
+            var requiredKeysPressed = (modifiers?.Count ?? 0) == 0;
+
+            if (Input.GetKeyDown(key))
+            {
+                if (!requiredKeysPressed)
+                {
+                    foreach (var modifier in modifiers)
+                    {
+                        requiredKeysPressed |= Input.GetKey(modifier);
+                    }
+                }
+
+                return requiredKeysPressed;
+            }
+
+            return false;
         }
     }
 }

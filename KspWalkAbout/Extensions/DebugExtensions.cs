@@ -16,6 +16,7 @@
 */
 using KspWalkAbout.Values;
 using UnityEngine;
+using System.Reflection;
 
 namespace KspWalkAbout.Extensions
 {
@@ -38,9 +39,12 @@ namespace KspWalkAbout.Extensions
 
         /// <summary>Write the message to the log if the DebugOn flag is set.</summary>
         /// <param name="message">Text to be written.</param>
-        public static void Debug(this string message)
+        /// <param name="at">An additional identifier added to the prefix of the message (default is calling method name).</param>
+        public static void Debug(
+            this string message, 
+            [System.Runtime.CompilerServices.CallerMemberName] string at = "")
         {
-            if (DebugIsOn) MonoBehaviour.print($"{Constants.ModName}: {message}");
+            if (DebugIsOn) MonoBehaviour.print($"{Constants.ModName} ({at}): {message}");
         }
 
         /// <summary>

@@ -21,6 +21,9 @@ using KspWalkAbout.Guis;
 using KspWalkAbout.Values;
 using KspWalkAbout.WalkAboutFiles;
 using UnityEngine;
+using Upgradeables;
+using static KspAccess.CommonKspAccess;
+using static KspWalkAbout.Entities.WalkAboutPersistent;
 
 namespace KspWalkAbout
 {
@@ -31,7 +34,7 @@ namespace KspWalkAbout
         private WalkAboutSettings _config;
         private KnownPlaces _map;
         private InventoryItems _items;
-        private MainGui _mainGui;
+        private static MainGui _mainGui;
 
         /// <summary>
         /// Called when the game is loaded. Used to set up all persistent objects and properties.
@@ -40,15 +43,13 @@ namespace KspWalkAbout
         {
             $"Started [Version={Constants.Version}, Debug={DebugExtensions.DebugIsOn}]".Log();
 
-            _config = new WalkAboutSettings();
-            var loaded = _config.Load($"{GetModDirectory()}/Settings.cfg", Constants.DefaultSettings); 
-            _config.StatusMessage.Log(); 
-            if (!loaded) return;
+            _config = GetModConfig(); "obtained config".Debug();
+            if (_config == null) { return; }
 
-            _map = new KnownPlaces(); "created map object".Debug();
-            _items = new InventoryItems() { MaxVolume = _config.MaxInventoryVolume }; "created items object".Debug();
+            _map = GetLocationMap(); "obtained map object".Debug();
+            _items = GetAllItems(); "obtained items object".Debug();
 
-            _mainGui =
+            _mainGui = _mainGui ??
                 new MainGui
                 {
                     GuiCoordinates = _config.GetScreenPosition(),
@@ -56,15 +57,37 @@ namespace KspWalkAbout
                     MaxItems = _config.MaxInventoryItems,
                     MaxVolume = _config.MaxInventoryVolume,
                 }; $"created MainGui object".Debug();
+
+            GameEvents.OnTechnologyResearched.Remove(ItemRefresh);
+            GameEvents.OnKSCFacilityUpgraded.Remove(MapRefresh);
+            GameEvents.OnTechnologyResearched.Add(ItemRefresh);
+            GameEvents.OnKSCFacilityUpgraded.Add(MapRefresh);
+        }
+
+        private void ItemRefresh(GameEvents.HostTargetAction<RDTech, RDTech.OperationResult> data)
+        {
+            if (data.target == RDTech.OperationResult.Successful)
+            {
+                $"Refreshing items due to new technologies".Debug();
+                _items.RefreshItems();
+            }
+        }
+
+        private void MapRefresh(UpgradeableFacility data0, int data1)
+        {
+            $"Refreshing map due to new facility upgrade".Debug();
+            _map.RefreshLocations();
         }
 
         /// <summary>Called each time the game state is updated.</summary>
         public void Update()
         {
             if (_mainGui == null) return;
-            CheckForModActivation();
-            _mainGui.GuiCoordinates = GuiResizer.HandleResizing(_mainGui.GuiCoordinates);
-            SaveFiles();
+            if (CheckForModActivation())
+            {
+                _mainGui.GuiCoordinates = GuiResizer.HandleResizing(_mainGui.GuiCoordinates);
+                SaveFiles();
+            }
         }
 
         /// <summary>Called each time the game's GUIs are to be refreshed.</summary>
@@ -77,14 +100,40 @@ namespace KspWalkAbout
 
             if (_mainGui?.RequestedPlacement == null) return;
 
+            "placing kerbal".Debug();
             WalkAboutKspAccess.PlaceKerbal(_mainGui.RequestedPlacement);
+            "Saving game".Log();
             GamePersistence.SaveGame("persistent", HighLogic.SaveFolder, SaveMode.OVERWRITE);
-            HighLogic.LoadScene(GameScenes.SPACECENTER);
+
+            switch (_config.PostPlacementAction)
+            {
+                case PostPlacementMode.noreload:
+                    "Suppressed reload of SPACECENTER".Log();
+                    break;
+
+                case PostPlacementMode.jumpto:
+                    var vessel = FindVesselByName(_mainGui.RequestedPlacement.Kerbal.name);
+                    if (vessel == null)
+                    {
+                        $"Unable to jump to vessel - no vessel found".Log();
+                    }
+                    else
+                    {
+                        $"Loading Flight scene for {vessel.name}".Log();
+                        FlightDriver.StartAndFocusVessel("persistent", FlightGlobals.Vessels.IndexOf(vessel));
+                    }
+                    break;
+
+                case PostPlacementMode.reload:
+                default:
+                    "Reloading SPACECENTER".Log();
+                    HighLogic.LoadScene(GameScenes.SPACECENTER);
+                    break;
+            }
 
             _items.UpdateQueueing(_mainGui.RequestedPlacement.Items);
             _map.UpdateQueuing(_mainGui.RequestedPlacement.Location.LocationName);
             _mainGui.RequestedPlacement = null;
-            LoadGuiWithCurrentData();
         }
 
         /// <summary>Obtains the directory where the WalkAbout mod is currently installed.</summary>
@@ -94,38 +143,31 @@ namespace KspWalkAbout
             return CommonKspAccess.GetModDirectory(Constants.ModName);
         }
 
-        /// <summary>Determines if the user has requested the WalkAbout mod's GUI.</summary>
-        private void CheckForModActivation()
+        /// <summary>
+        /// Finds a vessel in the game.
+        /// </summary>
+        /// <param name="name">The name of vessel.</param>
+        private static Vessel FindVesselByName(string name)
         {
-            if (Input.GetKeyDown(_config.ActivationHotKey))
+            Vessel found = null;
+            var searchName = $"{name} (unloaded)";
+            foreach (var vessel in FlightGlobals.Vessels)
             {
-                var requiredKeysPressed = _config.ActivationHotKeyModifiers.Count == 0;
-                if (!requiredKeysPressed)
+                if ((vessel.name == name) || (vessel.name == searchName))
                 {
-                    foreach (var modifier in _config.ActivationHotKeyModifiers)
-                    {
-                        requiredKeysPressed |= Input.GetKey(modifier);
-                    }
+                    found = vessel;
+                    break;
                 }
-
-                if (requiredKeysPressed)
-                {
-                    $"Required key combination pressed".Debug();
-                    LoadGuiWithCurrentData();
-                }
-                _mainGui.IsActive = requiredKeysPressed;
             }
+
+            return found;
         }
 
-        /// <summary>Injects current information into the GUI for facilities and locations.</summary>
-        private void LoadGuiWithCurrentData()
+        /// <summary>Determines if the user has requested the WalkAbout mod's GUI.</summary>
+        private bool CheckForModActivation()
         {
-            _map.Refresh();
-            _mainGui.Facilities = _map.AvailableFacilities;
-            _mainGui.Locations = _map.AvailableLocations;
-
-            _items.Refresh();
-            _mainGui.Items = _items;
+            _mainGui.IsActive |= CheckForKeyCombo(_config.ActivationHotKey, _config.ActivationHotKeyModifiers);
+            return _mainGui.IsActive;
         }
 
         /// <summary>Saves all settings files with pending changes.</summary>

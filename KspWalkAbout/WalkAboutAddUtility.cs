@@ -19,6 +19,7 @@ using KspWalkAbout.Extensions;
 using KspWalkAbout.Guis;
 using KspWalkAbout.WalkAboutFiles;
 using UnityEngine;
+using static KspWalkAbout.Entities.WalkAboutPersistent;
 
 namespace KspWalkAbout
 {
@@ -49,10 +50,9 @@ namespace KspWalkAbout
                 return;
             }
 
-            _config = new WalkAboutSettings();
-            var loaded = _config.Load($"{WalkAbout.GetModDirectory()}/Settings.cfg");
-            _config.StatusMessage.Log();
-            if (!loaded) return;
+            _config = GetModConfig(); "Add Utility obtained config".Debug();
+            if (_config == null) { return; }
+            
             if (_config.Mode != "utility")
             {
                 "Add Location utility deactivated: not in utility mode".Debug();
@@ -61,8 +61,8 @@ namespace KspWalkAbout
 
             $"Add Location utility activated on EVA for {FlightGlobals.ActiveVessel.GetVesselCrew()[0].name}".Debug();
 
-            _map = new KnownPlaces(); "created map object".Debug();
-            _addUtilityGui = new AddUtilityGui(_map);
+            _map = GetLocationMap(); "Add Utility obtained map object".Debug();
+            _addUtilityGui = new AddUtilityGui();
         }
 
         /// <summary>Called each time the game state is updated.</summary>
@@ -103,7 +103,7 @@ namespace KspWalkAbout
                 _addUtilityGui.IsActive = requiredKeysPressed;
                 if (requiredKeysPressed)
                 {
-                    _map.Refresh();
+                    _map.RefreshLocations();
                 }
             }
         }

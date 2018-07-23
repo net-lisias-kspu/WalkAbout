@@ -1,5 +1,5 @@
 ﻿
-WalkAbout (version 1.7)
+WalkAbout (version 1.7.1)
 
 The WalkAbout mod allows you to take an available kerbal from the Astronaut Complex and have him/her placed outside any door at the KSC (see Placement, see note 6).
 It also allows you to move your kerbal around without having to hold down the W-A-S-D keys (see Perpetual Motion below).
@@ -93,6 +93,9 @@ Adding your own Locations:
 
     Note 3:
     This utility, and, in fact, the WalkAbout mod, were intended for use in placing kerbals in and around the area of the KSC. Though the utility can be used to create locations far from the KSC, doing so is not supported by the author (but I'm willing to close a blind eye). If you want to create locations off the surface of Kerbin (or whichever world the KSC is located on) - you are utterly on your own. Doing so is unsupported, probably won't work, and will void any and all warranties held for your kerbal's EVA suit, this mod, and probably even your coffee maker - so... you've been warned.
+
+v1.7.1
+  Fixed bug that crashed v1.7 while trying to find KIS modules.
 
 v1.7
   Version 1.7 incorporates a new method for storing locations. This method is incompatible with the previous method. As a result, any custom-made locations (i.e. those stored in the user.loc file) will no longer work and must be recreated using the Add Location Utility (see Adding your own Locations below).

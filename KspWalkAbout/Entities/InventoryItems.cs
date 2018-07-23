@@ -229,12 +229,15 @@ namespace KspWalkAbout.Entities
 
             if ((part.Modules != null) && (part.Modules.Count > 0))
             {
-                foreach (var moduleName in WalkAboutPersistent.KisModuleNames)
+                foreach (var KisModuleName in WalkAboutPersistent.KisModuleNames)
                 {
-                    if (part.Modules.Contains(moduleName))
+                    foreach (var partModule in part.Modules)
                     {
-                        module = part.Modules[moduleName];
-                        break;
+                        if ((!string.IsNullOrEmpty(partModule.moduleName)) && (partModule.moduleName.Contains(KisModuleName)))
+                        {
+                            module = partModule;
+                            break;
+                        }
                     }
                 }
             }

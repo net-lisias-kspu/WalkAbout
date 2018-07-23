@@ -64,21 +64,6 @@ namespace KspWalkAbout
             GameEvents.OnKSCFacilityUpgraded.Add(MapRefresh);
         }
 
-        private void ItemRefresh(GameEvents.HostTargetAction<RDTech, RDTech.OperationResult> data)
-        {
-            if (data.target == RDTech.OperationResult.Successful)
-            {
-                $"Refreshing items due to new technologies".Debug();
-                _items.RefreshItems();
-            }
-        }
-
-        private void MapRefresh(UpgradeableFacility data0, int data1)
-        {
-            $"Refreshing map due to new facility upgrade".Debug();
-            _map.RefreshLocations();
-        }
-
         /// <summary>Called each time the game state is updated.</summary>
         public void Update()
         {
@@ -161,6 +146,23 @@ namespace KspWalkAbout
             }
 
             return found;
+        }
+
+        /// <summary>Reloads the collection of items that can used by kerbals.</summary>
+        private void ItemRefresh(GameEvents.HostTargetAction<RDTech, RDTech.OperationResult> data)
+        {
+            if (data.target == RDTech.OperationResult.Successful)
+            {
+                $"Refreshing items due to new technologies".Debug();
+                _items.RefreshItems();
+            }
+        }
+
+        /// <summary>Reloads the collection of places where kerbals can be placed.</summary>
+        private void MapRefresh(UpgradeableFacility data0, int data1)
+        {
+            $"Refreshing map due to new facility upgrade".Debug();
+            _map.RefreshLocations();
         }
 
         /// <summary>Determines if the user has requested the WalkAbout mod's GUI.</summary>

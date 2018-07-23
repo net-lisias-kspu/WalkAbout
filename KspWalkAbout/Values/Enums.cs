@@ -35,7 +35,9 @@ namespace KspWalkAbout.Values
     /// <summary>Enumerates the GUI's internal processing states.</summary>
     public enum GuiState { force, offNotActive, offPauseOpen, displayed };
 
+    /// <summary>Enumerates the modes of walking/running/swimming used by the mod.</summary>
     public enum MotionState { perpetual, stopping, normal };
 
+    /// <summary>Enumerates the actions that can taken after placing a kerbal at a location.</summary>
     public enum PostPlacementMode { reload, noreload, jumpto };
 }

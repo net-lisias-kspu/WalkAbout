@@ -56,7 +56,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\GreatCircle.cs" />
     <Compile Include="Entities\InventoryItems.cs" />
+    <Compile Include="Entities\WorldCoordinates.cs" />
     <Compile Include="WalkAboutFiles\ItemsFile.cs" />
     <Compile Include="Guis\GuiElementStyles.cs" />
     <Compile Include="Entities\InventoryItem.cs" />

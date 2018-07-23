@@ -54,7 +54,7 @@ namespace KspWalkAbout.Entities
         [Persistent]
         public double Altitude;
 
-        /// <summary>The direction that points vertically from the location (local "up).</summary>
+        /// <summary>The direction that points vertically from the location (local "up").</summary>
         [Persistent]
         public Vector3 Normal;
 

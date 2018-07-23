@@ -24,8 +24,13 @@ namespace KspWalkAbout.KspFiles
     /// <summary>Represents a set of values that can read from, or written to, a standard KSP settings file.</summary>
     public class SettingsFile
     {
+        /// <summary>Where the settings file is stored on disk.</summary>
         public string FilePath { get; private set; }
+
+        /// <summary>Indicates if any values in the settings file have changed.</summary>
         public bool IsChanged { get; internal set; }
+
+        /// <summary>Text summary of the result of the last action performed on the settings file.</summary>
         public string StatusMessage { get; private set; }
 
         /// <summary>

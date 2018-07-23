@@ -23,6 +23,7 @@ namespace KspWalkAbout.WalkAboutFiles
     /// <summary>Represents a settings file containing a set of locations for use with the mod.</summary>
     public class LocationFile : SettingsFile
     {
+        /// <summary>Collection of all locations where kerbals may be placed.</summary>
         [Persistent]
         public List<Location> Locations;
     }

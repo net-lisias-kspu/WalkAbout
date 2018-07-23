@@ -20,11 +20,13 @@ using System.Reflection;
 
 namespace KspWalkAbout.Extensions
 {
+    /// <summary>Presents utility methods and members for use in logging.</summary>
     internal static class DebugExtensions
     {
         /// <summary>Indicates whether <see cref="Debug(string)"/> operations should write to the log.</summary>
         public static bool DebugIsOn = false;
 
+        /// <summary>Creates an initializes a new instance of the DebugExtensions class.</summary>
         static DebugExtensions()
         {
             DebugIsOn = System.IO.File.Exists($"{WalkAbout.GetModDirectory()}/debug.flg");

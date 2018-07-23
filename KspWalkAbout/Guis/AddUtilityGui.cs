@@ -35,7 +35,6 @@ namespace KspWalkAbout.Guis
         private bool _textChanged;
         private bool _existingName;
         private KnownPlaces _map;
-
         private string _selectedFacility;
         private GuiElementStyles _elementStyles;
 

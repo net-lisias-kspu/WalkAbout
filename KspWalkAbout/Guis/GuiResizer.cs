@@ -19,14 +19,14 @@ using UnityEngine;
 
 namespace KspWalkAbout.Guis
 {
-    /// <summary>Represents a resizing button for Unity windows drawn with the GUILayout functions.</summary>
+    /// <summary>Represents a resizing button for windows drawn with Unity's GUILayout functions.</summary>
     internal static class GuiResizer
     {
         private static Rect _resizingGui;
         private static Vector2 _minGuiSize;
-
         private const int ButtonSize = 15;
 
+        /// <summary>Whether or not the user is still dragging the resizing button.</summary>
         public static bool IsResizing { get; private set; } = false;
 
         /// <summary>Draws a resizing button.</summary>
@@ -44,7 +44,10 @@ namespace KspWalkAbout.Guis
             }
         }
 
-        /// <summary>Changes the size of the displayed GUI to match the mouse position after the resize button has been dragged.</summary>
+        /// <summary>
+        /// Changes the size of the displayed GUI to match the mouse position while the resize button 
+        /// is being dragged.
+        /// </summary>
         /// <param name="guiCoordinates">The screen coordinates of the GUI to be resized.</param>
         /// <returns>The screen coordinates and dimensions of the resized GUI.</returns>
         internal static Rect HandleResizing(Rect guiCoordinates)

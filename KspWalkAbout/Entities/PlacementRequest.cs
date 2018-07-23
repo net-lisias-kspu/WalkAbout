@@ -22,8 +22,13 @@ namespace KspWalkAbout.Entities
     /// <summary>Represents a user's request to place a kerbal at a location.</summary>
     internal class PlacementRequest
     {
+        /// <summary>The kerbal to be placed at the location.</summary>
         public ProtoCrewMember Kerbal { get; set; }
+
+        /// <summary>The location where the kerbal is to be placed.</summary>
         public Location Location { get; set; }
+
+        /// <summary>The items to be included in the kerbal's inventory.</summary>
         public List<InventoryItem> Items { get; set; }
     }
 }

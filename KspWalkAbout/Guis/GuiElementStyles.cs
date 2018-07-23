@@ -18,7 +18,7 @@ using UnityEngine;
 
 namespace KspWalkAbout.Guis
 {
-    /// <summary>Represents usable styles for Unity windows drawn with the GUILayout functions.</summary>
+    /// <summary>Represents usable styles for windows drawn with Unity's GUILayout functions.</summary>
     internal class GuiElementStyles
     {
         public GUIStyle ValidButton { get; } = new GUIStyle(GUI.skin.button);

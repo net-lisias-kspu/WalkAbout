@@ -20,9 +20,12 @@ using System.Collections.Generic;
 
 namespace KspWalkAbout.WalkAboutFiles
 {
-    /// <summary>Represents a settings file containing a set of parts for use with the mod.</summary>
+    /// <summary>
+    /// Represents a settings file containing information on all parts that can be used with the mod.
+    /// </summary>
     public class ItemsFile : SettingsFile
     {
+        /// <summary>Collection of all items that a kerbal may possibly have in inventory.</summary>
         [Persistent]
         public List<InventoryItem> Items;
     }

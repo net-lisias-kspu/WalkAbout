@@ -17,7 +17,7 @@
 namespace KspWalkAbout.Entities
 {
 
-    /// <summary>Represents an that can be added to a kerbal's inventory.</summary>
+    /// <summary>Represents an item that can be added to a kerbal's inventory.</summary>
     public class InventoryItem
     {
         /// <summary>The textual identifier of the item.</summary>

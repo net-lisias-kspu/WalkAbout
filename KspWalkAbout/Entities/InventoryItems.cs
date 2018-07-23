@@ -25,14 +25,14 @@ using static KspWalkAbout.Entities.WalkAboutPersistent;
 
 namespace KspWalkAbout.Entities
 {
-    /// <summary>Represents the set of items that can possibly be added to an inventory.</summary>
+    /// <summary>Represents the collection of items that can possibly be added to an inventory.</summary>
     internal class InventoryItems : Dictionary<string, InventoryItem>
     {
         private ItemsFile _file = new ItemsFile();
         private InventoryItem[] _sortedItems;
-
         private int _maxQueueing = 0;
 
+        /// <summary>Creates a new instance of the InventoryItems class.</summary>
         internal InventoryItems()
         {
             RefreshItems();
@@ -41,6 +41,7 @@ namespace KspWalkAbout.Entities
         /// <summary>The maximum volume of all items added to an inventory.</summary>
         public float MaxVolume { get; internal set; }
 
+        /// <summary>Whether or not the values for any items have been altered.</summary>
         internal bool IsChanged { get; set; }
 
         /// <summary>Writes the information about all items to disk.</summary>

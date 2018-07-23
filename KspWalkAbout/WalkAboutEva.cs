@@ -70,23 +70,9 @@ namespace KspWalkAbout
 
                 if (inventory != null)
                 {
-                    var items = WalkAboutPersistent.AllocatedItems[kerbalPcm.name];
-
-                    foreach (var itemName in items)
+                    foreach (var itemName in WalkAboutPersistent.AllocatedItems[kerbalPcm.name])
                     {
-                        $"{kerbalPcm.name} has a {itemName} to be added".Debug();
-
-                        var part = PartLoader.getPartInfoByName(itemName)?.partPrefab;
-                        if (part != null)
-                        {
-                            $"invoking AddItem member using (part [{part.GetType()}])".Debug();
-                            var item = ModuleKISInventoryType.InvokeMember("AddItem", System.Reflection.BindingFlags.InvokeMethod, null, inventory, new object[] { part, 1f, -1 });
-                            $"{itemName} is in the inventory as {item}".Debug();
-                        }
-                        else
-                        {
-                            "Cannot add item to inventory".Debug();
-                        }
+                        AddItemToInventory(kerbalPcm, itemName, ModuleKISInventoryType, inventory);
                     }
                 }
 
@@ -98,9 +84,12 @@ namespace KspWalkAbout
             }
         }
 
+        /// <summary>Called each time the game state is updated.</summary>
         public void FixedUpdate()
         {
             var kerbalEva = GetKerbalEva();
+
+            // Exit if the the FlightScene conditions are not right.
             if ((kerbalEva == null) // not a kerbal on EVA
                 || (!FlightGlobals.ActiveVessel.LandedOrSplashed)
                 || (kerbalEva.isRagdoll)
@@ -109,10 +98,14 @@ namespace KspWalkAbout
                 return;
             }
 
+            // Check if the Perpetual Motion activation key has been pressed.
             if (CheckForKeyCombo(GetModConfig().PmActivationHotKey, GetModConfig().PmActivationHotKeyModifiers)) 
             {
+                // change moving to stopping or normal to moving.
                 _motion = (_motion == MotionState.perpetual) ? MotionState.stopping : MotionState.perpetual;
                 $"Set motion state to {_motion}".Debug();
+
+                // ensure that only physics time warp is used.
                 if (_motion == MotionState.perpetual)
                 {
                     TimeWarp.fetch.Mode = TimeWarp.Modes.LOW;
@@ -123,10 +116,11 @@ namespace KspWalkAbout
             {
                 _inRunMode = !_inRunMode;
             }
-
-
+            
             if (_motion == MotionState.normal) { return; }
 
+            // If the user changed the time warp setting treat the new setting as a physics time warp setting
+            // and enact it. E.g. if the user chooses 10x (HIGH rate=3), set the time warp to 3x (LOW rate=3)).
             if ((TimeWarp.WarpMode == TimeWarp.Modes.HIGH) && (TimeWarp.CurrentRate != 1))
             {
                 var rate = Mathf.Min(4, TimeWarp.CurrentRateIndex);
@@ -144,15 +138,26 @@ namespace KspWalkAbout
             MoveKerbal(kerbalEva, speed, animation);
         }
 
-        private static void AddItemToInventory(KerbalEVA kerbal, System.Type ModuleKISInventoryType, Component inventory, string itemName)
+        /// <summary>Includes an allocated item in the kerbal's inventory.</summary>
+        /// <param name="kerbalPcm">The EVA vessel of the kerbal.</param>
+        /// <param name="itemName">The name of the item to be added to the kerbal's inventory.</param>
+        /// <param name="KisType">The class type of the KIS mod.</param>
+        /// <param name="inventory">The class type of a KIS inventory container.</param>
+        private static void AddItemToInventory(ProtoCrewMember kerbalPcm, string itemName, System.Type KisType, Component inventory)
         {
-            $"{kerbal.name} has a {itemName} to be added".Debug();
+            $"{kerbalPcm.name} has a {itemName} to be added".Debug();
 
             var part = PartLoader.getPartInfoByName(itemName)?.partPrefab;
             if (part != null)
             {
                 $"invoking AddItem member using (part [{part.GetType()}])".Debug();
-                var item = ModuleKISInventoryType.InvokeMember("AddItem", System.Reflection.BindingFlags.InvokeMethod, null, inventory, new object[] { part, 1f, -1 });
+                var item = 
+                    KisType.InvokeMember(
+                        "AddItem", 
+                        System.Reflection.BindingFlags.InvokeMethod, 
+                        null, 
+                        inventory, 
+                        new object[] { part, 1f, -1 });
                 $"{itemName} is in the inventory as {item}".Debug();
             }
             else
@@ -161,6 +166,10 @@ namespace KspWalkAbout
             }
         }
 
+        /// <summary>Moves a kerbal on EVA forward.</summary>
+        /// <param name="kerbalEva">The EVA vessel of the kerbal to move.</param>
+        /// <param name="speed">The speed at which the kerbal should move.</param>
+        /// <param name="animation">The animation to display while moving.</param>
         private static void MoveKerbal(KerbalEVA kerbalEva, float speed, string animation)
         {
             Animation currentAnimation = null;
@@ -180,6 +189,13 @@ namespace KspWalkAbout
             }
         }
 
+        /// <summary>
+        /// Determines the appropriate speed and animation for a moving kerbal based on the current 
+        /// motion mode and the kerbal's current environ.
+        /// </summary>
+        /// <param name="kerbal">The EVA vessel of kerbal.</param>
+        /// <param name="speed">Will be set to the kerbal's speed.</param>
+        /// <param name="animation">Will be set to the animation to display.</param>
         private void SetSpeedAndAnimation(KerbalEVA kerbal, out float speed, out string animation)
         {
             var gforce = FlightGlobals.currentMainBody.GeeASL;
@@ -208,6 +224,8 @@ namespace KspWalkAbout
             }
         }
 
+        /// <summary>Obtains the EVA vessel of the kerbal currently being displayed.</summary>
+        /// <returns>An object represent the kerbal on EVA.</returns>
         private KerbalEVA GetKerbalEva()
         {
             if (!(FlightGlobals.ActiveVessel?.isEVA ?? false))

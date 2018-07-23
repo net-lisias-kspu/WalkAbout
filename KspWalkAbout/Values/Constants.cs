@@ -29,8 +29,7 @@ namespace KspWalkAbout.Values
             System.Diagnostics.FileVersionInfo
             .GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location)
             .ProductVersion;
-
-
+        
         internal static readonly ConfigNode DefaultSettings =
             ConfigNode.CreateConfigFromObject(
                 new WalkAboutSettings

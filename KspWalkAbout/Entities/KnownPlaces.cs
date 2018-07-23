@@ -19,6 +19,7 @@ using KspWalkAbout.Values;
 using KspWalkAbout.WalkAboutFiles;
 using System;
 using System.Collections.Generic;
+using static KspAccess.CommonKspAccess;
 using static KspWalkAbout.Entities.WalkAboutPersistent;
 
 namespace KspWalkAbout.Entities
@@ -27,16 +28,18 @@ namespace KspWalkAbout.Entities
     internal class KnownPlaces : List<LocationFile>
     {
         private int _maxQueueing = int.MinValue;
-
         public List<Location> AllLocations { get; private set; }
         public List<Location> AvailableLocations { get; private set; }
         public List<string> AvailableFacilities { get; private set; }
-        internal bool IsChanged { get; set; }
 
+        /// <summary>Creates a new instance of the KnownPlaces class.</summary>
         internal KnownPlaces()
         {
             RefreshLocations();
         }
+
+        /// <summary>Whether or not the values for any locations have been altered.</summary>
+        internal bool IsChanged { get; set; }
 
         /// <summary>Writes the information about all the locations to their respective disk files.</summary>
         internal void Save()
@@ -81,6 +84,7 @@ namespace KspWalkAbout.Entities
                         location.File = locationFile;
                     }
                     FacilityLevels currentLevel = GetFacilityLevel(location.FacilityName);
+                    //$"Location [{location.LocationName}] at [{location.FacilityName}] levels: location=[{location.AvailableAtLevels}] facility=[{currentLevel}] result=[{(location.AvailableAtLevels & currentLevel)}] available=[{((location.AvailableAtLevels & currentLevel) != FacilityLevels.None)}]".Debug();
                     if ((location.AvailableAtLevels & currentLevel) != FacilityLevels.None)
                     {
                         AvailableLocations.Add(location);
@@ -95,7 +99,7 @@ namespace KspWalkAbout.Entities
             }
 
             AvailableLocations.Sort(CompareLocations);
-            $"availabe = {AvailableLocations.Count} of {AllLocations.Count} locations".Debug();
+            $"available = {AvailableLocations.Count} of {AllLocations.Count} locations".Debug();
         }
 
         /// <summary>
@@ -216,26 +220,39 @@ namespace KspWalkAbout.Entities
                 new Locale { Distance = double.MaxValue },
                 new Locale { Distance = double.MaxValue }
             };
-            var conv = Math.PI / 180;
+
+            var startpoint = new WorldCoordinates()
+                {
+                    Latitude = targetLatitude,
+                    Longitude = targetLongitude,
+                    Altitude = targetAltitude,
+                };
 
             foreach (var location in AllLocations)
             {
-                var dlon = (location.Longitude - targetLongitude) * conv;
-                var dlat = (location.Latitude - targetLatitude) * conv;
-                var a =
-                    Math.Pow(Math.Sin(dlat / 2), 2) +
-                    Math.Cos(targetLatitude * conv) * Math.Cos(location.Latitude * conv) * Math.Pow(Math.Sin(dlon * conv / 2), 2);
-                var c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
-                var h = Math.Abs((600000 + targetAltitude) * c);
-                var v = targetAltitude - location.Altitude;
-                var d = Math.Sqrt(h * h + v * v);
+                var endpoint = new WorldCoordinates()
+                {
+                    Latitude = location.Latitude,
+                    Longitude = location.Longitude,
+                    Altitude = location.Altitude,
+                };
+
+                var gc = new GreatCircle(startpoint, endpoint, Kerbin);
 
                 for (int level = 1; level < 4; level++)
                 {
                     var facilityLevel = (FacilityLevels)(int)Math.Pow(2, level - 1);
-                    if (((location.AvailableAtLevels & facilityLevel) != FacilityLevels.None) && (d < closest[level].Distance))
+                    if (((location.AvailableAtLevels & facilityLevel) != FacilityLevels.None)
+                        && (gc.DistanceWithAltChange < closest[level].Distance))
                     {
-                        closest[level] = new Locale { Name = location.LocationName, Horizontal = h, Vertical = v, Distance = d };
+                        closest[level] =
+                            new Locale
+                            {
+                                Name = location.LocationName,
+                                Horizontal = gc.DistanceAtDestAlt,
+                                Vertical = gc.DeltaASL,
+                                Distance = gc.DistanceWithAltChange,
+                            };
                     }
                 }
             }
@@ -248,9 +265,18 @@ namespace KspWalkAbout.Entities
         /// <returns>A value indicating the current upgrade level.</returns>
         private static FacilityLevels GetFacilityLevel(string facilityName)
         {
+            // old method - used LevelCount to determine the number of possible levels a facility could have.
+            ////return (FacilityLevels)(int)
+            ////    Math.Pow(2, (ScenarioUpgradeableFacilities.protoUpgradeables[facilityName].GetLevel() *
+            ////                 ScenarioUpgradeableFacilities.GetFacilityLevelCount(facilityName)));
+
+            // new method - do not rely on protoUpgradables for info (protoUpgradables is not populated in Sandbox mode).
+            //            - fake it if levelCount is -1 (why does this happen?)
+            var levelCount = ScenarioUpgradeableFacilities.GetFacilityLevelCount(facilityName);
             return (FacilityLevels)(int)
-                Math.Pow(2, (ScenarioUpgradeableFacilities.protoUpgradeables[facilityName].GetLevel() *
-                             ScenarioUpgradeableFacilities.GetFacilityLevelCount(facilityName)));
+                Math.Pow(2, (ScenarioUpgradeableFacilities.GetFacilityLevel(facilityName) *
+                             ((levelCount == -1) ? 1 : levelCount)));
+
         }
 
         /// <summary>Creates a location based on the supplied user information and the currently active vessel.</summary>
@@ -272,7 +298,7 @@ namespace KspWalkAbout.Entities
             };
         }
 
-        /// <summary>Loads all location files in the WalkAbout mod's location file directory.</summary>
+        /// <summary>Loads all location files in the locFiles folder at the WalkAbout mod's installed path.</summary>
         private void LoadLocationFiles()
         {
             var di = new System.IO.DirectoryInfo($"{WalkAbout.GetModDirectory()}/locFiles");
@@ -311,9 +337,9 @@ namespace KspWalkAbout.Entities
             return -1;
         }
 
-        /// <summary> Compares two locations ordering them by queueing and name.</summary>
+        /// <summary> Compares two locations, ordering them by queueing and name.</summary>
         /// <param name="a">The base location.</param>
-        /// <param name="b">The location to be combared to the base location.</param>
+        /// <param name="b">The location to be compared to the base location.</param>
         /// <returns>A value indicating whether location b comes before or after location a.</returns>
         private int CompareLocations(Location a, Location b)
         {

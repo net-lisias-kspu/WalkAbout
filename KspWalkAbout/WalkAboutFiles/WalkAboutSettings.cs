@@ -82,6 +82,7 @@ namespace KspWalkAbout.WalkAboutFiles
         [Persistent]
         public List<KeyCode> PmActivationHotKeyModifiers;
 
+        /// <summary>Indicates what action is to be taken after placing a kerbal at a location.</summary>
         [Persistent]
         public PostPlacementMode PostPlacementAction;
 

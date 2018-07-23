@@ -56,7 +56,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\InventoryItems.cs" />
+    <Compile Include="WalkAboutFiles\ItemsFile.cs" />
     <Compile Include="Guis\GuiElementStyles.cs" />
+    <Compile Include="Entities\InventoryItem.cs" />
     <Compile Include="Values\Constants.cs" />
     <Compile Include="Values\Enums.cs" />
     <Compile Include="Extensions\DebugExtensions.cs" />
@@ -64,16 +67,18 @@
     <Compile Include="Guis\MainGui.cs" />
     <Compile Include="Guis\GuiResizer.cs" />
     <Compile Include="KspAccess\WalkAboutKspAccess.cs" />
-    <Compile Include="KspFiles\Settings.cs" />
+    <Compile Include="WalkAboutFiles\WalkAboutSettings.cs" />
     <Compile Include="KspFiles\SettingsFile.cs" />
     <Compile Include="Entities\KnownPlaces.cs" />
     <Compile Include="Entities\Location.cs" />
-    <Compile Include="Entities\LocationFile.cs" />
+    <Compile Include="WalkAboutFiles\LocationFile.cs" />
     <Compile Include="Entities\LocationRequest.cs" />
     <Compile Include="Entities\PlacementRequest.cs" />
     <Compile Include="WalkAboutAddUtility.cs" />
     <Compile Include="WalkAbout.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WalkAboutEva.cs" />
+    <Compile Include="Entities\WalkAboutPersistent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="KspAccess\CommonKspAccess.cs" />

@@ -14,10 +14,13 @@
     You should have received a copy of the GNU General Public License
     along with WalkAbout.  If not, see<http://www.gnu.org/licenses/>.
 */
+using KspAccess;
 using KspWalkAbout.Entities;
 using KspWalkAbout.Extensions;
 using KspWalkAbout.Values;
+using System;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 namespace KspWalkAbout.Guis
@@ -29,6 +32,8 @@ namespace KspWalkAbout.Guis
         private Vector2 _kerbalSelectorScrollPosition;
         private Vector2 _facilitySelectorScrollPosition;
         private Vector2 _locationSelectorScrollPosition;
+        private Vector2 _itemsSelectorScrollPosition;
+        private Vector2 _itemsSelectedScrollPosition;
         private ProtoCrewMember _selectedKerbal;
         private string _selectedFacility;
         private Location _selectedLocation;
@@ -36,6 +41,10 @@ namespace KspWalkAbout.Guis
         private bool _showTopFewOnly;
         private string _windowTitle;
         private Vector2 _minGuiSize;
+        private bool _isKisPresent;
+        private Assembly _KisMod;
+        private Dictionary<string, List<InventoryItem>> _itemsSelected;
+        private bool _itemSelectorIsOpen;
 
         /// <summary>Initializes a new instance of the MainGui class.</summary>
         internal MainGui()
@@ -43,13 +52,19 @@ namespace KspWalkAbout.Guis
             _kerbalSelectorScrollPosition = Vector2.zero;
             _facilitySelectorScrollPosition = Vector2.zero;
             _locationSelectorScrollPosition = Vector2.zero;
+            _itemsSelectorScrollPosition = Vector2.zero;
+            _itemsSelectedScrollPosition = Vector2.zero;
 
-            _showTopFewOnly = false;
+            _isKisPresent = WalkAboutKspAccess.DetectKisMod(ref _KisMod);
+            _itemsSelected = new Dictionary<string, List<InventoryItem>>();
+
             _windowTitle = $"{Constants.ModName} v{Constants.Version}";
             _minGuiSize = new Vector2(200, 50);
+            _itemSelectorIsOpen = false;
 
             IsActive = false;
             Locations = new List<Location>();
+            Items = new InventoryItems();
         }
 
         /// <summary>Gets or sets the screen coordinates and size of the GUI.</summary>
@@ -77,8 +92,14 @@ namespace KspWalkAbout.Guis
         /// <summary>The max number of locations to display in the GUI as the most likely locations the user wants to select from.</summary>
         public int TopFew { get; internal set; }
 
+        public int MaxItems { get; internal set; }
+
+        public float MaxVolume { get; internal set; }
+
         /// <summary>Gets or sets the user's current request to place a kerbal at a location.</summary>
         public PlacementRequest RequestedPlacement { get; set; }
+
+        public InventoryItems Items { get; internal set; }
 
         /// <summary>Called regularly to draw the GUI on screen.</summary>
         /// <returns>A value indicating whether or not the GUI was displayed.</returns>
@@ -98,20 +119,27 @@ namespace KspWalkAbout.Guis
             var haveKerbals = false;
             var haveLocations = false;
 
-            GUILayout.BeginVertical();
+            GUILayout.BeginHorizontal();
             {
-                GUILayout.BeginHorizontal();
+                GUILayout.BeginVertical();
                 {
-                    haveKerbals = DrawKerbalSelector();
-                    DrawFacilitySelector();
-                    haveLocations = DrawLocationSelector();
+                    GUILayout.BeginHorizontal();
+                    {
+                        haveKerbals = DrawKerbalSelector();
+                        DrawFacilitySelector();
+                        haveLocations = DrawLocationSelector();
+                    }
+                    GUILayout.EndHorizontal();
+                    DrawAddItemsButton();
+                    DrawActionButton(haveKerbals, haveLocations);
+                    DrawCancelButton();
                 }
-                GUILayout.EndHorizontal();
-                DrawActionButton(haveKerbals, haveLocations);
-                DrawCancelButton();
+                GUILayout.EndVertical();
+                DrawItemSelection();
             }
-            GUILayout.EndVertical();
+            GUILayout.EndHorizontal();
 
+            DrawDebugButton(_coordinates);
             GuiResizer.DrawResizingButton(_coordinates, _minGuiSize);
             GUI.DragWindow(new Rect(0, 0, GuiCoordinates.width, GuiCoordinates.height));
         }
@@ -130,11 +158,15 @@ namespace KspWalkAbout.Guis
                         if (crew.rosterStatus == ProtoCrewMember.RosterStatus.Available)
                         {
                             var buttonStyle = (crew.name == ((_selectedKerbal?.name) ?? string.Empty))
-                                ? _elementStyles.ActionableButton
+                                ? _elementStyles.SelectedButton
                                 : _elementStyles.ValidButton;
                             if (GUILayout.Button(crew.name, buttonStyle))
                             {
                                 _selectedKerbal = crew; $"selected {_selectedKerbal.name}".Debug();
+                                if (!_itemsSelected.ContainsKey(_selectedKerbal.name))
+                                {
+                                    _itemsSelected.Add(_selectedKerbal.name, new List<InventoryItem>());
+                                }
                             }
                             drewKerbalButtons = true;
                         }
@@ -157,7 +189,7 @@ namespace KspWalkAbout.Guis
                     {
                         var buttonText = facilityName.Substring(facilityName.IndexOf('/') + 1);
                         var buttonStyle = (facilityName == (_selectedFacility ?? string.Empty))
-                            ? _elementStyles.ActionableButton
+                            ? _elementStyles.SelectedButton
                             : _elementStyles.ValidButton;
                         if (GUILayout.Button(buttonText, buttonStyle))
                         {
@@ -192,7 +224,7 @@ namespace KspWalkAbout.Guis
                             if (string.IsNullOrEmpty(_selectedFacility) || (location.FacilityName == _selectedFacility))
                             {
                                 var buttonStyle = (location.LocationName == ((_selectedLocation?.LocationName) ?? string.Empty))
-                                    ? _elementStyles.ActionableButton
+                                    ? _elementStyles.SelectedButton
                                     : _elementStyles.ValidButton;
                                 if (GUILayout.Button(location.LocationName, buttonStyle))
                                 {
@@ -227,9 +259,15 @@ namespace KspWalkAbout.Guis
                 }
                 else
                 {
-                    if (GUILayout.Button($"Place {_selectedKerbal.name} outside {_selectedLocation.LocationName}", _elementStyles.ActionableButton))
+                    if (GUILayout.Button($"Place {_selectedKerbal.name} outside {_selectedLocation.LocationName}", _elementStyles.SelectedButton))
                     {
-                        RequestedPlacement = new PlacementRequest { Kerbal = _selectedKerbal, Location = _selectedLocation };
+                        RequestedPlacement =
+                            new PlacementRequest
+                            {
+                                Kerbal = _selectedKerbal,
+                                Location = _selectedLocation,
+                                Items = _itemsSelected[_selectedKerbal.name],
+                            };
                         "PlacementRequest created - deactivating GUI".Debug();
                         IsActive = false;
                     }
@@ -241,6 +279,22 @@ namespace KspWalkAbout.Guis
             }
         }
 
+        /// <summary>Draws the button to add or change the items in the selected kerbal's inventory.</summary>   
+        private void DrawAddItemsButton()
+        {
+            if (_isKisPresent && (_selectedKerbal != null))
+            {
+                var prefix = (_itemSelectorIsOpen)
+                    ? "Close"
+                    : (_itemsSelected[_selectedKerbal.name].Count == 0) ? "Add items to" : "Change";
+
+                if (GUILayout.Button($"{prefix} {_selectedKerbal.name}'s inventory", _elementStyles.SelectedButton))
+                {
+                    _itemSelectorIsOpen = !_itemSelectorIsOpen;
+                }
+            }
+        }
+
         /// <summary>Draws the button to cancel the user's action and handles its selection.</summary>
         private void DrawCancelButton()
         {
@@ -249,6 +303,109 @@ namespace KspWalkAbout.Guis
                 _selectedKerbal = null;
                 _selectedLocation = null;
                 IsActive = false;
+            }
+        }
+
+        /// <summary>Draws the buttons to select specific items to add or remove from the selected kerbal's inventory.</summary>
+        private void DrawItemSelection()
+        {
+            if (_itemSelectorIsOpen && (_selectedKerbal != null))
+            {
+                GUILayout.BeginVertical();
+                {
+                    var numItems = _itemsSelected[_selectedKerbal.name].Count;
+                    var itemsRemaining = MaxItems - numItems;
+                    var volumeRemaining = MaxVolume;
+
+                    double fundsRemaining = double.MaxValue;
+                    if (Funding.Instance != null)
+                    {
+                        fundsRemaining = Funding.Instance.Funds;
+                        foreach (var kerbal in _itemsSelected.Keys)
+                        {
+                            foreach (var item in _itemsSelected[kerbal])
+                            {
+                                fundsRemaining -= item.Cost;
+                            }
+                        }
+                    }
+
+                    if (numItems > 0)
+                    {
+                        var pluralization = (numItems == 1) ? string.Empty : "s";
+                        var cost = 0f;
+                        foreach (var item in _itemsSelected[_selectedKerbal.name])
+                        {
+                            cost += item.Cost;
+                        }
+                        fundsRemaining -= cost;
+                        var costText = (Funding.Instance == null) ? string.Empty : $", {Math.Round(cost,2, MidpointRounding.ToEven)} funds";
+                        GUILayout.Label($"Selected: {numItems} item{pluralization}{costText}");
+                    }
+
+                    foreach (var item in _itemsSelected[_selectedKerbal.name].ToArray())
+                    {
+                        volumeRemaining -= item.Volume;
+
+                        if (GUILayout.Button($"{item.Title}", _elementStyles.SelectedButton))
+                        {
+                            _itemsSelected[_selectedKerbal.name].Remove(item);
+                            volumeRemaining += item.Volume;
+                        }
+                    }
+
+                    {
+                        var pluralization = (itemsRemaining == 1) ? string.Empty : "s";
+                        GUILayout.Label($"Remaining: {itemsRemaining} item{pluralization}, {Math.Round(volumeRemaining, 2, MidpointRounding.ToEven)} L");
+                    }
+
+                    _itemsSelectorScrollPosition = GUILayout.BeginScrollView(_itemsSelectorScrollPosition);
+                    {
+                        GUILayout.BeginVertical();
+                        {
+                            foreach (var item in Items.GetSorted())
+                            {
+                                if (item.IsAvailable)
+                                {
+                                    var canPurchase = (
+                                        (itemsRemaining > 0) &&
+                                        (item.Volume <= volumeRemaining) &&
+                                        (item.Cost <= fundsRemaining));
+
+                                    var buttonStyle = (canPurchase)
+                                        ? _elementStyles.ValidButton
+                                        : _elementStyles.InvalidButton;
+                                    if (GUILayout.Button($"{item.Title}", buttonStyle))
+                                    {
+                                        if (canPurchase)
+                                        {
+                                            _itemsSelected[_selectedKerbal.name].Add(item);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        GUILayout.EndVertical();
+                    }
+                    GUILayout.EndScrollView();
+                }
+                GUILayout.EndVertical();
+            }
+        }
+
+        /// <summary>Draws the button to toggle debug logging.</summary>
+        /// <param name="guiCoordinates">The screen coordinates of the main GUI dialogue window.</param>
+        private void DrawDebugButton(Rect guiCoordinates)
+        {
+            var style = (DebugExtensions.DebugIsOn) ? _elementStyles.HighlightedButton : _elementStyles.SelectedButton;
+            if (GUI.Button(
+                new Rect(0, guiCoordinates.height - 10, 10, 10), "*", style))
+            {
+                var state = (DebugExtensions.DebugIsOn) ? "ON" : "OFF";
+                $"Debugging messages are being turned {state}".Debug();
+                DebugExtensions.SetDebug(!DebugExtensions.DebugIsOn);
+                $"Debugging messages have been turned {state}".Debug();
+                ScreenMessages.PostScreenMessage(new ScreenMessage($"WalkAbout debugging is {state}", 4.0f, ScreenMessageStyle.UPPER_LEFT));
             }
         }
     }

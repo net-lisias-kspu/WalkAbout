@@ -14,10 +14,11 @@
     You should have received a copy of the GNU General Public License
     along with WalkAbout.  If not, see<http://www.gnu.org/licenses/>.
 */
+using KspWalkAbout.Entities;
 using KspWalkAbout.KspFiles;
 using System.Collections.Generic;
 
-namespace KspWalkAbout.Entities
+namespace KspWalkAbout.WalkAboutFiles
 {
     /// <summary>Represents a settings file containing a set of locations for use with the mod.</summary>
     public class LocationFile : SettingsFile

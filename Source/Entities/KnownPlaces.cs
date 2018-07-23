@@ -16,6 +16,7 @@
 */
 using KspWalkAbout.Extensions;
 using KspWalkAbout.Values;
+using KspWalkAbout.WalkAboutFiles;
 using System;
 using System.Collections.Generic;
 
@@ -115,7 +116,7 @@ namespace KspWalkAbout.Entities
             var origLocation = AvailableLocations[origIndex];
             var origQueueing = AvailableLocations[origIndex].Queueing;
             var newQueueing = (origQueueing == 0) ? 1 : Math.Min(_maxQueueing, _maxQueueing - (_maxQueueing - origQueueing) / 2 + 1);
-            $"Requeuing operation to change {origLocation.LocationName} from {origQueueing} to {newQueueing} ".Debug();
+            $"Requeueing operation to change {origLocation.LocationName} from {origQueueing} to {newQueueing} ".Debug();
             _maxQueueing += (origQueueing == 0) ? 1 : 0;
             AvailableLocations.RemoveAt(origIndex);
             AvailableLocations.Insert(_maxQueueing - newQueueing, origLocation);

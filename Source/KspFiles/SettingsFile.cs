@@ -64,9 +64,8 @@ namespace KspWalkAbout.KspFiles
 
                 if (!isLoaded && defaultNode != null)
                 {
-                    ConfigNode.LoadObjectFromConfig(this, defaultNode);
+                    isLoaded = ConfigNode.LoadObjectFromConfig(this, defaultNode);
                     StatusMessage = $"Loaded from default due to {StatusMessage}";
-                    isLoaded = true;
                 }
             }
 

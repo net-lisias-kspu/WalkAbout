@@ -22,7 +22,12 @@ namespace KspWalkAbout.Extensions
     internal static class DebugExtensions
     {
         /// <summary>Indicates whether <see cref="Debug(string)"/> operations should write to the log.</summary>
-        public static bool DebugOn = false;
+        public static bool DebugIsOn = false;
+
+        static DebugExtensions()
+        {
+            DebugIsOn = System.IO.File.Exists($"{WalkAbout.GetModDirectory()}/debug.flg");
+        }
 
         /// <summary>Writes the message to the log.</summary>
         /// <param name="message">Text to be written.</param>
@@ -35,7 +40,16 @@ namespace KspWalkAbout.Extensions
         /// <param name="message">Text to be written.</param>
         public static void Debug(this string message)
         {
-            if (DebugOn) MonoBehaviour.print($"{Constants.ModName}: {message}");
+            if (DebugIsOn) MonoBehaviour.print($"{Constants.ModName}: {message}");
+        }
+
+        /// <summary>
+        /// Changes whether future <see cref="Debug(string)"/> operations should write to the log.
+        /// </summary>
+        /// <param name="debugState">Whether or not debug logging should be active.</param>
+        public static void SetDebug(bool debugState = true)
+        {
+            DebugIsOn = debugState;
         }
     }
 }

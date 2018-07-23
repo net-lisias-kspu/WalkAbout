@@ -14,6 +14,8 @@
     You should have received a copy of the GNU General Public License
     along with WalkAbout.  If not, see<http://www.gnu.org/licenses/>.
 */
+using KspWalkAbout.Entities;
+using KspWalkAbout.WalkAboutFiles;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,7 +33,7 @@ namespace KspWalkAbout.Values
 
         internal static readonly ConfigNode DefaultSettings =
             ConfigNode.CreateConfigFromObject(
-                new KspFiles.Settings
+                new WalkAboutSettings
                 {
                     ActivationHotKey = KeyCode.W,
                     ActivationHotKeyModifiers = new List<KeyCode> { KeyCode.LeftControl, KeyCode.RightControl, },
@@ -40,6 +42,14 @@ namespace KspWalkAbout.Values
                     ScreenY = (int)new Rect().yMin,
                     ScreenWidth = (int)new Rect().width,
                     ScreenHeight = (int)new Rect().height,
+                },
+                new ConfigNode());
+
+        internal static readonly ConfigNode DefaultItems =
+            ConfigNode.CreateConfigFromObject(
+                new ItemsFile
+                {
+                    Items = new List<InventoryItem>(),
                 },
                 new ConfigNode());
     }

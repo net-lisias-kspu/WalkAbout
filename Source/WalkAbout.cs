@@ -19,15 +19,18 @@ using KspWalkAbout.Entities;
 using KspWalkAbout.Extensions;
 using KspWalkAbout.Guis;
 using KspWalkAbout.Values;
+using KspWalkAbout.WalkAboutFiles;
 using UnityEngine;
 
 namespace KspWalkAbout
 {
+    /// <summary>Module to allow user to place kerbals at specific locations. </summary>
     [KSPAddon(KSPAddon.Startup.SpaceCentre, false)]
     public class WalkAbout : MonoBehaviour
     {
-        private KspFiles.Settings _config;
+        private WalkAboutSettings _config;
         private KnownPlaces _map;
+        private InventoryItems _items;
         private MainGui _mainGui;
 
         /// <summary>
@@ -35,18 +38,24 @@ namespace KspWalkAbout
         /// </summary>
         public void Start()
         {
-            // turn on the debug flag if the debug flag file exists.
-            DebugExtensions.DebugOn = System.IO.File.Exists($"{GetModDirectory()}/debug.flg");
-            $"Started [Version={Constants.Version}, Debug={DebugExtensions.DebugOn}]".Log();
+            $"Started [Version={Constants.Version}, Debug={DebugExtensions.DebugIsOn}]".Log();
 
-            _config = new KspFiles.Settings();
-            var loaded = _config.Load($"{GetModDirectory()}/Settings.cfg", Constants.DefaultSettings); "loaded config = {loaded}".Debug();
-            _config.StatusMessage.Log(); "printed status message".Debug();
+            _config = new WalkAboutSettings();
+            var loaded = _config.Load($"{GetModDirectory()}/Settings.cfg", Constants.DefaultSettings); 
+            _config.StatusMessage.Log(); 
             if (!loaded) return;
 
             _map = new KnownPlaces(); "created map object".Debug();
+            _items = new InventoryItems() { MaxVolume = _config.MaxInventoryVolume }; "created items object".Debug();
 
-            _mainGui = new MainGui { GuiCoordinates = _config.GetScreenPosition(), TopFew = _config.TopFew }; $"created MainGui object".Debug();
+            _mainGui =
+                new MainGui
+                {
+                    GuiCoordinates = _config.GetScreenPosition(),
+                    TopFew = _config.TopFew,
+                    MaxItems = _config.MaxInventoryItems,
+                    MaxVolume = _config.MaxInventoryVolume,
+                }; $"created MainGui object".Debug();
         }
 
         /// <summary>Called each time the game state is updated.</summary>
@@ -72,9 +81,10 @@ namespace KspWalkAbout
             GamePersistence.SaveGame("persistent", HighLogic.SaveFolder, SaveMode.OVERWRITE);
             HighLogic.LoadScene(GameScenes.SPACECENTER);
 
+            _items.UpdateQueueing(_mainGui.RequestedPlacement.Items);
             _map.UpdateQueuing(_mainGui.RequestedPlacement.Location.LocationName);
             _mainGui.RequestedPlacement = null;
-            LoadGuiWithMapData();
+            LoadGuiWithCurrentData();
         }
 
         /// <summary>Obtains the directory where the WalkAbout mod is currently installed.</summary>
@@ -101,18 +111,21 @@ namespace KspWalkAbout
                 if (requiredKeysPressed)
                 {
                     $"Required key combination pressed".Debug();
-                    LoadGuiWithMapData();
+                    LoadGuiWithCurrentData();
                 }
                 _mainGui.IsActive = requiredKeysPressed;
             }
         }
 
         /// <summary>Injects current information into the GUI for facilities and locations.</summary>
-        private void LoadGuiWithMapData()
+        private void LoadGuiWithCurrentData()
         {
             _map.Refresh();
             _mainGui.Facilities = _map.AvailableFacilities;
             _mainGui.Locations = _map.AvailableLocations;
+
+            _items.Refresh();
+            _mainGui.Items = _items;
         }
 
         /// <summary>Saves all settings files with pending changes.</summary>
@@ -127,6 +140,11 @@ namespace KspWalkAbout
             if (_map.IsChanged)
             {
                 _map.Save();
+            }
+
+            if (_items.IsChanged)
+            {
+                _items.Save();
             }
         }
     }

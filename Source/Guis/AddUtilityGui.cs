@@ -152,7 +152,7 @@ namespace KspWalkAbout.Guis
                         foreach (var facilityName in ScenarioUpgradeableFacilities.protoUpgradeables.Keys)
                         {
                             var buttonStyle = (facilityName == (_selectedFacility ?? string.Empty))
-                                ? _elementStyles.ActionableButton
+                                ? _elementStyles.SelectedButton
                                 : _elementStyles.ValidButton;
                             if (GUILayout.Button(facilityName, buttonStyle))
                             {
@@ -182,7 +182,7 @@ namespace KspWalkAbout.Guis
 
             if (GUILayout.Button(
                 label ?? $"Add location {_enteredLocationName}",
-                ((string.IsNullOrEmpty(label) || _existingName) ? _elementStyles.ActionableButton : _elementStyles.InvalidButton))
+                ((string.IsNullOrEmpty(label) || _existingName) ? _elementStyles.SelectedButton : _elementStyles.InvalidButton))
                 && string.IsNullOrEmpty(label))
             {
                 $"Action selected: create location {_enteredLocationName} for {_selectedFacility}".Debug();

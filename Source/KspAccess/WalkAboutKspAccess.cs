@@ -1,6 +1,7 @@
 ﻿using KspWalkAbout.Entities;
 using KspWalkAbout.Extensions;
-using System;
+using System.Collections.Generic;
+using System.Reflection;
 using static KspAccess.CommonKspAccess;
 
 namespace KspAccess
@@ -8,6 +9,13 @@ namespace KspAccess
     /// <summary>Represents internals used by the WalkAbout mod to manipulate KSP's game state.</summary>
     internal static class WalkAboutKspAccess
     {
+        private static Assembly _KisMod = null;
+        private static bool _isKisModChecked = false;
+        private static bool _isKisModPresent = false;
+
+        /// <summary>
+        /// Adds a kerbal to the game the requested location.
+        /// </summary>
         internal static void PlaceKerbal(PlacementRequest request)
         {
             $"{request.Kerbal.name} will be placed outside {request.Location.LocationName}".Debug();
@@ -31,10 +39,10 @@ namespace KspAccess
             var vesselNode = ProtoVessel.CreateVesselNode(request.Kerbal.name, VesselType.EVA, orbit, 0, partNodes);
             "created vesselNode".Debug();
 
-            // adjust the location and orientation of the ship/kerbal
-            vesselNode.SetValue("sit", "LANDED");
-            vesselNode.SetValue("landed", "True");
-            vesselNode.SetValue("splashed", "False");
+            // set the location and orientation of the ship/kerbal
+            vesselNode.SetValue("sit", Vessel.Situations.LANDED.ToString());
+            vesselNode.SetValue("landed", true.ToString());
+            vesselNode.SetValue("splashed", false.ToString());
             vesselNode.SetValue("lat", request.Location.Latitude.ToString());
             vesselNode.SetValue("lon", request.Location.Longitude.ToString());
             vesselNode.SetValue("alt", request.Location.Altitude.ToString());
@@ -50,6 +58,58 @@ namespace KspAccess
 
             $"{request.Kerbal.name} is being placed at {request.Location.LocationName}".Log();
             ScreenMessages.PostScreenMessage(new ScreenMessage($"{request.Kerbal.name} is being placed at {request.Location.LocationName}", 4.0f, ScreenMessageStyle.UPPER_LEFT));
+
+            WalkAboutPersistent.InventoryItems.Remove(request.Kerbal.name);
+            if (request.Items.Count > 0)
+            {
+                var itemNames = new List<string>();
+                var cost = 0f;
+                foreach (var item in request.Items)
+                {
+                    itemNames.Add(item.Name);
+                    cost -= item.Cost;
+                }
+                WalkAboutPersistent.InventoryItems.Add(request.Kerbal.name, itemNames);
+                if (Funding.Instance != null)
+                {
+                    $"Subtracting {cost * -1} funds for inventory items".Debug();
+                    Funding.Instance.AddFunds((double)cost, TransactionReasons.Vessels);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Determines if the Kerbal Inventory System has been installed.
+        /// </summary>
+        internal static bool DetectKisMod()
+        {
+            if (!_isKisModChecked)
+            {
+                _isKisModPresent = IsModInstalled("KIS");
+                if (_isKisModPresent)
+                {
+                    _KisMod = GetMod("KIS");
+                    $"obtained KIS mod assembly [{_KisMod}]".Debug();
+                }
+                else
+                {
+                    "KIS mod not detected".Debug();
+                }
+                _isKisModChecked = true;
+            }
+
+            return _isKisModPresent;
+        }
+
+        /// <summary>
+        /// Obtains the Assembly for the Kerbal Inventory System if it has been installed.
+        /// </summary>
+        internal static bool DetectKisMod(ref Assembly mod)
+        {
+            var isModPresent = DetectKisMod();
+            mod = _KisMod;
+
+            return isModPresent;
         }
     }
 }

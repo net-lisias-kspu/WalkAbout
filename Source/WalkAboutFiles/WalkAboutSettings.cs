@@ -15,13 +15,14 @@
     along with WalkAbout.  If not, see<http://www.gnu.org/licenses/>.
 */
 using KspWalkAbout.Extensions;
+using KspWalkAbout.KspFiles;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace KspWalkAbout.KspFiles
+namespace KspWalkAbout.WalkAboutFiles
 {
     /// <summary>Represents the settings file used to hold information for the WalkAbout mod.</summary>
-    public class Settings : SettingsFile
+    public class WalkAboutSettings : SettingsFile
     {
         /// <summary>The key that activates the main GUI.</summary>
         [Persistent]
@@ -61,6 +62,12 @@ namespace KspWalkAbout.KspFiles
         [Persistent]
         public int TopFew;
 
+        [Persistent]
+        public int MaxInventoryItems;
+
+        [Persistent]
+        public float MaxInventoryVolume;
+
         /// <summary>Loads the settings from disk.</summary>
         /// <param name="filePath">The full path of the file containing the settings information.</param>
         /// <param name="defaultNode">The default values for the settings.</param>
@@ -68,9 +75,22 @@ namespace KspWalkAbout.KspFiles
         internal new bool Load(string filePath, ConfigNode defaultNode = null)
         {
             var result = base.Load(filePath, defaultNode);
+
             if (TopFew == 0)
             {
                 TopFew = 5;
+                IsChanged = true;
+            }
+
+            if (MaxInventoryItems == 0)
+            {
+                MaxInventoryItems = 6;
+                IsChanged = true;
+            }
+
+            if (MaxInventoryVolume == 0)
+            {
+                MaxInventoryVolume = 300f;
                 IsChanged = true;
             }
 

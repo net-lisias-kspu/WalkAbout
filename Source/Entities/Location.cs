@@ -15,6 +15,7 @@
     along with WalkAbout.  If not, see<http://www.gnu.org/licenses/>.
 */
 using KspWalkAbout.Values;
+using KspWalkAbout.WalkAboutFiles;
 using UnityEngine;
 
 namespace KspWalkAbout.Entities

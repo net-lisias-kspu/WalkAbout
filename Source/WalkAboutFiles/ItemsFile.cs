@@ -14,16 +14,16 @@
     You should have received a copy of the GNU General Public License
     along with WalkAbout.  If not, see<http://www.gnu.org/licenses/>.
 */
-
+using KspWalkAbout.Entities;
+using KspWalkAbout.KspFiles;
 using System.Collections.Generic;
 
-namespace KspWalkAbout.Entities
+namespace KspWalkAbout.WalkAboutFiles
 {
-    /// <summary>Represents a user's request to place a kerbal at a location.</summary>
-    internal class PlacementRequest
+    /// <summary>Represents a settings file containing a set of parts for use with the mod.</summary>
+    public class ItemsFile : SettingsFile
     {
-        public ProtoCrewMember Kerbal { get; set; }
-        public Location Location { get; set; }
-        public List<InventoryItem> Items { get; set; }
+        [Persistent]
+        public List<InventoryItem> Items;
     }
 }

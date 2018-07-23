@@ -17,15 +17,18 @@
 using KspWalkAbout.Entities;
 using KspWalkAbout.Extensions;
 using KspWalkAbout.Guis;
-using KspWalkAbout.Values;
+using KspWalkAbout.WalkAboutFiles;
 using UnityEngine;
 
 namespace KspWalkAbout
 {
+    /// <summary>
+    /// Module to allow the user to add new locations for kerbals to be placed.
+    /// </summary>
     [KSPAddon(KSPAddon.Startup.Flight, false)]
     public class WalkAboutAddUtility : MonoBehaviour
     {
-        private KspFiles.Settings _config;
+        private WalkAboutSettings _config;
         private KnownPlaces _map;
         private AddUtilityGui _addUtilityGui;
 
@@ -34,8 +37,6 @@ namespace KspWalkAbout
         /// </summary>
         public void Start()
         {
-            DebugExtensions.DebugOn = System.IO.File.Exists($"{KSPUtil.ApplicationRootPath}GameData/WalkAbout/debug.flg");
-
             if (!(FlightGlobals.ActiveVessel?.isEVA ?? false))
             {
                 "Add Location utility deactivated: not an EVA".Debug();
@@ -48,7 +49,7 @@ namespace KspWalkAbout
                 return;
             }
 
-            _config = new KspFiles.Settings();
+            _config = new WalkAboutSettings();
             var loaded = _config.Load($"{WalkAbout.GetModDirectory()}/Settings.cfg");
             _config.StatusMessage.Log();
             if (!loaded) return;

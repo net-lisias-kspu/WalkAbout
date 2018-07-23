@@ -23,6 +23,7 @@ using UnityEngine;
 
 namespace KspWalkAbout.Guis
 {
+    /// <summary>Represents the GUI used to add new locations.</summary>
     internal class AddUtilityGui
     {
         private Rect _coordinates;
@@ -34,12 +35,10 @@ namespace KspWalkAbout.Guis
         private bool _existingName;
 
         private string _selectedFacility;
-        private GUIStyle _validLabelStyle;
-        private GUIStyle _invalidLabelStyle;
-        private GUIStyle _actionableButtonStyle;
-        private GUIStyle _invalidButtonStyle;
-        private bool _isStylesLoaded;
+        private GuiElementStyles _elementStyles;
 
+        /// <summary>Initializes a new instance of the GUI with a collection of locations.</summary>
+        /// <param name="locationMap">A collection of all currently known locations for placing kerbals.</param>
         internal AddUtilityGui(KnownPlaces locationMap)
         {
             _facilitySelectorScrollPosition = Vector2.zero;
@@ -47,13 +46,13 @@ namespace KspWalkAbout.Guis
 
             _enteredLocationName = _unenteredText;
             _selectedFacility = string.Empty;
-            _isStylesLoaded = true;
 
             Map = locationMap;
             GuiCoordinates = new Rect();
             IsActive = false;
         }
 
+        /// <summary>Gets or sets the screen coordinates and size of the GUI.</summary>
         internal Rect GuiCoordinates
         {
             get { return _coordinates; }
@@ -64,43 +63,56 @@ namespace KspWalkAbout.Guis
                     : value;
             }
         }
+
+        /// <summary>Gets or sets a value indicating whether the main GUI is displayed and usable.</summary>
         internal bool IsActive { get; set; }
+
+        /// <summary>Gets or sets the collection of locations that kerbals can be placed at.</summary>
         internal KnownPlaces Map { get; set; }
+
+        /// <summary>Gets or sets the user's current request for a new location.</summary>
         internal LocationRequest RequestedLocation { get; set; }
 
-        internal bool Display(ref GuiState state)
+        /// <summary>Called regularly to draw the GUI on screen.</summary>
+        /// <returns>A value indicating whether or not the GUI was displayed.</returns>
+        internal bool Display()
         {
-            state = IsActive
-                ? (CommonKspAccess.IsPauseMenuOpen ? GuiState.offPauseOpen : state)
-                : GuiState.offNotActive;
             if (!IsActive || CommonKspAccess.IsPauseMenuOpen) return false;
 
             GuiCoordinates = GUI.Window(0, GuiCoordinates, DrawSelectorHandler, $"{Constants.ModName} - Add");
-            state = GuiState.displayed;
             return true;
         }
 
+        /// <summary>Draws the GUI on screen and handles user selections.</summary>
+        /// <param name="id">Required parameter: purpose unknown.</param>
         private void DrawSelectorHandler(int id)
         {
-            if (_isStylesLoaded) GetGuiElementStyles();
+            if (_elementStyles == null) _elementStyles = new GuiElementStyles();
 
             GUILayout.BeginVertical();
-            DrawLocationNameInput();
-            DrawFacilitySelector();
-            DrawActionButton();
-            DrawCancelButton();
-            DrawClosestLocation();
+            {
+                DrawLocationNameInput();
+                DrawFacilitySelector();
+                DrawActionButton();
+                DrawCancelButton();
+                DrawClosestLocation();
+            }
             GUILayout.EndVertical();
+
             GuiResizer.DrawResizingButton(GuiCoordinates);
             GUI.DragWindow(new Rect(0, 0, GuiCoordinates.width, GuiCoordinates.height));
         }
 
+        /// <summary>Draws the portion of the GUI that allows the user to name a location.</summary>
         private void DrawLocationNameInput()
         {
-            GUILayout.BeginHorizontal();
-            GUILayout.Label("Enter new location Name");
             var beganWithUserText = (_enteredLocationName != _unenteredText);
-            _enteredLocationName = GUILayout.TextField(_enteredLocationName, beganWithUserText ? _validLabelStyle : _invalidLabelStyle).Trim();
+
+            GUILayout.BeginHorizontal();
+            {
+                GUILayout.Label("Enter new location Name");
+                _enteredLocationName = GUILayout.TextField(_enteredLocationName, beganWithUserText ? _elementStyles.ValidTextInput : _elementStyles.InvalidTextInput).Trim();
+            }
             GUILayout.EndHorizontal();
 
             _textChanged = (_enteredLocationName != _previousText);
@@ -127,24 +139,35 @@ namespace KspWalkAbout.Guis
             _existingName = Map.HasLocation(_enteredLocationName);
         }
 
+        /// <summary>Draws the portion of the GUI that displays available facilities and handles user selection.</summary>
         private void DrawFacilitySelector()
         {
             GUILayout.BeginHorizontal();
-            GUILayout.Label("Facilities:");
-            _facilitySelectorScrollPosition = GUILayout.BeginScrollView(_facilitySelectorScrollPosition);
-            GUILayout.BeginVertical();
-            foreach (var facilityName in ScenarioUpgradeableFacilities.protoUpgradeables.Keys)
             {
-                if (GUILayout.Button(facilityName))
+                GUILayout.Label("Facilities:");
+                _facilitySelectorScrollPosition = GUILayout.BeginScrollView(_facilitySelectorScrollPosition);
                 {
-                    _selectedFacility = facilityName; $"selected {_selectedFacility}".Debug();
+                    GUILayout.BeginVertical();
+                    {
+                        foreach (var facilityName in ScenarioUpgradeableFacilities.protoUpgradeables.Keys)
+                        {
+                            var buttonStyle = (facilityName == (_selectedFacility ?? string.Empty))
+                                ? _elementStyles.ActionableButton
+                                : _elementStyles.ValidButton;
+                            if (GUILayout.Button(facilityName, buttonStyle))
+                            {
+                                _selectedFacility = facilityName; $"selected {_selectedFacility}".Debug();
+                            }
+                        }
+                    }
+                    GUILayout.EndVertical();
                 }
+                GUILayout.EndScrollView();
             }
-            GUILayout.EndVertical();
-            GUILayout.EndScrollView();
             GUILayout.EndHorizontal();
         }
 
+        /// <summary>Draws the portion of the GUI that displays the user's confimation of action button and handles its selection.</summary>
         private void DrawActionButton()
         {
             string label = null;
@@ -159,7 +182,7 @@ namespace KspWalkAbout.Guis
 
             if (GUILayout.Button(
                 label ?? $"Add location {_enteredLocationName}",
-                ((string.IsNullOrEmpty(label) || _existingName) ? _actionableButtonStyle : _invalidButtonStyle))
+                ((string.IsNullOrEmpty(label) || _existingName) ? _elementStyles.ActionableButton : _elementStyles.InvalidButton))
                 && string.IsNullOrEmpty(label))
             {
                 $"Action selected: create location {_enteredLocationName} for {_selectedFacility}".Debug();
@@ -171,6 +194,7 @@ namespace KspWalkAbout.Guis
             }
         }
 
+        /// <summary>Draws the button to cancel the user's action and handles its selection.</summary>
         private void DrawCancelButton()
         {
             if (GUILayout.Button("Cancel"))
@@ -179,6 +203,7 @@ namespace KspWalkAbout.Guis
             }
         }
 
+        /// <summary>Draws the portion of the GUI that displays the existing locations closest to the current EVA location.</summary>
         private void DrawClosestLocation()
         {
             var closest = KnownPlaces.FindClosest(FlightGlobals.ActiveVessel.latitude,
@@ -187,7 +212,7 @@ namespace KspWalkAbout.Guis
                                               Map);
             var text = "Closest known locations:";
             var suffix = " none found";
-            for (var level = 1; level < 4; level++)
+            for (var level = 1; level < closest.Length; level++)
             {
                 if (string.IsNullOrEmpty(closest[level].Name)) continue;
 
@@ -197,17 +222,6 @@ namespace KspWalkAbout.Guis
 
             text += suffix;
             GUILayout.TextArea(text);
-        }
-
-        private void GetGuiElementStyles()
-        {
-            _validLabelStyle = new GUIStyle(GUI.skin.label);
-            _invalidLabelStyle = new GUIStyle(GUI.skin.label) { normal = { textColor = Color.yellow } };
-
-            _actionableButtonStyle = new GUIStyle(GUI.skin.button) { normal = { textColor = Color.green } };
-            _invalidButtonStyle = new GUIStyle(GUI.skin.button) { normal = { textColor = Color.yellow } };
-
-            _isStylesLoaded = false;
         }
     }
 }

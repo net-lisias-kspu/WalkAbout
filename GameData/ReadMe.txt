@@ -1,5 +1,5 @@
 ﻿
-WalkAbout (version 0.1.3)
+WalkAbout (version 0.1.4)
 
 The WalkAbout mod allows you to take an available kerbal from the Astronaut Complex and have him/her placed outside any door at the KSC.
 
@@ -67,6 +67,15 @@ Adding your own Locations:
     Note 3:
     This utility, and, in fact, the WalkAbout mod, were intended for use in placing kerbals in and around the area of the KSC.  Though the utility can be used to create locations far from the KSC, doing so is not supported by the author (but I'm willing to close a blind eye). If you want to create locations off the surface of Kerbin - you are utterly on your own.  Doing so is unsupported, probably won't work, and will void any and all warranties held for your kerbal's EVA suit, this mod, and probably even your coffee maker - so... you've been warned.
 
+v1.4
+  Works with KSP version 1.2
+  New Features:
+    Added Extras folder.
+
+  Fixed Issues:
+    WA005 Reloading the KSC scene sometimes results in log-spam: [ERR 16:26:34.891] Serialization depth limit exceeded at 'Contracts.Agents::Agent'. There may be an object composition cycle in one or more of your serialized classes.
+    WA008 When the location is under a structure, the kerbal is generated at high altitude and drops from, or clings to, the structure.
+  
 v1.3
   Works with KSP version 1.1 
   New Features:

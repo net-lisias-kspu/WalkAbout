@@ -29,11 +29,13 @@ namespace KspWalkAbout
         private KspFiles.Settings _config;
         private KnownPlaces _map;
         private MainGui _mainGui;
-        private GuiState _guiState;
-        private GuiState _lastGuiState;
 
+        /// <summary>
+        /// Called when the game is loaded. Used to set up all persistent objects and properties.
+        /// </summary>
         public void Start()
         {
+            // turn on the debug flag if the debug flag file exists.
             DebugExtensions.DebugOn = System.IO.File.Exists($"{GetModDirectory()}/debug.flg");
             $"Started [Version={Constants.Version}, Debug={DebugExtensions.DebugOn}]".Log();
 
@@ -45,10 +47,9 @@ namespace KspWalkAbout
             _map = new KnownPlaces(); "created map object".Debug();
 
             _mainGui = new MainGui { GuiCoordinates = _config.GetScreenPosition(), TopFew = _config.TopFew }; $"created MainGui object".Debug();
-            _lastGuiState = GuiState.force;
-
         }
 
+        /// <summary>Called each time the game state is updated.</summary>
         public void Update()
         {
             if (_mainGui == null) return;
@@ -57,19 +58,12 @@ namespace KspWalkAbout
             SaveFiles();
         }
 
+        /// <summary>Called each time the game's GUIs are to be refreshed.</summary>
         public void OnGUI()
         {
-            if (_mainGui?.Display(ref _guiState) ?? false)
+            if (_mainGui?.Display() ?? false)
             {
                 _config.SetScreenPosition(_mainGui.GuiCoordinates);
-            }
-            if (_guiState != _lastGuiState)
-            {
-                if (_lastGuiState == GuiState.force)
-                    $"Current MainGUI state is {_guiState}".Debug();
-                else
-                    $"MainGui display changed from {_lastGuiState} to {_guiState}".Debug();
-                _lastGuiState = _guiState;
             }
 
             if (_mainGui?.RequestedPlacement == null) return;
@@ -83,11 +77,14 @@ namespace KspWalkAbout
             LoadGuiWithMapData();
         }
 
+        /// <summary>Obtains the directory where the WalkAbout mod is currently installed.</summary>
+        /// <returns>Returns a directoy path.</returns>
         internal static string GetModDirectory()
         {
-            return $"{KSPUtil.ApplicationRootPath}GameData/{Constants.ModName}";
+            return CommonKspAccess.GetModDirectory(Constants.ModName);
         }
 
+        /// <summary>Determines if the user has requested the WalkAbout mod's GUI.</summary>
         private void CheckForModActivation()
         {
             if (Input.GetKeyDown(_config.ActivationHotKey))
@@ -105,12 +102,12 @@ namespace KspWalkAbout
                 {
                     $"Required key combination pressed".Debug();
                     LoadGuiWithMapData();
-                    _lastGuiState = GuiState.force;
                 }
                 _mainGui.IsActive = requiredKeysPressed;
             }
         }
 
+        /// <summary>Injects current information into the GUI for facilities and locations.</summary>
         private void LoadGuiWithMapData()
         {
             _map.Refresh();
@@ -118,6 +115,7 @@ namespace KspWalkAbout
             _mainGui.Locations = _map.AvailableLocations;
         }
 
+        /// <summary>Saves all settings files with pending changes.</summary>
         private void SaveFiles()
         {
             if (_config.IsChanged && !GuiResizer.IsResizing && !Input.GetMouseButton(0))

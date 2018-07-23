@@ -2,7 +2,7 @@ Locations
 {
 	Item
 	{
-		LocationName = SPH_Main_EHangerDoors_South
+		LocationName = SPH_East_HangerDoors_South
 		FacilityName = SpaceCenter/SpaceplaneHangar
 		AvailableAtLevels = Level_1
 		Queueing = 0

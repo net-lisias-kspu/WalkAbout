@@ -21,12 +21,22 @@ using System.IO;
 namespace KspWalkAbout.KspFiles
 
 {
+    /// <summary>Represents a set of values that can read from, or written to, a standard KSP settings file.</summary>
     public class SettingsFile
     {
         public string FilePath { get; private set; }
         public bool IsChanged { get; internal set; }
         public string StatusMessage { get; private set; }
 
+        /// <summary>
+        /// Sets the properties of the SettingsFile object to match those read from a physical disk file.
+        /// </summary>
+        /// <param name="settingsFilePath">The full path of the file containing the settings information.</param>
+        /// <param name="defaultNode">
+        /// A representation of the values to be used as defaults in case the <paramref name="settingsFilePath"/>
+        /// could not be found or read.
+        /// </param>
+        /// <returns>A value indicating whether the settings where loaded (either from the file or from the defaults)</returns>
         public bool Load(string settingsFilePath, ConfigNode defaultNode = null)
         {
             var isLoaded = false;
@@ -63,6 +73,10 @@ namespace KspWalkAbout.KspFiles
             return isLoaded;
         }
 
+        /// <summary>
+        /// Writes the current settings to the associated disk file (see <see cref="Load(string, ConfigNode)"/>)
+        /// </summary>
+        /// <returns>A value indicating whether or not the settings information was written to disk.</returns>
         public bool Save()
         {
             var saved = ConfigNode.CreateConfigFromObject(this, new ConfigNode()).Save(FilePath);

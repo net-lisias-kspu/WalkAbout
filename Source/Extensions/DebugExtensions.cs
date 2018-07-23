@@ -21,16 +21,21 @@ namespace KspWalkAbout.Extensions
 {
     internal static class DebugExtensions
     {
+        /// <summary>Indicates whether <see cref="Debug(string)"/> operations should write to the log.</summary>
         public static bool DebugOn = false;
 
-        public static void Log(this string text)
+        /// <summary>Writes the message to the log.</summary>
+        /// <param name="message">Text to be written.</param>
+        public static void Log(this string message)
         {
-            MonoBehaviour.print($"{Constants.ModName}: {text}");
+            MonoBehaviour.print($"{Constants.ModName}: {message}");
         }
 
-        public static void Debug(this string text)
+        /// <summary>Write the message to the log if the DebugOn flag is set.</summary>
+        /// <param name="message">Text to be written.</param>
+        public static void Debug(this string message)
         {
-            if (DebugOn) MonoBehaviour.print($"{Constants.ModName}: {text}");
+            if (DebugOn) MonoBehaviour.print($"{Constants.ModName}: {message}");
         }
     }
 }

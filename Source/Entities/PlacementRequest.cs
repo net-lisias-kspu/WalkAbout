@@ -17,6 +17,7 @@
 
 namespace KspWalkAbout.Entities
 {
+    /// <summary>Represents a user's request to place a kerbal at a location.</summary>
     internal class PlacementRequest
     {
         public ProtoCrewMember Kerbal { get; set; }

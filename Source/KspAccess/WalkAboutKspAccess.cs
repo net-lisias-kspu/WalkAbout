@@ -1,8 +1,11 @@
 ﻿using KspWalkAbout.Entities;
 using KspWalkAbout.Extensions;
+using System;
+using static KspAccess.CommonKspAccess;
 
 namespace KspAccess
 {
+    /// <summary>Represents internals used by the WalkAbout mod to manipulate KSP's game state.</summary>
     internal static class WalkAboutKspAccess
     {
         internal static void PlaceKerbal(PlacementRequest request)
@@ -35,6 +38,7 @@ namespace KspAccess
             vesselNode.SetValue("lat", request.Location.Latitude.ToString());
             vesselNode.SetValue("lon", request.Location.Longitude.ToString());
             vesselNode.SetValue("alt", request.Location.Altitude.ToString());
+            vesselNode.SetValue("hgt", "0.28");
             vesselNode.SetValue("nrm", $"{request.Location.Normal.x},{request.Location.Normal.y},{request.Location.Normal.z}");
             vesselNode.SetValue("rot", $"{request.Location.Rotation.x},{request.Location.Rotation.y},{request.Location.Rotation.z},{request.Location.Rotation.w}");
             "adjusted vesselNode".Debug();

@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace KspWalkAbout.Guis
 {
+    /// <summary>Represents a resizing button for Unity windows drawn with the GUILayout functions.</summary>
     internal static class GuiResizer
     {
         private static Rect _resizingGui;
@@ -13,6 +14,9 @@ namespace KspWalkAbout.Guis
 
         public static bool IsResizing { get; private set; } = false;
 
+        /// <summary>Draws a resizing button.</summary>
+        /// <param name="guiCoordinates">A rectangle representing the coordinates and dimensions of an existing GUI.</param>
+        /// <param name="minSize">The minimum width and height allowed for the existing GUI.</param>
         internal static void DrawResizingButton(Rect guiCoordinates, Vector2 minSize = new Vector2())
         {
             if (GUI.RepeatButton(
@@ -25,6 +29,9 @@ namespace KspWalkAbout.Guis
             }
         }
 
+        /// <summary>Changes the size of the displayed GUI to match the mouse position after the resize button has been dragged.</summary>
+        /// <param name="guiCoordinates">The screen coordinates of the GUI to be resized.</param>
+        /// <returns>The screen coordinates and dimensions of the resized GUI.</returns>
         internal static Rect HandleResizing(Rect guiCoordinates)
         {
             if (Input.GetMouseButtonUp(0))

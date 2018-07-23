@@ -28,9 +28,10 @@ namespace KspWalkAbout
         private KspFiles.Settings _config;
         private KnownPlaces _map;
         private AddUtilityGui _addUtilityGui;
-        private GuiState _guiState;
-        private GuiState _lastGuiState;
 
+        /// <summary>
+        /// Called when the game is loaded. Used to set up all persistent objects and properties.
+        /// </summary>
         public void Start()
         {
             DebugExtensions.DebugOn = System.IO.File.Exists($"{KSPUtil.ApplicationRootPath}GameData/WalkAbout/debug.flg");
@@ -61,9 +62,9 @@ namespace KspWalkAbout
 
             _map = new KnownPlaces(); "created map object".Debug();
             _addUtilityGui = new AddUtilityGui(_map);
-            _lastGuiState = GuiState.force;
         }
 
+        /// <summary>Called each time the game state is updated.</summary>
         public void Update()
         {
             if (_addUtilityGui == null) return;
@@ -72,17 +73,10 @@ namespace KspWalkAbout
             SaveFiles();
         }
 
+        /// <summary>Called each time the game's GUIs are to be refreshed.</summary>
         public void OnGUI()
         {
-            _addUtilityGui?.Display(ref _guiState);
-            if (_guiState != _lastGuiState)
-            {
-                if (_lastGuiState == GuiState.force)
-                    $"Current AddUtilityGUI state is {_guiState}".Debug();
-                else
-                    $"AddUtilityGUI display changed from {_lastGuiState} to {_guiState}".Debug();
-                _lastGuiState = _guiState;
-            }
+            _addUtilityGui?.Display();
 
             if (_addUtilityGui?.RequestedLocation == null) return;
 
@@ -91,6 +85,7 @@ namespace KspWalkAbout
             _addUtilityGui.RequestedLocation = null;
         }
 
+        /// <summary>Determines if the user has requested the WalkAbout mod's utility GUI.</summary>
         private void CheckForModUtilityActivation()
         {
             if (Input.GetKeyDown(KeyCode.X))
@@ -108,11 +103,11 @@ namespace KspWalkAbout
                 if (requiredKeysPressed)
                 {
                     _map.Refresh();
-                    _lastGuiState = GuiState.force;
                 }
             }
         }
 
+        /// <summary>Saves all settings files with pending changes.</summary>
         private void SaveFiles()
         {
             if (_map.IsChanged && !Input.GetMouseButton(0))

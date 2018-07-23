@@ -19,6 +19,7 @@ using UnityEngine;
 
 namespace KspWalkAbout.Values
 {
+    /// <summary>Represents immutable values used by the WalkAbout mod.</summary>
     internal class Constants
     {
         internal static readonly string ModName = "WalkAbout";

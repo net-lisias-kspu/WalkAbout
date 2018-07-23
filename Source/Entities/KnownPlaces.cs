@@ -21,6 +21,7 @@ using System.Collections.Generic;
 
 namespace KspWalkAbout.Entities
 {
+    /// <summary>Represents a collection of all locations that this mod can use to place kerbals.</summary>
     internal class KnownPlaces : List<LocationFile>
     {
         private int _maxQueueing = int.MinValue;
@@ -30,6 +31,7 @@ namespace KspWalkAbout.Entities
         public List<string> AvailableFacilities { get; private set; }
         internal bool IsChanged { get; set; }
 
+        /// <summary>Writes the information about all the locations to their respective disk files.</summary>
         internal void Save()
         {
             foreach (var locationFile in this)
@@ -48,6 +50,7 @@ namespace KspWalkAbout.Entities
             IsChanged = false;
         }
 
+        /// <summary>Reevaluates the locations that can be displayed based on current facility upgrade levels.</summary>
         internal void Refresh()
         {
             "Refresh()".Debug();
@@ -88,6 +91,24 @@ namespace KspWalkAbout.Entities
             $"availabe = {AvailableLocations.Count} of {AllLocations.Count} locations".Debug();
         }
 
+        /// <summary>
+        /// Determines the new order of locations within a sorted list of locations after a specific
+        /// location has chosen.
+        /// </summary>
+        /// <param name="name">The id of the chosen location.</param>
+        /// <remarks>
+        /// Each time a location is chosen it is moved up in the rank of all known locations:
+        /// <list type="text">
+        /// <item>
+        /// If this is the first time the location is chosen, it is moved to the bottom of the list of
+        /// previously chosen locations.
+        /// </item>
+        /// <item>
+        /// Each subesequent use of the location will move it up the list by approximately 1/2 its 
+        /// "distance" to the top of the list.
+        /// </item>
+        /// </list>
+        /// </remarks>
         internal void UpdateQueuing(string name)
         {
             var origIndex = FindIndex(name, AvailableLocations);
@@ -115,6 +136,8 @@ namespace KspWalkAbout.Entities
             Refresh();
         }
 
+        /// <summary>Includes a new location in the collection of all known locations.</summary>
+        /// <param name="request">The user's requested information to be applied to the new location.</param>
         internal void AddLocation(LocationRequest request)
         {
             Location location = CreateRequestedLocation(request);
@@ -155,6 +178,9 @@ namespace KspWalkAbout.Entities
             ScreenMessages.PostScreenMessage(new ScreenMessage($"{request.Name} added to known locations.", 4.0f, ScreenMessageStyle.UPPER_LEFT));
         }
 
+        /// <summary>Indicates whether or not this collection has a location with the given id.</summary>
+        /// <param name="name">The name of the location to be found.</param>
+        /// <returns>A value indicating whether the given id is a known location.</returns>
         internal bool HasLocation(string name)
         {
             foreach (var file in this)
@@ -167,7 +193,15 @@ namespace KspWalkAbout.Entities
             return false;
         }
 
-        internal static Locale[] FindClosest(double currentLatitude, double currentLongitude, double currentAltitude, KnownPlaces places)
+        /// <summary>
+        /// Determines the locations (from a given list of locations) that are closest to the given target.
+        /// </summary>
+        /// <param name="targetLatitude">The target's latitude.</param>
+        /// <param name="targetLongitude">The target's longitude.</param>
+        /// <param name="targetAltitude">The target's altitude (ASL).</param>
+        /// <param name="places">The population of locations to choose from.</param>
+        /// <returns>An array of locations (one for each possible facility upgrade level) that are closest to the target coordinates.</returns>
+        internal static Locale[] FindClosest(double targetLatitude, double targetLongitude, double targetAltitude, KnownPlaces places)
         {
             var closest = new Locale[]
             {
@@ -180,14 +214,14 @@ namespace KspWalkAbout.Entities
 
             foreach (var location in places.AllLocations)
             {
-                var dlon = (location.Longitude - currentLongitude) * conv;
-                var dlat = (location.Latitude - currentLatitude) * conv;
+                var dlon = (location.Longitude - targetLongitude) * conv;
+                var dlat = (location.Latitude - targetLatitude) * conv;
                 var a =
                     Math.Pow(Math.Sin(dlat / 2), 2) +
-                    Math.Cos(currentLatitude * conv) * Math.Cos(location.Latitude * conv) * Math.Pow(Math.Sin(dlon * conv / 2), 2);
+                    Math.Cos(targetLatitude * conv) * Math.Cos(location.Latitude * conv) * Math.Pow(Math.Sin(dlon * conv / 2), 2);
                 var c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
-                var h = Math.Abs((600000 + currentAltitude) * c);
-                var v = currentAltitude - location.Altitude;
+                var h = Math.Abs((600000 + targetAltitude) * c);
+                var v = targetAltitude - location.Altitude;
                 var d = Math.Sqrt(h * h + v * v);
 
                 for (int level = 1; level < 4; level++)
@@ -203,6 +237,9 @@ namespace KspWalkAbout.Entities
             return closest;
         }
 
+        /// <summary>Obtains the current upgrade level of a facility.</summary>
+        /// <param name="facilityName">The name of the facility.</param>
+        /// <returns>A value indicating the current upgrade level.</returns>
         private static FacilityLevels GetFacilityLevel(string facilityName)
         {
             return (FacilityLevels)(int)
@@ -210,6 +247,9 @@ namespace KspWalkAbout.Entities
                              ScenarioUpgradeableFacilities.GetFacilityLevelCount(facilityName)));
         }
 
+        /// <summary>Creates a location based on the supplied user information and the currently active vessel.</summary>
+        /// <param name="request">The user's requested location information.</param>
+        /// <returns>A new location.</returns>
         private static Location CreateRequestedLocation(LocationRequest request)
         {
             return new Location
@@ -226,6 +266,7 @@ namespace KspWalkAbout.Entities
             };
         }
 
+        /// <summary>Loads all location files in the WalkAbout mod's location file directory.</summary>
         private void LoadLocationFiles()
         {
             var di = new System.IO.DirectoryInfo($"{WalkAbout.GetModDirectory()}/locFiles");
@@ -242,6 +283,13 @@ namespace KspWalkAbout.Entities
             $"{Count} location files loaded".Debug();
         }
 
+        /// <summary>
+        /// Finds the index of a location (matching the given location name) within the supplied
+        /// list of locations.
+        /// </summary>
+        /// <param name="name">The name of the location to be found.</param>
+        /// <param name="targetList">The population of locations to be searched.</param>
+        /// <returns>The index of the matching location (-1 if not found).</returns>
         private int FindIndex(string name, List<Location> targetList)
         {
             var searchName = name.ToUpper();
@@ -257,6 +305,10 @@ namespace KspWalkAbout.Entities
             return -1;
         }
 
+        /// <summary> Compares two locations ordering them by queueing and name.</summary>
+        /// <param name="a">The base location.</param>
+        /// <param name="b">The location to be combared to the base location.</param>
+        /// <returns>A value indicating whether location b comes before or after location a.</returns>
         private int CompareLocations(Location a, Location b)
         {
             var queueOrder = (b?.Queueing ?? 0).CompareTo(a?.Queueing ?? 0);
@@ -265,6 +317,7 @@ namespace KspWalkAbout.Entities
                 : queueOrder;
         }
 
+        /// <summary>Represents basic information about nearby locations.</summary>
         internal struct Locale
         {
             public string Name;

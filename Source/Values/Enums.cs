@@ -18,6 +18,7 @@ using System;
 
 namespace KspWalkAbout.Values
 {
+    /// <summary>Enumerates the possible combinations of facility upgrade levels.</summary>
     [Flags]
     public enum FacilityLevels
     {
@@ -31,5 +32,6 @@ namespace KspWalkAbout.Values
         Levels_1_2_3 = 0x07,
     }
 
+    /// <summary>Enumerates the GUI's internal processing states.</summary>
     public enum GuiState { force, offNotActive, offPauseOpen, displayed };
 }

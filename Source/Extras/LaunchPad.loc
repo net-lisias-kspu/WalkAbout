@@ -1,0 +1,123 @@
+Locations
+{
+	Item
+	{
+		LocationName = Bunker
+		FacilityName = SpaceCenter/LaunchPad
+		AvailableAtLevels = Level_1
+		Queueing = 0
+		Latitude = -0.0973425007434435
+		Longitude = -74.553564609954151
+		Altitude = 68.024209355586208
+		Normal = -1.69631094E-05,1.00000012,7.98106194E-05
+		Rotation = 0.190421835,0.229873329,0.681600213,0.668071091
+	}
+	Item
+	{
+		LocationName = LaunchPad_E1A
+		FacilityName = SpaceCenter/LaunchPad
+		AvailableAtLevels = Level_2
+		Queueing = 0
+		Latitude = -0.097205508593790318
+		Longitude = -74.556693616418841
+		Altitude = 67.887834992608987
+		Normal = 0.000818513334,0.999999523,-0.00073993206
+		Rotation = 0.688153982,-0.659207821,-0.164116263,0.254862964
+	}
+	Item
+	{
+		LocationName = LaunchPad_S1A
+		FacilityName = SpaceCenter/LaunchPad
+		AvailableAtLevels = Level_2
+		Queueing = 0
+		Latitude = -0.098138292993916312
+		Longitude = -74.557328366043961
+		Altitude = 67.882447610143572
+		Normal = 0.00146943331,0.999998927,5.90085983E-05
+		Rotation = 0.613080382,-0.304101825,0.353560597,0.637690723
+	}
+	Item
+	{
+		LocationName = LaunchPad_S1B
+		FacilityName = SpaceCenter/LaunchPad
+		AvailableAtLevels = Level_2
+		Queueing = 0
+		Latitude = -0.098164718208233054
+		Longitude = -74.557887315928753
+		Altitude = 67.878548581968062
+		Normal = 0.00216892362,0.999997735,3.11732292E-05
+		Rotation = -0.614764094,0.307738274,-0.350668877,-0.635919511
+	}
+	Item
+	{
+		LocationName = LaunchPad_N1A
+		FacilityName = SpaceCenter/LaunchPad
+		AvailableAtLevels = Level_2
+		Queueing = 0
+		Latitude = -0.096259369122145111
+		Longitude = -74.557337343591087
+		Altitude = 67.881944748805836
+		Normal = 0.000474661589,0.99999994,0.000212550163
+		Rotation = -0.324967772,0.623678923,0.628682375,0.331932336
+	}
+	Item
+	{
+		LocationName = LaunchPad_N1B
+		FacilityName = SpaceCenter/LaunchPad
+		AvailableAtLevels = Level_2
+		Queueing = 0
+		Latitude = -0.096266558263914087
+		Longitude = -74.55790338621641
+		Altitude = 67.87833648500964
+		Normal = 0.000300675631,1,-7.62939453E-05
+		Rotation = 0.357680231,-0.640225291,-0.610621572,-0.298860848
+	}
+	Item
+	{
+		LocationName = LaunchPad_N1A
+		FacilityName = SpaceCenter/LaunchPad
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		Latitude = -0.096009585415530507
+		Longitude = -74.557504066903135
+		Altitude = 68.024768427014351
+		Normal = -0.000118613243,1.00000012,-2.9861927E-05
+		Rotation = -0.35034883,0.636443794,0.614890754,0.306764364
+	}
+	Item
+	{
+		LocationName = LaunchPad_N1B
+		FacilityName = SpaceCenter/LaunchPad
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		Latitude = -0.096006295676420425
+		Longitude = -74.557830180974307
+		Altitude = 68.022240650374442
+		Normal = -0.000678300858,1,-1.11460686E-05
+		Rotation = -0.327227563,0.624402285,0.627503216,0.33058098
+	}
+	Item
+	{
+		LocationName = LaunchPad_S1A
+		FacilityName = SpaceCenter/LaunchPad
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		Latitude = -0.098401781191192722
+		Longitude = -74.557521567318346
+		Altitude = 68.024758422980085
+		Normal = 0.00053730607,0.999999881,3.04579735E-05
+		Rotation = -0.611922324,0.301641494,-0.355534047,-0.638873219
+	}
+	Item
+	{
+		LocationName = LaunchPad_S1B
+		FacilityName = SpaceCenter/LaunchPad
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		Latitude = -0.098394882349450513
+		Longitude = -74.557853252344771
+		Altitude = 68.022163670277223
+		Normal = 0.00071528554,0.999999821,-2.76565552E-05
+		Rotation = 0.627481639,-0.330533594,0.327298284,0.624411881
+	}
+}

@@ -1,0 +1,75 @@
+Locations
+{
+	Item
+	{
+		LocationName = Central_Tarmac
+		FacilityName = SpaceCenter/Runway
+		AvailableAtLevels = Levels_1_2_3
+		Queueing = 17
+		Latitude = -0.052898984530057938
+		Longitude = -74.619900438408706
+		Altitude = 68.119317671633326
+		Normal = 0.000180006027,0.999999881,0.000547528267
+		Rotation = -0.341060996,0.631632149,0.620318949,0.316105545
+	}
+	Item
+	{
+		LocationName = Central_Tarmac
+		FacilityName = SpaceCenter/Runway
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		Latitude = -0.052950198002305333
+		Longitude = -74.617643231547575
+		Altitude = 68.043527395930141
+		Normal = -6.31809235E-06,1,0.000629901886
+		Rotation = -0.335372865,0.628616631,0.623446643,0.321994632
+	}
+	Item
+	{
+		LocationName = 09_Apron
+		FacilityName = SpaceCenter/Runway
+		AvailableAtLevels = Levels_1_2
+		Queueing = 1
+		Latitude = -0.04856551289411612
+		Longitude = -74.714962969249441
+		Altitude = 69.265080465120263
+		Normal = 0.000716850162,0.999998629,0.0015822649
+		Rotation = 0.672963738,-0.676852167,-0.218230397,0.203387588
+	}
+	Item
+	{
+		LocationName = 09_Apron
+		FacilityName = SpaceCenter/Runway
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		Latitude = -0.048467124729913477
+		Longitude = -74.728379062535254
+		Altitude = 69.491012605489232
+		Normal = 0.000745072495,0.999999404,0.000824928284
+		Rotation = 0.675900757,-0.674159408,-0.208876193,0.212221682
+	}
+	Item
+	{
+		LocationName = 27_Apron
+		FacilityName = SpaceCenter/Runway
+		AvailableAtLevels = Levels_1_2
+		Queueing = 15
+		Latitude = -0.050088600451590304
+		Longitude = -74.502250742234111
+		Altitude = 68.9372990319971
+		Normal = -0.000446464866,0.999999762,0.000580847263
+		Rotation = -0.190152913,-0.229775518,-0.681529164,-0.668253839
+	}
+	Item
+	{
+		LocationName = 27_Apron
+		FacilityName = SpaceCenter/Runway
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		Latitude = -0.050262963311436148
+		Longitude = -74.488645609454963
+		Altitude = 69.115275572054088
+		Normal = -0.000830188394,0.999998689,0.00136844814
+		Rotation = -0.159338474,-0.259008855,-0.689309359,-0.657554805
+	}
+}

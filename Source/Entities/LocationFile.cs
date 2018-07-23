@@ -19,6 +19,7 @@ using System.Collections.Generic;
 
 namespace KspWalkAbout.Entities
 {
+    /// <summary>Represents a settings file containing a set of locations for use with the mod.</summary>
     public class LocationFile : SettingsFile
     {
         [Persistent]

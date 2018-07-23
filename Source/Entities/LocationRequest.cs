@@ -16,6 +16,7 @@
 */
 namespace KspWalkAbout.Entities
 {
+    /// <summary>Represents a request to create a location based at the currently active vessel's position.</summary>
     internal class LocationRequest
     {
         public string AssociatedFacility { get; set; }

@@ -1,5 +1,7 @@
 # WalkAbout :: Change Log
 
+* 2016-1127 : Version 1.6.1 for KSP 1.2.1
+	- Fixed issue with locations not loading. 
 * 2016-1101 : Version 1.6 for KSP 1.2.1
 	- Added Perpetual Motion mode
 		- walk/run/swim kerbals on EVA without holding down W-A-S-D

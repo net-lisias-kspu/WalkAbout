@@ -1,0 +1,123 @@
+﻿Locations
+{
+	Item
+	{
+		LocationName = R+D_Central_Building_E1A
+		FacilityName = SpaceCenter/ResearchAndDevelopment
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		Latitude = -0.106356048860889
+		Longitude = 285.355522614218
+		Altitude = 68.407961489982
+		Normal = -0.0005702276,0.9999999,-0.0003075978
+		Rotation = -0.6295465,0.700527,0.3236261,-0.09055106
+	}
+	Item
+	{
+		LocationName = R+D_Central_Building_S1A
+		FacilityName = SpaceCenter/ResearchAndDevelopment
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		Latitude = -0.110758222979464
+		Longitude = 285.355224546795
+		Altitude = 68.1697614294244
+		Normal = 0.0004414249,0.9999999,-0.0004267063
+		Rotation = -0.683948,0.45904,-0.1820922,-0.5369728
+	}
+	Item
+	{
+		LocationName = R+D_Central_Building_S1B
+		FacilityName = SpaceCenter/ResearchAndDevelopment
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		Latitude = -0.111089704091849
+		Longitude = 285.353009313081
+		Altitude = 68.1890405822778
+		Normal = 4.309936E-05,0.9999999,-0.0006613857
+		Rotation = 0.6247716,-0.3244873,0.3329263,0.6273186
+	}
+	Item
+	{
+		LocationName = R+D_Central_Building_S1C
+		FacilityName = SpaceCenter/ResearchAndDevelopment
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		Latitude = -0.111083404985746
+		Longitude = 285.351862094536
+		Altitude = 68.1989209628664
+		Normal = -4.37844E-05,0.9999999,-0.0005004635
+		Rotation = -0.6371522,0.3485549,-0.3084386,-0.6143389
+	}
+	Item
+	{
+		LocationName = R+D_Central_Building_N1C
+		FacilityName = SpaceCenter/ResearchAndDevelopment
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		Latitude = -0.10758153558406
+		Longitude = 285.35111744785
+		Altitude = 68.197506465367
+		Normal = -0.0002061404,1,-1.393497E-06
+		Rotation = -0.1624221,0.5238864,0.6887773,0.4740759
+	}
+	Item
+	{
+		LocationName = R+D_Central_Building_N1B
+		FacilityName = SpaceCenter/ResearchAndDevelopment
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		Latitude = -0.106990267193828
+		Longitude = 285.352096993135
+		Altitude = 68.1877804589458
+		Normal = 3.256623E-05,1,-0.0001417582
+		Rotation = 0.1623313,-0.523966,-0.6887906,-0.4739998
+	}
+	Item
+	{
+		LocationName = R+D_Central_Building_N1A
+		FacilityName = SpaceCenter/ResearchAndDevelopment
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		Latitude = -0.106092704934638
+		Longitude = 285.354498238168
+		Altitude = 68.4158839030424
+		Normal = 6.212262E-05,1,-0.0001281411
+		Rotation = 0.16118,-0.5231707,-0.6890762,-0.4748553
+	}
+	Item
+	{
+		LocationName = R+D_UtilityD
+		FacilityName = SpaceCenter/ResearchAndDevelopment
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		Latitude = -0.112615957135741
+		Longitude = 285.349682224964
+		Altitude = 68.4725798143772
+		Normal = 0.0005081753,0.9999999,-0.0002294737
+		Rotation = -0.3621128,-0.0472133,-0.6082738,-0.7047327
+	}
+	Item
+	{
+		LocationName = R+D_Central_Building_N6A
+		FacilityName = SpaceCenter/ResearchAndDevelopment
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		Latitude = -0.108139773088716
+		Longitude = 285.353579245094
+		Altitude = 89.1773683942156
+		Normal = -0.000212621,1,0.0002355547
+		Rotation = -0.5922769,0.7061878,0.3875653,-0.01731965
+	}
+	Item
+	{
+		LocationName = R+D_Central_Building_S6A
+		FacilityName = SpaceCenter/ResearchAndDevelopment
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		Latitude = -0.109956488436068
+		Longitude = 285.35028663801
+		Altitude = 89.2101052828366
+		Normal = 0.0008189582,0.9999998,6.08913E-05
+		Rotation = -0.382771,-0.0226997,-0.5955406,-0.7059054
+	}
+}

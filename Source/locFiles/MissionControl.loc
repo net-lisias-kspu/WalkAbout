@@ -1,0 +1,291 @@
+Locations
+{
+	Item
+	{
+		LocationName = MC_MainEntrance
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_1
+		Queueing = 0
+		Latitude = -0.0759392005671722
+		Longitude = 285.386142681502
+		Altitude = 67.8904232014902
+		Normal = 0.0002489113,1,-0.0002848552
+		Rotation = -0.6175026,0.3113732,-0.3459633,-0.6340715
+	}
+	Item
+	{
+		LocationName = MC_Main_South
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_1
+		Queueing = 0
+		Latitude = -0.075079374301523
+		Longitude = 285.385469747333
+		Altitude = 67.8955298744841
+		Normal = 0.0003672557,0.9999997,-0.0006776215
+		Rotation = 0.2032632,0.2177042,0.6780183,0.6719971
+	}
+	Item
+	{
+		LocationName = MC_RearEntrance
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_1
+		Queueing = 0
+		Latitude = -0.0747988714448539
+		Longitude = 285.386148257693
+		Altitude = 67.8949712866452
+		Normal = -0.0005913973,0.9999994,-0.001081585
+		Rotation = -0.3414431,0.6322059,0.6194639,0.316223
+	}
+	Item
+	{
+		LocationName = MC_Main_North
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_1
+		Queueing = 0
+		Latitude = -0.0759440340483203
+		Longitude = 285.386136608214
+		Altitude = 67.8787084043724
+		Normal = 9.065998E-05,1,-0.0002775878
+		Rotation = 0.6219282,-0.3194712,0.3379295,0.6300375
+	}
+	Item
+	{
+		LocationName = MC_Front_1A
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_2
+		Queueing = 0
+		Latitude = -0.0751004740415018
+		Longitude = 285.38675443014
+		Altitude = 67.8916132026352
+		Normal = -0.0007285064,0.9999996,-0.0006979124
+		Rotation = -0.6766858,0.6736912,0.2080875,-0.2119816
+	}
+	Item
+	{
+		LocationName = MC_MainEntrance
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_2
+		Queueing = 0
+		Latitude = -0.0753630902232333
+		Longitude = 285.386748208466
+		Altitude = 67.8906293661566
+		Normal = -0.0002766885,0.9999998,-0.0005937733
+		Rotation = 0.6761467,-0.6742126,-0.2093152,0.2108321
+	}
+	Item
+	{
+		LocationName = MC_Front_1B
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_2
+		Queueing = 0
+		Latitude = -0.0756054813137482
+		Longitude = 285.386745781078
+		Altitude = 67.8895400859183
+		Normal = -0.0005015942,0.9999996,-0.0007217572
+		Rotation = -0.6765726,0.6738129,0.2082413,-0.2118053
+	}
+	Item
+	{
+		LocationName = MC_Main_S1A
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_2
+		Queueing = 0
+		Latitude = -0.0765491047217391
+		Longitude = 285.386131605746
+		Altitude = 67.8873743915465
+		Normal = 0.0003050201,0.9999997,-0.0008364535
+		Rotation = 0.6228639,-0.3209223,0.3366252,0.6290731
+	}
+	Item
+	{
+		LocationName = MC_RearEntrance
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_2
+		Queueing = 0
+		Latitude = -0.0750619214641514
+		Longitude = 285.385501820888
+		Altitude = 67.8947880984051
+		Normal = 0.0008054202,0.9999995,-0.0007805242
+		Rotation = 0.1855834,0.2351787,0.6832135,0.6659349
+	}
+	Item
+	{
+		LocationName = MC_Main_N1A
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_2
+		Queueing = 0
+		Latitude = -0.0742320193496894
+		Longitude = 285.38610179692
+		Altitude = 67.8967099498259
+		Normal = -0.0005114488,0.9999994,-0.001030488
+		Rotation = 0.3299167,-0.6262717,-0.6256904,-0.3277962
+	}
+	Item
+	{
+		LocationName = MC_Main_S2A
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_2
+		Queueing = 0
+		Latitude = -0.0759225458626858
+		Longitude = 285.386128146075
+		Altitude = 70.1432413528673
+		Normal = -0.0009764595,0.9999995,-0.0002652484
+		Rotation = 0.6121069,-0.3008724,0.3553352,0.6391698
+	}
+	Item
+	{
+		LocationName = MC_Main_N2A
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_2
+		Queueing = 0
+		Latitude = -0.0748107201083906
+		Longitude = 285.386102912571
+		Altitude = 70.1261283679632
+		Normal = 0.001331404,0.9999989,-0.0008302866
+		Rotation = -0.3103531,0.6163546,0.6357284,0.3458864
+	}
+	Item
+	{
+		LocationName = MC_Front_1A
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		Latitude = -0.0731396457700058
+		Longitude = 285.386881276664
+		Altitude = 67.7847145104315
+		Normal = -0.0005832035,0.9999996,-0.0006761407
+		Rotation = -0.681421,0.6684705,0.1918954,-0.2280108
+	}
+	Item
+	{
+		LocationName = MC_Front_1B
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		Latitude = -0.0765713840362946
+		Longitude = 285.386835249322
+		Altitude = 67.7709958866471
+		Normal = -0.000627082,0.9999998,-0.000513851
+		Rotation = -0.6776298,0.6726729,0.2048979,-0.2152809
+	}
+	Item
+	{
+		LocationName = MC_Rear_1A
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		Latitude = -0.073103164614887
+		Longitude = 285.383496027099
+		Altitude = 67.7938081126194
+		Normal = 0.0004107026,0.9999998,-0.0007047658
+		Rotation = 0.2138208,0.2072015,0.6747842,0.6752886
+	}
+	Item
+	{
+		LocationName = MC_Rear_1B
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		Latitude = -0.0765395295456161
+		Longitude = 285.38347973089
+		Altitude = 67.7799865807174
+		Normal = 0.0006199988,0.9999998,-0.0002535912
+		Rotation = 0.2034776,0.2172082,0.6780507,0.6720601
+	}
+	Item
+	{
+		LocationName = MC_Main_N3B
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		Latitude = -0.0705377152420329
+		Longitude = 285.384829583445
+		Altitude = 76.1920443860581
+		Normal = -0.001029153,0.9999992,-0.0007042639
+		Rotation = -0.3528027,0.6376133,0.6132411,0.3048198
+	}
+	Item
+	{
+		LocationName = MC_Main_S3B
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		Latitude = -0.0790774426874266
+		Longitude = 285.384780175824
+		Altitude = 76.1775503421668
+		Normal = 0.0002267313,1,-0.0003241778
+		Rotation = 0.6177682,-0.3118184,0.3455113,0.6338405
+	}
+	Item
+	{
+		LocationName = MC_Main_N4B
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		Latitude = -0.0705377152420329
+		Longitude = 285.384829583445
+		Altitude = 80.1920443860581
+		Normal = -0.001029153,0.9999992,-0.0007042639
+		Rotation = -0.3528027,0.6376133,0.6132411,0.3048198
+	}
+	Item
+	{
+		LocationName = MC_Main_S4B
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		Latitude = -0.0790774426874266
+		Longitude = 285.384780175824
+		Altitude = 80.1775503421668
+		Normal = 0.0002267313,1,-0.0003241778
+		Rotation = 0.6177682,-0.3118184,0.3455113,0.6338405
+	}
+	Item
+	{
+		LocationName = MC_Main_N5A
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		Latitude = -0.0731138075435519
+		Longitude = 285.385388682456
+		Altitude = 83.8113555051386
+		Normal = 0.0006775467,0.9999997,-0.0002886135
+		Rotation = 0.1651815,0.2545866,0.6884509,0.6587383
+	}
+	Item
+	{
+		LocationName = MC_Main_N5B
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		Latitude = -0.0705377152420329
+		Longitude = 285.384829583445
+		Altitude = 84.1920443860581
+		Normal = -0.001029153,0.9999992,-0.0007042639
+		Rotation = -0.3528027,0.6376133,0.6132411,0.3048198
+	}
+	Item
+	{
+		LocationName = MC_Main_S5A
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		Latitude = -0.076560215534532
+		Longitude = 285.385378360984
+		Altitude = 83.7974816283677
+		Normal = 0.000564379,0.9999998,-0.0002509177
+		Rotation = 0.1996421,0.2210085,0.6792305,0.6707788
+	}
+	Item
+	{
+		LocationName = MC_Main_S5B
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		Latitude = -0.0790774426874266
+		Longitude = 285.384780175824
+		Altitude = 84.1775503421668
+		Normal = 0.0002267313,1,-0.0003241778
+		Rotation = 0.6177682,-0.3118184,0.3455113,0.6338405
+	}
+}

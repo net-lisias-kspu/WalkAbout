@@ -1,0 +1,171 @@
+Locations
+{
+	Item
+	{
+		LocationName = TS_Main_East
+		FacilityName = SpaceCenter/TrackingStation
+		AvailableAtLevels = Level_1
+		Queueing = 0
+		Latitude = -0.126337974511285
+		Longitude = 285.396066582369
+		Altitude = 67.8406668677926
+		Normal = 0.0007005473,0.9999998,-0.0003289161
+		Rotation = -0.6210693,0.7029046,0.3387683,-0.0737166
+	}
+	Item
+	{
+		LocationName = TS_Main_South
+		FacilityName = SpaceCenter/TrackingStation
+		AvailableAtLevels = Level_1
+		Queueing = 0
+		Latitude = -0.128647519406144
+		Longitude = 285.395478952636
+		Altitude = 67.853977889521
+		Normal = -0.0002345108,0.9999989,-0.001557907
+		Rotation = -0.6841353,0.457896,-0.1831922,-0.5373368
+	}
+	Item
+	{
+		LocationName = TS_Main_West
+		FacilityName = SpaceCenter/TrackingStation
+		AvailableAtLevels = Level_1
+		Queueing = 0
+		Latitude = -0.128028944163925
+		Longitude = 285.393159727331
+		Altitude = 67.8526139756432
+		Normal = -1.261892E-05,0.9999992,-0.001343752
+		Rotation = -0.3688601,-0.04024647,-0.604237,-0.7051385
+	}
+	Item
+	{
+		LocationName = TS_Main_North
+		FacilityName = SpaceCenter/TrackingStation
+		AvailableAtLevels = Level_1
+		Queueing = 0
+		Latitude = -0.125725973031454
+		Longitude = 285.39378983333
+		Altitude = 67.8393674730323
+		Normal = 8.205792E-05,0.9999999,-0.0003115954
+		Rotation = 0.163187,-0.524651,-0.6885468,-0.4733019
+	}
+	Item
+	{
+		LocationName = TS_Main_East
+		FacilityName = SpaceCenter/TrackingStation
+		AvailableAtLevels = Levels_2_3
+		Queueing = 0
+		Latitude = -0.127192802919168
+		Longitude = 285.397557840756
+		Altitude = 67.856039951439
+		Normal = 0.0005459125,0.9999998,0.0002579555
+		Rotation = 0.6753453,-0.6748341,-0.210573,0.210159
+	}
+	Item
+	{
+		LocationName = TS_Main_South
+		FacilityName = SpaceCenter/TrackingStation
+		AvailableAtLevels = Levels_2_3
+		Queueing = 0
+		Latitude = -0.12971192999726
+		Longitude = 285.396089188532
+		Altitude = 67.8712161122821
+		Normal = 0.001012224,0.9999996,-0.0001539988
+		Rotation = -0.6980166,0.5080034,-0.1163386,-0.4910913
+	}
+	Item
+	{
+		LocationName = TS_Main_West
+		FacilityName = SpaceCenter/TrackingStation
+		AvailableAtLevels = Levels_2_3
+		Queueing = 0
+		Latitude = -0.12972213085069
+		Longitude = 285.393124926819
+		Altitude = 67.8743719445774
+		Normal = 0.00104246,0.9999995,-0.0002893655
+		Rotation = 0.5721413,-0.2343756,0.4169389,0.6662465
+	}
+	Item
+	{
+		LocationName = TS_Main_North
+		FacilityName = SpaceCenter/TrackingStation
+		AvailableAtLevels = Levels_2_3
+		Queueing = 0
+		Latitude = -0.127187758453331
+		Longitude = 285.391734854367
+		Altitude = 67.8615777032683
+		Normal = 0.001716449,0.9999986,8.181123E-05
+		Rotation = -0.2245711,-0.1958144,-0.6718354,-0.6781312
+	}
+	Item
+	{
+		LocationName = TS_Main_3A
+		FacilityName = SpaceCenter/TrackingStation
+		AvailableAtLevels = Levels_2_3
+		Queueing = 0
+		Latitude = -0.12846337286152
+		Longitude = 285.394495982723
+		Altitude = 77.6954787616851
+		Normal = 0.001133715,0.9999991,-0.0007048469
+		Rotation = 0.5938474,-0.2699298,0.3855681,0.6525491
+	}
+	Item
+	{
+		LocationName = TS_Main_3B
+		FacilityName = SpaceCenter/TrackingStation
+		AvailableAtLevels = Levels_2_3
+		Queueing = 0
+		Latitude = -0.127932930676711
+		Longitude = 285.393591176339
+		Altitude = 77.6933593911817
+		Normal = 0.001590721,0.9999985,-0.0007096847
+		Rotation = 0.552336,-0.2029925,0.4430537,0.6763302
+	}
+	Item
+	{
+		LocationName = TS_Main_3C
+		FacilityName = SpaceCenter/TrackingStation
+		AvailableAtLevels = Levels_2_3
+		Queueing = 0
+		Latitude = -0.126440561529427
+		Longitude = 285.393592497094
+		Altitude = 77.6850901173893
+		Normal = 0.001750581,0.9999985,0.0001698723
+		Rotation = 0.09545352,-0.4763129,-0.7017282,-0.5211451
+	}
+	Item
+	{
+		LocationName = TS_Main_3D
+		FacilityName = SpaceCenter/TrackingStation
+		AvailableAtLevels = Levels_2_3
+		Queueing = 0
+		Latitude = -0.125911072357903
+		Longitude = 285.394497832285
+		Altitude = 77.6813350269804
+		Normal = 0.00173933,0.9999985,0.0001664987
+		Rotation = 0.09012529,-0.4723264,-0.7024371,-0.5247546
+	}
+	Item
+	{
+		LocationName = TS_Main_3E
+		FacilityName = SpaceCenter/TrackingStation
+		AvailableAtLevels = Levels_2_3
+		Queueing = 0
+		Latitude = -0.126680945417451
+		Longitude = 285.39579945655
+		Altitude = 77.6844174810685
+		Normal = 0.0009237929,0.9999996,-0.000111258
+		Rotation = -0.6618518,0.686068,0.2494568,-0.1703946
+	}
+	Item
+	{
+		LocationName = TS_Main_3F
+		FacilityName = SpaceCenter/TrackingStation
+		AvailableAtLevels = Levels_2_3
+		Queueing = 0
+		Latitude = -0.127735038026369
+		Longitude = 285.395783692164
+		Altitude = 77.6902743258979
+		Normal = 0.0009173546,0.9999996,-7.844405E-05
+		Rotation = -0.6665784,0.6825623,0.2373459,-0.1828909
+	}
+}

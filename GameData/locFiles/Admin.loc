@@ -1,0 +1,75 @@
+Locations
+{
+	Item
+	{
+		LocationName = Admin_MainEntrance
+		FacilityName = SpaceCenter/Administration
+		AvailableAtLevels = Levels_1_2
+		Queueing = 0
+		Latitude = -0.0929871539231467
+		Longitude = 285.338305410296
+		Altitude = 68.208944314043
+		Normal = -0.000443283,0.9999998,0.000354952
+		Rotation = -0.671543,0.6783549,0.2238443,-0.1968717
+	}
+	Item
+	{
+		LocationName = Admin_Bldg_B_MainEntrance
+		FacilityName = SpaceCenter/Administration
+		AvailableAtLevels = Level_2
+		Queueing = 0
+		Latitude = -0.091621345966361
+		Longitude = 285.340378459053
+		Altitude = 68.1754717918811
+		Normal = -0.0002125374,0.9999999,0.0004572129
+		Rotation = -0.6814865,0.6681857,0.1910428,-0.2293615
+	}
+	Item
+	{
+		LocationName = Admin_MainEntrance
+		FacilityName = SpaceCenter/Administration
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		Latitude = -0.0922270473642004
+		Longitude = 285.33836949473
+		Altitude = 68.0584433537442
+		Normal = 0.0001364575,1,0.000219755
+		Rotation = -0.6733333,0.676778,0.2177195,-0.2029584
+	}
+	Item
+	{
+		LocationName = Admin_NorthWing_1A
+		FacilityName = SpaceCenter/Administration
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		Latitude = -0.0886925807026663
+		Longitude = 285.337693644316
+		Altitude = 68.2567881802097
+		Normal = -0.0006830336,0.9999996,0.0004679111
+		Rotation = -0.6625142,0.6853306,0.2495764,-0.1706123
+	}
+	Item
+	{
+		LocationName = Admin_NorthWing_2A
+		FacilityName = SpaceCenter/Administration
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		Latitude = -0.0889348922977132
+		Longitude = 285.336768110645
+		Altitude = 73.0001151837641
+		Normal = 0.0001981377,0.9999999,-0.0003023877
+		Rotation = -0.636096,0.3467665,-0.3104425,-0.6154351
+	}
+	Item
+	{
+		LocationName = Admin_Helipad
+		FacilityName = SpaceCenter/Administration
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		Latitude = -0.0935902071568014
+		Longitude = 285.337031859114
+		Altitude = 81.0633113278309
+		Normal = 9.203598E-05,1,-0.0001196699
+		Rotation = -0.6753445,0.6749175,0.2114483,-0.2090121
+	}
+}

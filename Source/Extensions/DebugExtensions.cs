@@ -14,22 +14,23 @@
     You should have received a copy of the GNU General Public License
     along with WalkAbout.  If not, see<http://www.gnu.org/licenses/>.
 */
-using System;
+using KspWalkAbout.Values;
+using UnityEngine;
 
-namespace KspWalkAbout
+namespace KspWalkAbout.Extensions
 {
-    [Flags]
-    public enum FacilityLevels
+    internal static class DebugExtensions
     {
-        None = 0x00,
-        Level_1 = 0x01,
-        Level_2 = 0x02,
-        Levels_1_2 = 0x03,
-        Level_3 = 0x04,
-        Levels_1_3 = 0x05,
-        Levels_2_3 = 0x06,
-        Levels_1_2_3 = 0x07,
-    }
+        public static bool DebugOn = false;
 
-    public enum GuiState { force, offNotActive, offPauseOpen, displayed };
+        public static void Log(this string text)
+        {
+            MonoBehaviour.print($"{Constants.ModName}: {text}");
+        }
+
+        public static void Debug(this string text)
+        {
+            if (DebugOn) MonoBehaviour.print($"{Constants.ModName}: {text}");
+        }
+    }
 }

@@ -33,6 +33,13 @@
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\..\..\..\Games\Steam64\SteamApps\common\Kerbal Space Program\KSP_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
+    <Reference Include="Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Games\Steam64\SteamApps\common\Kerbal Space Program\KSP_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="KSPUtil">
+      <HintPath>..\..\..\..\..\Games\Steam64\SteamApps\common\Kerbal Space Program\KSP_Data\Managed\KSPUtil.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,22 +51,25 @@
     <Reference Include="UnityEngine">
       <HintPath>..\..\..\..\..\Games\Steam64\SteamApps\common\Kerbal Space Program\KSP_Data\Managed\UnityEngine.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\..\..\Games\Steam64\SteamApps\common\Kerbal Space Program\KSP_Data\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants.cs" />
-    <Compile Include="Enums.cs" />
-    <Compile Include="Extensions.cs" />
+    <Compile Include="Values\Constants.cs" />
+    <Compile Include="Values\Enums.cs" />
+    <Compile Include="Extensions\DebugExtensions.cs" />
     <Compile Include="Guis\AddUtilityGui.cs" />
     <Compile Include="Guis\MainGui.cs" />
     <Compile Include="Guis\GuiResizer.cs" />
     <Compile Include="KspAccess\WalkAboutKspAccess.cs" />
     <Compile Include="KspFiles\Settings.cs" />
     <Compile Include="KspFiles\SettingsFile.cs" />
-    <Compile Include="Locations\KnownPlaces.cs" />
-    <Compile Include="Locations\Location.cs" />
-    <Compile Include="Locations\LocationFile.cs" />
-    <Compile Include="Locations\LocationRequest.cs" />
-    <Compile Include="PlacementRequest.cs" />
+    <Compile Include="Entities\KnownPlaces.cs" />
+    <Compile Include="Entities\Location.cs" />
+    <Compile Include="Entities\LocationFile.cs" />
+    <Compile Include="Entities\LocationRequest.cs" />
+    <Compile Include="Entities\PlacementRequest.cs" />
     <Compile Include="WalkAboutAddUtility.cs" />
     <Compile Include="WalkAbout.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -69,13 +79,9 @@
     <Content Include="license.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Settings.cfg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="ReadMe.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="CKAN\WalkAbout.netkan" />
   </ItemGroup>
   <ItemGroup>
     <None Include="locFiles\Admin.loc">

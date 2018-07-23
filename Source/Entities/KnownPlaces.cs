@@ -14,12 +14,12 @@
     You should have received a copy of the GNU General Public License
     along with WalkAbout.  If not, see<http://www.gnu.org/licenses/>.
 */
-using KspAccess;
+using KspWalkAbout.Extensions;
+using KspWalkAbout.Values;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
-namespace KspWalkAbout.Locations
+namespace KspWalkAbout.Entities
 {
     internal class KnownPlaces : List<LocationFile>
     {
@@ -260,8 +260,8 @@ namespace KspWalkAbout.Locations
         private int CompareLocations(Location a, Location b)
         {
             var queueOrder = (b?.Queueing ?? 0).CompareTo(a?.Queueing ?? 0);
-            return queueOrder == 0 
-                ? string.Compare(a?.FacilityName + a?.LocationName, b?.FacilityName + b?.LocationName, StringComparison.Ordinal) 
+            return queueOrder == 0
+                ? string.Compare(a?.FacilityName + a?.LocationName, b?.FacilityName + b?.LocationName, StringComparison.Ordinal)
                 : queueOrder;
         }
 

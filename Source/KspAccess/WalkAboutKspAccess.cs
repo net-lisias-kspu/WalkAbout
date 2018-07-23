@@ -1,4 +1,5 @@
-﻿using KspWalkAbout;
+﻿using KspWalkAbout.Entities;
+using KspWalkAbout.Extensions;
 
 namespace KspAccess
 {

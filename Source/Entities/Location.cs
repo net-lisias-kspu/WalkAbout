@@ -14,11 +14,40 @@
     You should have received a copy of the GNU General Public License
     along with WalkAbout.  If not, see<http://www.gnu.org/licenses/>.
 */
-namespace KspWalkAbout.Locations
+using KspWalkAbout.Values;
+using UnityEngine;
+
+namespace KspWalkAbout.Entities
 {
-    internal class LocationRequest
+    public class Location
     {
-        public string AssociatedFacility { get; set; }
-        public string Name { get; set; }
+        [Persistent]
+        public string LocationName;
+
+        [Persistent]
+        public string FacilityName;
+
+        [Persistent]
+        public FacilityLevels AvailableAtLevels;
+
+        [Persistent]
+        public int Queueing;
+
+        [Persistent]
+        public double Latitude;
+
+        [Persistent]
+        public double Longitude;
+
+        [Persistent]
+        public double Altitude;
+
+        [Persistent]
+        public Vector3 Normal;
+
+        [Persistent]
+        public Quaternion Rotation;
+
+        public LocationFile File { get; internal set; }
     }
 }

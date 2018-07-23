@@ -14,10 +14,11 @@
     You should have received a copy of the GNU General Public License
     along with WalkAbout.  If not, see<http://www.gnu.org/licenses/>.
 */
-using System.Linq;
 using KspAccess;
+using KspWalkAbout.Entities;
+using KspWalkAbout.Extensions;
 using KspWalkAbout.Guis;
-using KspWalkAbout.Locations;
+using KspWalkAbout.Values;
 using UnityEngine;
 
 namespace KspWalkAbout
@@ -33,8 +34,8 @@ namespace KspWalkAbout
 
         public void Start()
         {
-            Extensions.DebugOn = System.IO.File.Exists($"{GetModDirectory()}/debug.flg");
-            $"Started [Version={Constants.Version}, Debug={Extensions.DebugOn}]".Log();
+            DebugExtensions.DebugOn = System.IO.File.Exists($"{GetModDirectory()}/debug.flg");
+            $"Started [Version={Constants.Version}, Debug={DebugExtensions.DebugOn}]".Log();
 
             _config = new KspFiles.Settings();
             var loaded = _config.Load($"{GetModDirectory()}/Settings.cfg", Constants.DefaultSettings); "loaded config = {loaded}".Debug();
@@ -50,6 +51,7 @@ namespace KspWalkAbout
 
         public void Update()
         {
+            if (_mainGui == null) return;
             CheckForModActivation();
             _mainGui.GuiCoordinates = GuiResizer.HandleResizing(_mainGui.GuiCoordinates);
             SaveFiles();

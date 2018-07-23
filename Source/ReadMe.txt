@@ -1,5 +1,5 @@
 ﻿
-WalkAbout (version 0.1.2)
+WalkAbout (version 0.1.3)
 
 The WalkAbout mod allows you to take an available kerbal from the Astronaut Complex and have him/her placed outside any door at the KSC.
 
@@ -51,10 +51,10 @@ Adding your own Locations:
     6 - Press the Add Location button.  The new location will be added to a file named user.loc in the locFiles directory. See note 2.
 
     Note 1:
-    Below the Cancel button, you will see up to 3 locations displayed.  For all facilities at level 1, level 2, or level 3, the locations that closest to the active kerbal's current position are shown.  This can come in handy to determine if you have already entered a location, or if a location is valid for two different upgrade levels.
+    Below the Cancel button, you will see up to 3 locations displayed.  For all facilities at level 1, level 2, or level 3, the locations that are closest to the active kerbal's current position are shown.  This can come in handy to determine if you have already entered a location, or if a location is valid for two different upgrade levels.
 
     Note 2: 
-    In the user.loc file, it possible to set a location so that it is valid for more than one upgrade level of a facility (e.g. the location of the main entrace to the Astronaut Complex is the same for level 1 and level 2).  To do so, change the AvailableAtLevels value to one of
+    In the user.loc file, it possible to set a location so that it is valid for more than one upgrade level of a facility (e.g. the location of the main entrace to the Astronaut Complex is the same for whether the Astronaut Complex is at level 1 or has been upgraded to level 2).  To make a location valid for multiple level, change the AvailableAtLevels value to one of
         Level_1
         Level_2
         Level_3
@@ -67,10 +67,20 @@ Adding your own Locations:
     Note 3:
     This utility, and, in fact, the WalkAbout mod, were intended for use in placing kerbals in and around the area of the KSC.  Though the utility can be used to create locations far from the KSC, doing so is not supported by the author (but I'm willing to close a blind eye). If you want to create locations off the surface of Kerbin - you are utterly on your own.  Doing so is unsupported, probably won't work, and will void any and all warranties held for your kerbal's EVA suit, this mod, and probably even your coffee maker - so... you've been warned.
 
+v1.3
+  Works with KSP version 1.1 
+  New Features:
+    No longer overwrites an existing settings.cfg file when updated.
+
+  Fixed Issues:
+    WA011 User reported nullreference log spam.
+    
 v1.2
   New Features:
     Resizable windows.
     CKAN compatibility.
+
+  Fixed Issues:
     Fixed locations VAB_Main_E1A and VAB_Main_W1A (were reversed).
 
 v1.1
@@ -102,10 +112,11 @@ v0.1.0
 Outstanding Issues:
     WA003 Kerbals are generated face-down and pop up when EVA view is activated.
     WA005 Reloading the KSC scene sometimes results in log-spam: [ERR 16:26:34.891] Serialization depth limit exceeded at 'Contracts.Agents::Agent'. There may be an object composition cycle in one or more of your serialized classes.
-    WA008 When the location is under a structure, the Kerbal is generated at high altitude and drops from, or clings to, the structure.
+    WA008 When the location is under a structure, the kerbal is generated at high altitude and drops from, or clings to, the structure.
 
 WishList
- - While on EVA, get another Kerbal on WalkAbout.
+ - While on EVA, get another kerbal on WalkAbout.
  - Select location by pointing to the map.
  - Find a way to place kerbals on moving tracking dishes.
  - Work with relocated KSC.
+ - Integrate with Kerbal Inventory System (allow kerbals to be loaded with items before placing them at a location).

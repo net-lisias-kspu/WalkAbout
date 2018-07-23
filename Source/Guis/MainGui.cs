@@ -14,7 +14,9 @@
     You should have received a copy of the GNU General Public License
     along with WalkAbout.  If not, see<http://www.gnu.org/licenses/>.
 */
-using KspWalkAbout.Locations;
+using KspWalkAbout.Entities;
+using KspWalkAbout.Extensions;
+using KspWalkAbout.Values;
 using System.Collections.Generic;
 using UnityEngine;
 

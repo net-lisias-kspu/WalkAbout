@@ -14,9 +14,8 @@
     You should have received a copy of the GNU General Public License
     along with WalkAbout.  If not, see<http://www.gnu.org/licenses/>.
 */
-using KspWalkAbout.Locations;
 
-namespace KspWalkAbout
+namespace KspWalkAbout.Entities
 {
     internal class PlacementRequest
     {

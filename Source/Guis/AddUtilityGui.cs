@@ -15,9 +15,11 @@
     along with WalkAbout.  If not, see<http://www.gnu.org/licenses/>.
 */
 
-using UnityEngine;
-using KspWalkAbout.Locations;
 using KspAccess;
+using KspWalkAbout.Entities;
+using KspWalkAbout.Extensions;
+using KspWalkAbout.Values;
+using UnityEngine;
 
 namespace KspWalkAbout.Guis
 {
@@ -68,7 +70,7 @@ namespace KspWalkAbout.Guis
 
         internal bool Display(ref GuiState state)
         {
-            state = IsActive 
+            state = IsActive
                 ? (CommonKspAccess.IsPauseMenuOpen ? GuiState.offPauseOpen : state)
                 : GuiState.offNotActive;
             if (!IsActive || CommonKspAccess.IsPauseMenuOpen) return false;

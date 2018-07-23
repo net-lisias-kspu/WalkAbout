@@ -14,22 +14,11 @@
     You should have received a copy of the GNU General Public License
     along with WalkAbout.  If not, see<http://www.gnu.org/licenses/>.
 */
-using UnityEngine;
-
-namespace KspWalkAbout
+namespace KspWalkAbout.Entities
 {
-    internal static class Extensions
+    internal class LocationRequest
     {
-        public static bool DebugOn = false;
-
-        public static void Log(this string text)
-        {
-            MonoBehaviour.print($"{Constants.ModName}: {text}");
-        }
-
-        public static void Debug(this string text)
-        {
-            if (DebugOn) MonoBehaviour.print($"{Constants.ModName}: {text}");
-        }
+        public string AssociatedFacility { get; set; }
+        public string Name { get; set; }
     }
 }

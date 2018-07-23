@@ -14,9 +14,11 @@
     You should have received a copy of the GNU General Public License
     along with WalkAbout.  If not, see<http://www.gnu.org/licenses/>.
 */
-using UnityEngine;
+using KspWalkAbout.Entities;
+using KspWalkAbout.Extensions;
 using KspWalkAbout.Guis;
-using KspWalkAbout.Locations;
+using KspWalkAbout.Values;
+using UnityEngine;
 
 namespace KspWalkAbout
 {
@@ -31,11 +33,11 @@ namespace KspWalkAbout
 
         public void Start()
         {
-            Extensions.DebugOn = System.IO.File.Exists($"{KSPUtil.ApplicationRootPath}GameData/WalkAbout/debug.flg");
+            DebugExtensions.DebugOn = System.IO.File.Exists($"{KSPUtil.ApplicationRootPath}GameData/WalkAbout/debug.flg");
 
             if (!(FlightGlobals.ActiveVessel?.isEVA ?? false))
             {
-                "Add Location utility deactivated: not an EVA".Debug(); 
+                "Add Location utility deactivated: not an EVA".Debug();
                 return;
             }
             var crew = FlightGlobals.ActiveVessel.GetVesselCrew();
@@ -44,7 +46,7 @@ namespace KspWalkAbout
                 "Add Location utility deactivated: invalid crew count".Debug();
                 return;
             }
-            
+
             _config = new KspFiles.Settings();
             var loaded = _config.Load($"{WalkAbout.GetModDirectory()}/Settings.cfg");
             _config.StatusMessage.Log();
@@ -64,6 +66,7 @@ namespace KspWalkAbout
 
         public void Update()
         {
+            if (_addUtilityGui == null) return;
             CheckForModUtilityActivation();
             _addUtilityGui.GuiCoordinates = GuiResizer.HandleResizing(_addUtilityGui.GuiCoordinates);
             SaveFiles();

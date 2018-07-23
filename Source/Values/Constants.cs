@@ -17,7 +17,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace KspWalkAbout
+namespace KspWalkAbout.Values
 {
     internal class Constants
     {

@@ -1,0 +1,399 @@
+Locations
+{
+    Item
+    {
+        LocationName = SPH_East_HangerDoors_South
+        FacilityName = SpaceCenter/SpaceplaneHangar
+        AvailableAtLevels = Level_1
+        Queueing = 0
+        ForwardAzimuth = 47.4181031351498
+        Distance = 354.251363520945 
+        DeltaAltitude = 3.6484255952528
+        Normal = -0.0002944691,1,-8.264214E-05
+        Rotation = 0.5981222,-0.7058789,-0.3784243,0.02792827
+    }
+    Item
+    {
+        LocationName = SPH_Main_S1A
+        FacilityName = SpaceCenter/SpaceplaneHangar
+        AvailableAtLevels = Level_1
+        Queueing = 0
+        ForwardAzimuth = 48.8773283586475
+        Distance = 332.725400426475 
+        DeltaAltitude = 3.6445514132502
+        Normal = 0.0007246747,0.9999996,-0.0003309289
+        Rotation = 0.6765001,-0.4384939,0.2078839,0.5539449
+    }
+    Item
+    {
+        LocationName = SPH_Main_S1B
+        FacilityName = SpaceCenter/SpaceplaneHangar
+        AvailableAtLevels = Level_1
+        Queueing = 0
+        ForwardAzimuth = 48.2773005434974
+        Distance = 315.517290500082 
+        DeltaAltitude = 3.6488649379462
+        Normal = 0.0001459085,1,2.506265E-05
+        Rotation = 0.6883176,-0.4725516,0.164373,0.5252575
+    }
+    Item
+    {
+        LocationName = SPH_Main_N1A
+        FacilityName = SpaceCenter/SpaceplaneHangar
+        AvailableAtLevels = Level_2
+        Queueing = 0
+        ForwardAzimuth = 37.7650770412326
+        Distance = 350.797354117053 
+        DeltaAltitude = 3.771589661832
+        Normal = -0.001173328,0.9999993,-0.0003059981
+        Rotation = -0.1515039,0.5169742,0.6914877,0.4812786
+    }
+    Item
+    {
+        LocationName = SPH_Main_N1B
+        FacilityName = SpaceCenter/SpaceplaneHangar
+        AvailableAtLevels = Level_2
+        Queueing = 0
+        ForwardAzimuth = 36.6351138969343
+        Distance = 334.769392301871 
+        DeltaAltitude = 3.7275868386496
+        Normal = -0.00162584,0.9999986,-0.0004436386
+        Rotation = -0.1443127,0.5119228,0.6928897,0.4868397
+    }
+    Item
+    {
+        LocationName = SPH_Main_N1C
+        FacilityName = SpaceCenter/SpaceplaneHangar
+        AvailableAtLevels = Level_2
+        Queueing = 0
+        ForwardAzimuth = 33.9211348382155
+        Distance = 302.48269375802 
+        DeltaAltitude = 3.6391474554548
+        Normal = -0.001404768,0.999999,-0.0003912391
+        Rotation = -0.169278,0.5291568,0.6873022,0.467925
+    }
+    Item
+    {
+        LocationName = SPH_Main_S1A
+        FacilityName = SpaceCenter/SpaceplaneHangar
+        AvailableAtLevels = Level_2
+        Queueing = 0
+        ForwardAzimuth = 48.3812191375216
+        Distance = 331.261100221588 
+        DeltaAltitude = 3.72794877132399
+        Normal = 0.001740605,0.9999984,0.0004215453
+        Rotation = 0.6877128,-0.4696156,0.1673144,0.5277483
+    }
+    Item
+    {
+        LocationName = SPH_Main_S1B
+        FacilityName = SpaceCenter/SpaceplaneHangar
+        AvailableAtLevels = Level_2
+        Queueing = 0
+        ForwardAzimuth = 47.7162150545083
+        Distance = 314.190859811303 
+        DeltaAltitude = 3.6838106530486
+        Normal = 0.001323851,0.999999,0.0002740874
+        Rotation = -0.6884893,0.4714961,-0.1645755,-0.5259173
+    }
+    Item
+    {
+        LocationName = SPH_Main_S1C
+        FacilityName = SpaceCenter/SpaceplaneHangar
+        AvailableAtLevels = Level_2
+        Queueing = 0
+        ForwardAzimuth = 46.0686851065317
+        Distance = 279.591590545737 
+        DeltaAltitude = 3.5955153553514
+        Normal = 0.00133753,0.9999992,0.0001654713
+        Rotation = -0.6885179,0.471513,-0.164579,-0.5258635
+    }
+    Item
+    {
+        LocationName = SPH_Main_E1A
+        FacilityName = SpaceCenter/SpaceplaneHangar
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 51.0836798812149
+        Distance = 368.653829049566 
+        DeltaAltitude = 3.45160399435559
+        Normal = -8.145929E-05,1,-0.0001772488
+        Rotation = 0.5921454,-0.70631,-0.3875551,0.01706194
+    }
+    Item
+    {
+        LocationName = SPH_Main_E1B
+        FacilityName = SpaceCenter/SpaceplaneHangar
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 39.2639102500772
+        Distance = 390.453964536862 
+        DeltaAltitude = 3.50560418260289
+        Normal = -0.0001984429,1,7.850641E-05
+        Rotation = -0.5955708,0.7060466,0.3824259,-0.02332344
+    }
+    Item
+    {
+        LocationName = SPH_Main_W1A
+        FacilityName = SpaceCenter/SpaceplaneHangar
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 31.4640129731192
+        Distance = 290.748855930883 
+        DeltaAltitude = 3.55976787861439
+        Normal = 0.0004546278,0.9999999,-0.0004744844
+        Rotation = 0.3672625,0.04139771,0.6052117,0.7050697
+    }
+    Item
+    {
+        LocationName = SPH_Main_W1B
+        FacilityName = SpaceCenter/SpaceplaneHangar
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 47.180380769084
+        Distance = 261.63026457129 
+        DeltaAltitude = 3.5057623255998
+        Normal = 0.0005167018,0.9999999,-0.000172139
+        Rotation = 0.3641344,0.04481183,0.6070582,0.704896
+    }
+    Item
+    {
+        LocationName = SPH_Main_W1C
+        FacilityName = SpaceCenter/SpaceplaneHangar
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 49.3753276420813
+        Distance = 265.656317494453 
+        DeltaAltitude = 3.49829102936199
+        Normal = 0.0001576136,0.9999999,-0.0005128217
+        Rotation = -0.35675,-0.05366284,-0.6113594,-0.7043362
+    }
+    Item
+    {
+        LocationName = SPH_NorthComplex_1A
+        FacilityName = SpaceCenter/SpaceplaneHangar
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 35.6656844088951
+        Distance = 385.271261039965 
+        DeltaAltitude = 3.54624575050551
+        Normal = 1.013032E-05,1,-0.0001296189
+        Rotation = -0.6000246,0.7058199,0.3752097,-0.03172531
+    }
+    Item
+    {
+        LocationName = SPH_NorthComplex_1B
+        FacilityName = SpaceCenter/SpaceplaneHangar
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 34.5798903248232
+        Distance = 388.606714931376 
+        DeltaAltitude = 3.5525104926201
+        Normal = -0.00022348,1,-0.0002853619
+        Rotation = 0.6004022,-0.7057534,-0.3746905,0.03219205
+    }
+    Item
+    {
+        LocationName = SPH_NorthComplex_1C
+        FacilityName = SpaceCenter/SpaceplaneHangar
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 31.8575320217016
+        Distance = 365.702769325203 
+        DeltaAltitude = 3.563201928162
+        Normal = -0.0006089291,0.9999998,-0.0002869976
+        Rotation = 0.1822428,-0.5373808,-0.6836444,-0.4589553
+    }
+    Item
+    {
+        LocationName = SPH_NorthComplex_1D
+        FacilityName = SpaceCenter/SpaceplaneHangar
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 29.8925768810175
+        Distance = 345.009866105479 
+        DeltaAltitude = 3.5699449145468
+        Normal = -0.0005108794,0.9999999,-0.0003236756
+        Rotation = -0.1740844,0.5319319,0.6857679,0.4652585
+    }
+    Item
+    {
+        LocationName = SPH_NorthComplex_1E
+        FacilityName = SpaceCenter/SpaceplaneHangar
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 28.1501489506052
+        Distance = 317.243986443828 
+        DeltaAltitude = 3.57435405673461
+        Normal = 0.0003729804,0.9999999,-0.0001936514
+        Rotation = -0.3609366,-0.04856203,-0.6089218,-0.7046849
+    }
+    Item
+    {
+        LocationName = SPH_NorthComplex_1F
+        FacilityName = SpaceCenter/SpaceplaneHangar
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 29.3965316536681
+        Distance = 313.171726007885 
+        DeltaAltitude = 3.5681310012005
+        Normal = 0.0003857112,0.9999999,-0.0001495119
+        Rotation = 0.3601288,0.04946296,0.6093948,0.7046267
+    }
+    Item
+    {
+        LocationName = SPH_NorthComplex_E5A
+        FacilityName = SpaceCenter/SpaceplaneHangar
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 35.4301586307664
+        Distance = 375.981997511409 
+        DeltaAltitude = 23.5478733709315
+        Normal = 0.001952433,0.9999982,-0.0001084792
+        Rotation = 0.4791816,-0.6897535,-0.5202456,-0.1548216
+    }
+    Item
+    {
+        LocationName = SPH_NorthComplex_E9A
+        FacilityName = SpaceCenter/SpaceplaneHangar
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 35.8502262120369
+        Distance = 355.200716135765 
+        DeltaAltitude = 35.5416423240677
+        Normal = 0.0002129194,1,-0.0002909199
+        Rotation = 0.3497612,0.06149593,0.6154268,0.7036585
+    }
+    Item
+    {
+        LocationName = SPH_NorthComplex_E9B
+        FacilityName = SpaceCenter/SpaceplaneHangar
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 34.9150578209033
+        Distance = 357.856955742407 
+        DeltaAltitude = 35.5464550516335
+        Normal = 0.0007211196,0.9999998,-0.0003901618
+        Rotation = -0.3105884,-0.1054399,-0.6362908,-0.6982489
+    }
+    Item
+    {
+        LocationName = SPH_NorthComplex_W5A
+        FacilityName = SpaceCenter/SpaceplaneHangar
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 30.616615393721
+        Distance = 319.614707613742 
+        DeltaAltitude = 23.5648968857713
+        Normal = 0.0007633163,0.9999996,-0.0005673996
+        Rotation = 0.2106327,0.21029,0.6759801,0.6741386
+    }
+    Item
+    {
+        LocationName = SPH_NorthComplex_W9A
+        FacilityName = SpaceCenter/SpaceplaneHangar
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 33.8627742692721
+        Distance = 329.998357051613 
+        DeltaAltitude = 35.5489804004319
+        Normal = 0.001809167,0.9999985,0.0003433159
+        Rotation = 0.6116439,-0.7048637,-0.3548498,0.05604116
+    }
+    Item
+    {
+        LocationName = SPH_NorthComplex_W9B
+        FacilityName = SpaceCenter/SpaceplaneHangar
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 32.850553525625
+        Distance = 333.108907619697 
+        DeltaAltitude = 35.5539341083495
+        Normal = 0.001759724,0.9999986,0.0003295853
+        Rotation = -0.6099194,0.7051126,0.3578406,-0.05258091
+    }
+    Item
+    {
+        LocationName = SPH_SouthComplex_1A
+        FacilityName = SpaceCenter/SpaceplaneHangar
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 53.9968484589115
+        Distance = 352.093045830534 
+        DeltaAltitude = 3.4672453161329
+        Normal = -0.0002962206,0.9999999,-0.0004901828
+        Rotation = -0.6158023,0.7037556,0.3488071,-0.06204206
+    }
+    Item
+    {
+        LocationName = SPH_SouthComplex_1B
+        FacilityName = SpaceCenter/SpaceplaneHangar
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 55.3096097935282
+        Distance = 351.091801976123 
+        DeltaAltitude = 3.46275502128989
+        Normal = -0.0002979633,0.9999999,-0.0003051906
+        Rotation = 0.6046138,-0.7053258,-0.3678962,0.04012548
+    }
+    Item
+    {
+        LocationName = SPH_SouthComplex_1C
+        FacilityName = SpaceCenter/SpaceplaneHangar
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 55.8948991479529
+        Distance = 322.188335357448 
+        DeltaAltitude = 3.46592755080199
+        Normal = 0.0002945033,1,-0.0003103706
+        Rotation = 0.6780948,-0.442407,0.2027888,0.5507633
+    }
+    Item
+    {
+        LocationName = SPH_SouthComplex_1D
+        FacilityName = SpaceCenter/SpaceplaneHangar
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 55.5951501138577
+        Distance = 298.345560767861 
+        DeltaAltitude = 3.4721399371047
+        Normal = 0.0002245986,0.9999998,-0.0004225393
+        Rotation = -0.6851929,0.4625312,-0.177476,-0.5339268
+    }
+    Item
+    {
+        LocationName = SPH_SouthComplex_Loading
+        FacilityName = SpaceCenter/SpaceplaneHangar
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 52.0217205352261
+        Distance = 274.941077627743 
+        DeltaAltitude = 3.4882862503873
+        Normal = 0.0001053795,0.9999999,-6.241137E-05
+        Rotation = -0.4951272,0.1202112,-0.5057238,-0.6961622
+    }
+    Item
+    {
+        LocationName = SPH_Tower
+        FacilityName = SpaceCenter/SpaceplaneHangar
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 32.8047015205666
+        Distance = 397.702113689474 
+        DeltaAltitude = 3.56387475295929
+        Normal = -0.000167996,1,-0.0002531387
+        Rotation = -0.4889506,0.6918338,0.5115861,0.1434327
+    }
+    Item
+    {
+        LocationName = SPH_Tower_5A
+        FacilityName = SpaceCenter/SpaceplaneHangar
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 33.621771819322
+        Distance = 386.939971426072 
+        DeltaAltitude = 23.5590542450082
+        Normal = 0.001303477,0.9999989,0.0008532077
+        Rotation = 0.7011928,-0.5254973,0.09144461,0.4730954
+    }
+}

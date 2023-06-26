@@ -1,0 +1,183 @@
+﻿Locations
+{
+    Item
+    {
+        LocationName = R+D_Observatory_MainEntrance
+        FacilityName = SpaceCenter/ResearchAndDevelopment
+        AvailableAtLevels = Levels_1_2
+        Queueing = 0
+        ForwardAzimuth = 187.879773627041
+        Distance = 296.097312811407 
+        DeltaAltitude = 3.75639017182399
+        Normal = -0.0005616058,0.9999998,-0.0005484546
+        Rotation = -0.2090438,-0.2118567,-0.6759155,-0.6742075
+    }
+    Item
+    {
+        LocationName = R+D_Observatory_E1A
+        FacilityName = SpaceCenter/ResearchAndDevelopment
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 176.189102152432
+        Distance = 238.23985315225 
+        DeltaAltitude = 3.59540472272791
+        Normal = -0.0001579749,1,-0.000293061
+        Rotation = 0.545351,-0.7038473,-0.4509834,-0.06168802
+    }
+    Item 
+    {
+        LocationName = R+D_Observatory_E1B
+        FacilityName = SpaceCenter/ResearchAndDevelopment
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 174.729371144735
+        Distance = 253.629817629602 
+        DeltaAltitude = 3.59408820234241
+        Normal = 0.0003295259,1,-1.078743E-05
+        Rotation = 0.6902953,-0.6556255,-0.155491,0.2635722
+    }
+    Item
+    {
+        LocationName = R+D_Observatory_W1A
+        FacilityName = SpaceCenter/ResearchAndDevelopment
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 179.339113098349
+        Distance = 252.36636047737 
+        DeltaAltitude = 3.6124748120783
+        Normal = -0.0004173674,0.9999993,-0.0011093
+        Rotation = 0.1909507,0.2301199,0.6812787,0.6681632
+    }
+    Item
+    {
+        LocationName = R+D_ObservatoryDome_E1A
+        FacilityName = SpaceCenter/ResearchAndDevelopment
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 176.247606330427
+        Distance = 279.452727579539 
+        DeltaAltitude = 4.60895416652789
+        Normal = 0.0005872548,0.9999999,-6.885256E-05
+        Rotation = 0.6876602,-0.659821,-0.1663948,0.2531256
+    }
+    Item
+    {
+        LocationName = R+D_ObservatoryDome_E1B
+        FacilityName = SpaceCenter/ResearchAndDevelopment
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 174.173009412069
+        Distance = 298.422801610354 
+        DeltaAltitude = 4.6060900068842
+        Normal = 0.0006426219,0.9999998,-2.451209E-05
+        Rotation = 0.6776157,-0.672562,-0.2033852,0.2170988
+    }
+    Item
+    {
+        LocationName = R+D_ObservatoryDome_E1C
+        FacilityName = SpaceCenter/ResearchAndDevelopment
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 176.766222709183
+        Distance = 315.015327358021 
+        DeltaAltitude = 4.6253548425157
+        Normal = 0.0001470164,0.9999999,0.0004540725
+        Rotation = -0.6757578,0.6743852,0.2100668,-0.2107793
+    }
+    Item
+    {
+        LocationName = R+D_ObservatoryDome_S1A
+        FacilityName = SpaceCenter/ResearchAndDevelopment
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 177.772046753217
+        Distance = 321.640493438458 
+        DeltaAltitude = 3.63343298225669
+        Normal = 6.729609E-05,0.9999996,-0.000871961
+        Rotation = 0.6266652,-0.3279338,0.3295035,0.6254421
+    }
+    Item
+    {
+        LocationName = R+D_ObservatoryDome_W1A
+        FacilityName = SpaceCenter/ResearchAndDevelopment
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 178.541994706292
+        Distance = 278.904534524188 
+        DeltaAltitude = 4.61908183840571
+        Normal = -0.0002963252,1,5.880815E-05
+        Rotation = 0.2052381,0.2152369,0.6771799,0.6730363
+    }
+    Item
+    {
+        LocationName = R+D_ObservatoryDome_W1B
+        FacilityName = SpaceCenter/ResearchAndDevelopment
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 181.117042280983
+        Distance = 296.625772653609 
+        DeltaAltitude = 4.6386774861021
+        Normal = -0.0003044497,0.9999999,0.0002394201
+        Rotation = -0.2029275,-0.217408,-0.6778737,-0.6723403
+    }
+    Item
+    {
+        LocationName = R+D_ObservatoryDome_W1C
+        FacilityName = SpaceCenter/ResearchAndDevelopment
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 178.697355964861
+        Distance = 314.56843293265 
+        DeltaAltitude = 4.6349768795772
+        Normal = -4.490657E-05,1,-1.880765E-05
+        Rotation = -0.2055368,-0.2149956,-0.6771877,-0.6730144
+    }
+    Item
+    {
+        LocationName = R+D_Observatory_NorthWing_S1A
+        FacilityName = SpaceCenter/ResearchAndDevelopment
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 183.428215485546
+        Distance = 250.784730686364 
+        DeltaAltitude = 3.6285097807413
+        Normal = -0.0002170103,1,7.939449E-05
+        Rotation = -0.6083301,0.2948354,-0.3615665,-0.6420875
+    }
+    Item
+    {
+        LocationName = R+D_Observatory_NorthWing_N1A
+        FacilityName = SpaceCenter/ResearchAndDevelopment
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 183.669945452124
+        Distance = 230.48310699877 
+        DeltaAltitude = 3.621099647251
+        Normal = 0.0002524757,1,-9.632008E-05
+        Rotation = -0.3623903,0.6425112,0.6078241,0.293943
+    }
+    Item
+    {
+        LocationName = R+D_Observatory_SouthWing_S1A
+        FacilityName = SpaceCenter/ResearchAndDevelopment
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 181.356019531119
+        Distance = 279.257970735962 
+        DeltaAltitude = 4.1319363915827
+        Normal = 5.898518E-06,1,0.0005438161
+        Rotation = 0.6329598,-0.3411212,0.3161178,0.6189247
+    }
+    Item
+    {
+        LocationName = R+D_UtilityE
+        FacilityName = SpaceCenter/ResearchAndDevelopment
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 183.582357506391
+        Distance = 278.979920372413 
+        DeltaAltitude = 4.14188636292241
+        Normal = 0.0001926994,1,-0.0003853243
+        Rotation = -0.3662183,0.6444323,0.6054184,0.2899305
+    }
+}

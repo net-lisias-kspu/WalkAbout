@@ -1,0 +1,243 @@
+Locations
+{
+    Item
+    {
+        LocationName = TS_Main_East
+        FacilityName = SpaceCenter/TrackingStation
+        AvailableAtLevels = Level_1
+        Queueing = 0
+        ForwardAzimuth = 122.95224057533693
+        Distance = 619.16985266751874
+        DeltaAltitude = 3.4972107325447723
+        Normal = 0.000601738691,0.999999762,-0.000471532345
+        Rotation = 0.602302194,-0.705835462,-0.371080637,0.0364361219
+    }
+    Item
+    {
+        LocationName = TS_Main_North
+        FacilityName = SpaceCenter/TrackingStation
+        AvailableAtLevels = Level_1
+        Queueing = 0
+        ForwardAzimuth = 123.69330632723563
+        Distance = 595.18221687423761
+        DeltaAltitude = 3.4958378744777292
+        Normal = -0.000116854906,1,-2.24709511E-05
+        Rotation = 0.147926927,-0.51386106,-0.692043006,-0.484913349
+    }
+    Item
+    {
+        LocationName = TS_Main_South
+        FacilityName = SpaceCenter/TrackingStation
+        AvailableAtLevels = Level_1
+        Queueing = 0
+        ForwardAzimuth = 125.97975544247299
+        Distance = 603.77804063173767
+        DeltaAltitude = 3.5174370482563972
+        Normal = 0.00101095438,0.999999523,-0.000312671065
+        Rotation = -0.354273528,-0.0562587939,-0.613076985,-0.703890562
+    }
+    Item
+    {
+        LocationName = TS_Main_West
+        FacilityName = SpaceCenter/TrackingStation
+        AvailableAtLevels = Level_1
+        Queueing = 0
+        ForwardAzimuth = 125.963041413552
+        Distance = 603.849539519885 
+        DeltaAltitude = 3.46860709949399
+        Normal = -1.261892E-05,0.9999992,-0.001343752
+        Rotation = -0.3688601,-0.04024647,-0.604237,-0.7051385
+    }
+    Item
+    {
+        LocationName = TS_Main_3C
+        FacilityName = SpaceCenter/TrackingStation
+        AvailableAtLevels = Level_2
+        Queueing = 0
+        ForwardAzimuth = 124.31619756651742
+        Distance = 595.70132633900084
+        DeltaAltitude = 13.362777231144719
+        Normal = 0.00146406889,0.999999046,0.000406861305
+        Rotation = -0.186661839,0.540565312,0.683003962,0.454370081
+    }
+    Item
+    {
+        LocationName = TS_Main_3D
+        FacilityName = SpaceCenter/TrackingStation
+        AvailableAtLevels = Level_2
+        Queueing = 0
+        ForwardAzimuth = 123.22407753972851
+        Distance = 603.37745013700828
+        DeltaAltitude = 13.358892547083087
+        Normal = 0.00147497654,0.999998689,0.000382453203
+        Rotation = 0.157704681,-0.520875514,-0.690293729,-0.476772964
+    }
+    Item
+    {
+        LocationName = TS_Main_3E
+        FacilityName = SpaceCenter/TrackingStation
+        AvailableAtLevels = Level_2
+        Queueing = 0
+        ForwardAzimuth = 122.8618956819746
+        Distance = 615.82429779839777
+        DeltaAltitude = 13.337851915042847
+        Normal = 0.000522889197,0.999999881,6.80685043E-05
+        Rotation = 0.688307226,-0.658792675,-0.163753614,0.255754173
+    }
+    Item
+    {
+        LocationName = TS_Min_3F
+        FacilityName = SpaceCenter/TrackingStation
+        AvailableAtLevels = Level_2
+        Queueing = 0
+        ForwardAzimuth = 124.70627810386094
+        Distance = 628.86650948473186
+        DeltaAltitude = 13.350518308579922
+        Normal = -0.00010702014,1.00000012,2.40802765E-05
+        Rotation = -0.684348285,0.664583564,0.180458918,-0.239647225
+    }
+    Item
+    {
+        LocationName = TS_Main_E1A
+        FacilityName = SpaceCenter/TrackingStation
+        AvailableAtLevels = Levels_2_3
+        Queueing = 0
+        ForwardAzimuth = 122.890504817713
+        Distance = 636.90470858396 
+        DeltaAltitude = 3.4720330752898
+        Normal = 0.0005459125,0.9999998,0.0002579555
+        Rotation = 0.6753453,-0.6748341,-0.210573,0.210159
+    }
+    Item
+    {
+        LocationName = TS_Main_N1A
+        FacilityName = SpaceCenter/TrackingStation
+        AvailableAtLevels = Levels_2_3
+        Queueing = 0
+        ForwardAzimuth = 121.41463512968966
+        Distance = 609.74288991149899
+        DeltaAltitude = 3.4566135267959908
+        Normal = -6.06775284E-05,1,0.000188887119
+        Rotation = -0.481012076,0.689468205,0.519201279,0.153918788
+    }
+    Item
+    {
+        LocationName = TS_Main_N1B
+        FacilityName = SpaceCenter/TrackingStation
+        AvailableAtLevels = Levels_2_3
+        Queueing = 0
+        ForwardAzimuth = 123.13904673797651
+        Distance = 583.32873083502773
+        DeltaAltitude = 3.4990432176273316
+        Normal = 0.000614404678,0.999999762,0.000380009413
+        Rotation = -0.16497229,0.525670528,0.68843174,0.471716374
+    }
+    Item
+    {
+        LocationName = TS_Main_S1A
+        FacilityName = SpaceCenter/TrackingStation
+        AvailableAtLevels = Levels_2_3
+        Queueing = 0
+        ForwardAzimuth = 125.626732618544
+        Distance = 639.044343343489 
+        DeltaAltitude = 3.4872092361329
+        Normal = 0.001012224,0.9999996,-0.0001539988
+        Rotation = -0.6980166,0.5080034,-0.1163386,-0.4910913
+    }
+    Item
+    {
+        LocationName = TS_Main_S1B
+        FacilityName = SpaceCenter/TrackingStation
+        AvailableAtLevels = Levels_2_3
+        Queueing = 0
+        ForwardAzimuth = 127.322185221567
+        Distance = 614.141189263056 
+        DeltaAltitude = 3.4903650684282
+        Normal = 0.00104246,0.9999995,-0.0002893655
+        Rotation = 0.5721413,-0.2343756,0.4169389,0.6662465
+    }
+    Item
+    {
+        LocationName = TS_Main_W1A
+        FacilityName = SpaceCenter/TrackingStation
+        AvailableAtLevels = Levels_2_3
+        Queueing = 0
+        ForwardAzimuth = 126.12253917648
+        Distance = 586.599671883795 
+        DeltaAltitude = 3.4775708271191
+        Normal = 0.001716449,0.9999986,8.181123E-05
+        Rotation = -0.2245711,-0.1958144,-0.6718354,-0.6781312
+    }
+    Item
+    {
+        LocationName = TS_Main_3A
+        FacilityName = SpaceCenter/TrackingStation
+        AvailableAtLevels = Levels_2_3
+        Queueing = 0
+        ForwardAzimuth = 125.542410757155
+        Distance = 617.865390198484 
+        DeltaAltitude = 13.3114718855359
+        Normal = 0.001133715,0.9999991,-0.0007048469
+        Rotation = 0.5938474,-0.2699298,0.3855681,0.6525491
+    }
+    Item
+    {
+        LocationName = TS_Main_3B
+        FacilityName = SpaceCenter/TrackingStation
+        AvailableAtLevels = Levels_2_3
+        Queueing = 0
+        ForwardAzimuth = 125.635696825492
+        Distance = 606.926256856348 
+        DeltaAltitude = 13.3093525150325
+        Normal = 0.001590721,0.9999985,-0.0007096847
+        Rotation = 0.552336,-0.2029925,0.4430537,0.6763302
+    }
+    Item
+    {
+        LocationName = TS_Main_3C
+        FacilityName = SpaceCenter/TrackingStation
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 124.39973251863898
+        Distance = 597.7609827655906
+        DeltaAltitude = 13.386937659583054
+        Normal = 4.66406345E-05,1.00000012,5.620718E-05
+        Rotation = -0.126627952,0.49810347,0.696309984,0.501009762
+    }
+    Item
+    {
+        LocationName = TS_Main_3D
+        FacilityName = SpaceCenter/TrackingStation
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 123.47758312091941
+        Distance = 602.9200769117075
+        DeltaAltitude = 13.391485582105815
+        Normal = 0.00101873279,0.999999523,0.000408858061
+        Rotation = 0.179784268,-0.535239041,-0.684785008,-0.460723639
+    }
+    Item
+    {
+        LocationName = TS_Main_3E
+        FacilityName = SpaceCenter/TrackingStation
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 123.36922974712922
+        Distance = 618.9574784474114
+        DeltaAltitude = 13.410603307187557
+        Normal = -0.000378400087,1,2.32458115E-05
+        Rotation = 0.684073627,-0.665277779,-0.181870073,0.237427995
+    }
+    Item
+    {
+        LocationName = TS_Main_3F
+        FacilityName = SpaceCenter/TrackingStation
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 124.23511890647347
+        Distance = 624.53017629839042
+        DeltaAltitude = 13.416408691438846
+        Normal = -0.000248350203,1.00000024,2.8014183E-05
+        Rotation = -0.683157444,0.666443884,0.185107172,-0.234273285
+    }
+}

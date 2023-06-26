@@ -1,0 +1,123 @@
+Locations
+{
+    Item
+    {
+        LocationName = Bunker
+        FacilityName = SpaceCenter/LaunchPad
+        AvailableAtLevels = Level_1
+        Queueing = 0
+        ForwardAzimuth = 91.8187740256101
+        Distance = 1047.24195656717 
+        DeltaAltitude = 3.64020247943701
+        Normal = -1.69631094E-05,1.00000012,7.98106194E-05
+        Rotation = 0.190421835,0.229873329,0.681600213,0.668071091
+    }
+    Item
+    {
+        LocationName = LaunchPad_E1A
+        FacilityName = SpaceCenter/LaunchPad
+        AvailableAtLevels = Level_2
+        Queueing = 0
+        ForwardAzimuth = 91.7965191937335
+        Distance = 1014.44265958424 
+        DeltaAltitude = 3.50382811645979
+        Normal = 0.000818513334,0.999999523,-0.00073993206
+        Rotation = 0.688153982,-0.659207821,-0.164116263,0.254862964
+    }
+    Item
+    {
+        LocationName = LaunchPad_N1A
+        FacilityName = SpaceCenter/LaunchPad
+        AvailableAtLevels = Level_2
+        Queueing = 0
+        ForwardAzimuth = 91.2452550003694
+        Distance = 1007.44017316658 
+        DeltaAltitude = 3.49793787265664
+        Normal = 0.000474661589,0.99999994,0.000212550163
+        Rotation = -0.324967772,0.623678923,0.628682375,0.331932336
+    }
+    Item
+    {
+        LocationName = LaunchPad_N1B
+        FacilityName = SpaceCenter/LaunchPad
+        AvailableAtLevels = Level_2
+        Queueing = 0
+        ForwardAzimuth = 91.2569308564808
+        Distance = 1001.51501751006 
+        DeltaAltitude = 3.49432960886044
+        Normal = 0.000300675631,1,-7.62939453E-05
+        Rotation = 0.357680231,-0.640225291,-0.610621572,-0.298860848
+    }
+    Item
+    {
+        LocationName = LaunchPad_S1A
+        FacilityName = SpaceCenter/LaunchPad
+        AvailableAtLevels = Level_2
+        Queueing = 0
+        ForwardAzimuth = 92.3633028636353
+        Distance = 1008.15370268161 
+        DeltaAltitude = 3.49844073399437
+        Normal = 0.00146943331,0.999998927,5.90085983E-05
+        Rotation = 0.613080382,-0.304101825,0.353560597,0.637690723
+    }
+    Item
+    {
+        LocationName = LaunchPad_S1B
+        FacilityName = SpaceCenter/LaunchPad
+        AvailableAtLevels = Level_2
+        Queueing = 0
+        ForwardAzimuth = 92.392907393913
+        Distance = 1002.31629723726 
+        DeltaAltitude = 3.49454170581886
+        Normal = 0.00216892362,0.999997735,3.11732292E-05
+        Rotation = -0.614764094,0.307738274,-0.350668877,-0.635919511
+    }
+    Item
+    {
+        LocationName = LaunchPad_N1A
+        FacilityName = SpaceCenter/LaunchPad
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 91.0984061173178
+        Distance = 1005.64093703822 
+        DeltaAltitude = 3.64076155086515
+        Normal = -0.000118613243,1.00000012,-2.9861927E-05
+        Rotation = -0.35034883,0.636443794,0.614890754,0.306764364
+    }
+    Item
+    {
+        LocationName = LaunchPad_N1B
+        FacilityName = SpaceCenter/LaunchPad
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 91.1001792250247
+        Distance = 1002.22548433298 
+        DeltaAltitude = 3.63823377422524
+        Normal = -0.000678300858,1,-1.11460686E-05
+        Rotation = -0.327227563,0.624402285,0.627503216,0.33058098
+    }
+    Item
+    {
+        LocationName = LaunchPad_S1A
+        FacilityName = SpaceCenter/LaunchPad
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 92.5250479573929
+        Distance = 1006.24980362315 
+        DeltaAltitude = 3.64075154683088
+        Normal = 0.00053730607,0.999999881,3.04579735E-05
+        Rotation = -0.611922324,0.301641494,-0.355534047,-0.638873219
+    }
+    Item
+    {
+        LocationName = LaunchPad_S1B
+        FacilityName = SpaceCenter/LaunchPad
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 92.5296674301158
+        Distance = 1002.7762312572 
+        DeltaAltitude = 3.63815679412802
+        Normal = 0.00071528554,0.999999821,-2.76565552E-05
+        Rotation = 0.627481639,-0.330533594,0.327298284,0.624411881
+    }
+}

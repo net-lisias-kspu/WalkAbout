@@ -1,0 +1,75 @@
+Locations
+{
+    Item
+    {
+        LocationName = Central_Tarmac
+        FacilityName = SpaceCenter/Runway
+        AvailableAtLevels = Levels_1_2_3
+        Queueing = 17
+        ForwardAzimuth = 39.1569752912885
+        Distance = 557.408517329824 
+        DeltaAltitude = 3.73531079548412
+        Normal = 0.000180006027,0.999999881,0.000547528267
+        Rotation = -0.341060996,0.631632149,0.620318949,0.316105545
+    }
+    Item
+    {
+        LocationName = 09_Apron
+        FacilityName = SpaceCenter/Runway
+        AvailableAtLevels = Levels_1_2
+        Queueing = 1
+        ForwardAzimuth = 306.577705266021
+        Distance = 801.476191666473 
+        DeltaAltitude = 4.88107358897106
+        Normal = 0.000716850162,0.999998629,0.0015822649
+        Rotation = 0.672963738,-0.676852167,-0.218230397,0.203387588
+    }
+    Item
+    {
+        LocationName = 27_Apron
+        FacilityName = SpaceCenter/Runway
+        AvailableAtLevels = Levels_1_2
+        Queueing = 15
+        ForwardAzimuth = 73.7525409121437
+        Distance = 1650.02908801765 
+        DeltaAltitude = 4.5532921558479
+        Normal = -0.000446464866,0.999999762,0.000580847263
+        Rotation = -0.190152913,-0.229775518,-0.681529164,-0.668253839
+    }
+    Item
+    {
+        LocationName = Central_Tarmac
+        FacilityName = SpaceCenter/Runway
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 41.0266548166811
+        Distance = 572.22461105842 
+        DeltaAltitude = 3.65952051978094
+        Normal = -6.31809235E-06,1,0.000629901886
+        Rotation = -0.335372865,0.628616631,0.623446643,0.321994632
+    }
+    Item
+    {
+        LocationName = 09_Apron
+        FacilityName = SpaceCenter/Runway
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 301.400159005408
+        Distance = 918.673334958107 
+        DeltaAltitude = 5.10700572934003
+        Normal = 0.000745072495,0.999999404,0.000824928284
+        Rotation = 0.675900757,-0.674159408,-0.208876193,0.212221682
+    }
+    Item
+    {
+        LocationName = 27_Apron
+        FacilityName = SpaceCenter/Runway
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 75.0872506809566
+        Distance = 1786.80001907224 
+        DeltaAltitude = 4.73126869590489
+        Normal = -0.000830188394,0.999998689,0.00136844814
+        Rotation = -0.159338474,-0.259008855,-0.689309359,-0.657554805
+    }
+}

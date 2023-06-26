@@ -1,4 +1,4 @@
-# WalkAbout :: Change Log
+# Walk About /L Unleashed :: Change Log
 
 * 2016-0717 : Version 1.7.1 for KSP 1.3.1
 	- Fixed bug that crashed v1.7 while trying to find KIS modules.

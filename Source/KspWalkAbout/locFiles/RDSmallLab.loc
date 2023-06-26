@@ -1,0 +1,87 @@
+﻿Locations
+{
+    Item
+    {
+        LocationName = R+D_SmallLab_MainEntrance
+        FacilityName = SpaceCenter/ResearchAndDevelopment
+        AvailableAtLevels = Levels_1_2
+        Queueing = 0
+        ForwardAzimuth = 137.011131337273
+        Distance = 172.40775584505 
+        DeltaAltitude = 3.5696540941717
+        Normal = 0.000175789,1,-0.0002074797
+        Rotation = 0.6848901,-0.6638874,-0.1780313,0.2418344
+    }
+    Item
+    {
+        LocationName = R+D_SmallLab_Nissen_E
+        FacilityName = SpaceCenter/ResearchAndDevelopment
+        AvailableAtLevels = Levels_1_2
+        Queueing = 0
+        ForwardAzimuth = 140.106768273337
+        Distance = 151.4037144126 
+        DeltaAltitude = 3.5834171210881
+        Normal = -0.000212473,1,-0.00032083
+        Rotation = -0.342519,0.6325819,0.6191688,0.3148824
+    }
+    Item
+    {
+        LocationName = R+D_SmallLab_Nissen_F
+        FacilityName = SpaceCenter/ResearchAndDevelopment
+        AvailableAtLevels = Levels_1_2
+        Queueing = 0
+        ForwardAzimuth = 143.298774300174
+        Distance = 144.860279020277 
+        DeltaAltitude = 3.5915645627538
+        Normal = -4.986374E-05,1,-0.0002064279
+        Rotation = 0.3423911,-0.6325257,-0.619283,-0.3149097
+    }
+    Item
+    {
+        LocationName = R+D_SmallLab_Nissen_G
+        FacilityName = SpaceCenter/ResearchAndDevelopment
+        AvailableAtLevels = Level_2
+        Queueing = 0
+        ForwardAzimuth = 143.210973646394
+        Distance = 120.430219952383 
+        DeltaAltitude = 3.6352495995816
+        Normal = -0.0004942782,1,-1.440037E-05
+        Rotation = -0.2728873,0.5942525,0.652938,0.3821892
+    }
+    Item
+    {
+        LocationName = R+D_SmallLab_MainEntrance
+        FacilityName = SpaceCenter/ResearchAndDevelopment
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 140.048453362119
+        Distance = 136.605674587831 
+        DeltaAltitude = 4.0232310796855
+        Normal = 0.0005851016,0.9999998,-0.000508432
+        Rotation = 0.6030475,-0.2855405,0.3707726,0.6460093
+    }
+    Item
+    {
+        LocationName = R+D_SmallLab_S1A
+        FacilityName = SpaceCenter/ResearchAndDevelopment
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 134.886992079101
+        Distance = 136.957254212638 
+        DeltaAltitude = 3.51506569830239
+        Normal = 0.0001931616,1,-6.612225E-05
+        Rotation = 0.6881314,-0.4719307,0.1652346,0.5257891
+    }
+    Item
+    {
+        LocationName = R+D_SmallLab_Quonset_C
+        FacilityName = SpaceCenter/ResearchAndDevelopment
+        AvailableAtLevels = Level_3
+        Queueing = 0
+        ForwardAzimuth = 134.717559451842
+        Distance = 137.832221781475 
+        DeltaAltitude = 3.5144097906305
+        Normal = 0.0001610678,1,0.0001804669
+        Rotation = -0.3424032,-0.06957868,-0.6193898,-0.7030471
+    }
+}

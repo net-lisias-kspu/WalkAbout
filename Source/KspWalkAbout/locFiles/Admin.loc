@@ -1,0 +1,75 @@
+Locations
+{
+	Item
+	{
+		LocationName = Admin_MainEntrance
+		FacilityName = SpaceCenter/Administration
+		AvailableAtLevels = Levels_1_2
+		Queueing = 0
+		ForwardAzimuth = 278.3268344820479
+		Distance = 84.494587679536124
+		DeltaAltitude = 3.902858981449203
+		Normal = 3.57590616E-05,1,0.000515222549
+		Rotation = 0.667626083,-0.681615889,-0.234780729,0.185885504
+	}
+	Item
+	{
+		LocationName = Admin_Bldg_B_MainEntrance
+		FacilityName = SpaceCenter/Administration
+		AvailableAtLevels = Level_2
+		Queueing = 0
+		ForwardAzimuth = 292.77766903300238
+		Distance = 69.094708920158013
+		DeltaAltitude = 3.8725275341421366
+		Normal = -0.000212537401,0.999999881,0.000457212911
+		Rotation = -0.681486487,0.668185711,0.191042796,-0.229361504
+	}
+	Item
+	{
+		LocationName = Admin_MainEntrance
+		FacilityName = SpaceCenter/Administration
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		ForwardAzimuth = 283.59422746342528
+		Distance = 87.353566603609039
+		DeltaAltitude = 3.7526649007340893
+		Normal = 5.20339236E-05,0.999999642,0.000856280327
+		Rotation = 0.677324116,-0.672687888,-0.205047965,0.216051981
+	}
+	Item
+	{
+		LocationName = Admin_NorthWing_1A
+		FacilityName = SpaceCenter/Administration
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		ForwardAzimuth = 302.02308447333053
+		Distance = 108.15582950389357
+		DeltaAltitude = 3.7487346651032567
+		Normal = -0.000103665981,1,-0.00035738945
+		Rotation = 0.676521719,-0.673782408,-0.207887709,0.212411016
+	}
+	Item
+	{
+		LocationName = Admin_NorthWing_2A
+		FacilityName = SpaceCenter/Administration
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		ForwardAzimuth = 298.292248857863
+		Distance = 115.656442366077
+		DeltaAltitude = 8.6161083076148905
+		Normal = 0.000198137699,0.999999881,-0.000302387692
+		Rotation = -0.636096001,0.346766502,-0.310442507,-0.615435123
+	}
+	Item
+	{
+		LocationName = Admin_Helipad
+		FacilityName = SpaceCenter/Administration
+		AvailableAtLevels = Level_3
+		Queueing = 0
+		ForwardAzimuth = 273.50122921241302
+		Distance = 99.263297674696204
+		DeltaAltitude = 16.679304451681698
+		Normal = 9.20359817E-05,1,-0.000119669901
+		Rotation = -0.675344527,0.674917519,0.211448297,-0.209012106
+	}
+}

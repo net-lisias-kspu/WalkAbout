@@ -1,0 +1,255 @@
+Locations
+{
+	Item
+	{
+		LocationName = MC_MainEntrance
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_1
+		Queueing = 0
+        ForwardAzimuth = 65.3088334348754
+        Distance = 457.05099273318 
+        DeltaAltitude = 3.50641632534099
+		Normal = 0.0002489113,1,-0.0002848552
+		Rotation = -0.6175026,0.3113732,-0.3459633,-0.6340715
+	}
+	Item
+	{
+		LocationName = MC_Main_East
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_1
+		Queueing = 0
+		ForwardAzimuth = 64.970590821985013
+		Distance = 465.443886882068
+		DeltaAltitude = 3.587703111269378
+		Normal = -0.000800240785,0.999999881,-0.000320076942
+		Rotation = 0.684136808,-0.665012181,-0.182248786,0.237699732
+	}
+	Item
+	{
+		LocationName = MC_Main_North
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_1
+		Queueing = 0
+        ForwardAzimuth = 63.966682643914
+        Distance = 462.219696818247 
+        DeltaAltitude = 3.510964410496
+		Normal = -0.0005913973,0.9999994,-0.00108158
+		Rotation = -0.3414431,0.6322059,0.6194639,0.316223
+	}
+	Item
+	{
+		LocationName = MC_Main_West
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_1
+		Queueing = 0
+        ForwardAzimuth = 63.9062839447674
+        Distance = 454.545488662146 
+        DeltaAltitude = 3.5115229983349
+		Normal = 0.0003672557,0.9999997,-0.0006776215
+		Rotation = 0.2032632,0.2177042,0.6780183,0.6719971
+	}
+	Item
+	{
+		LocationName = MC_MainEntrance
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_2
+		Queueing = 0
+        ForwardAzimuth = 64.9600277214297
+        Distance = 465.341971512364 
+        DeltaAltitude = 3.5066224900074
+		Normal = -0.0002766885,0.9999998,-0.0005937733
+		Rotation = 0.6761467,-0.6742126,-0.2093152,0.2108321
+	}
+	Item
+	{
+		LocationName = MC_Main_E1A
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_2
+		Queueing = 0
+        ForwardAzimuth = 64.657403415979
+        Distance = 466.571628303556 
+        DeltaAltitude = 3.507606326486
+		Normal = -0.0007285064,0.9999996,-0.0006979124
+		Rotation = -0.6766858,0.6736912,0.2080875,-0.2119816
+	}
+	Item
+	{
+		LocationName = MC_Main_E1B
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_2
+		Queueing = 0
+        ForwardAzimuth = 65.2425559504594
+        Distance = 464.250122785172 
+        DeltaAltitude = 3.5055332097691
+		Normal = -0.0005015942,0.9999996,-0.0007217572
+		Rotation = -0.6765726,0.6738129,0.2082413,-0.2118053
+	}
+	Item
+	{
+		LocationName = MC_Main_N1A
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_2
+		Queueing = 0
+        ForwardAzimuth = 63.2822186536718
+        Distance = 464.421202359082 
+        DeltaAltitude = 3.5127030736767
+		Normal = -0.0005114488,0.9999994,-0.001030488
+		Rotation = 0.3299167,-0.6262717,-0.6256904,-0.3277962
+	}
+	Item
+	{
+		LocationName = MC_Main_N2A
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_2
+		Queueing = 0
+        ForwardAzimuth = 63.9546547623453
+        Distance = 461.738524433266 
+        DeltaAltitude = 5.742121491814
+		Normal = 0.001331404,0.9999989,-0.0008302866
+		Rotation = -0.3103531,0.6163546,0.6357284,0.3458864
+	}
+	Item
+	{
+		LocationName = MC_Main_S1A
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_2
+		Queueing = 0
+        ForwardAzimuth = 66.0346608638525
+        Distance = 454.313781004807 
+        DeltaAltitude = 3.5033675153973
+		Normal = 0.0003050201,0.9999997,-0.0008364535
+		Rotation = 0.6228639,-0.3209223,0.3366252,0.6290731
+	}
+	Item
+	{
+		LocationName = MC_Main_S2A
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_2
+		Queueing = 0
+        ForwardAzimuth = 65.280990814312
+        Distance = 456.985596759332 
+        DeltaAltitude = 5.75923447671811
+		Normal = -0.0009764595,0.9999995,-0.0002652484
+		Rotation = 0.6121069,-0.3008724,0.3553352,0.6391698
+	}
+	Item
+	{
+		LocationName = MC_Main_West
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_2
+		Queueing = 0
+        ForwardAzimuth = 63.9042174256086
+        Distance = 454.927557345961 
+        DeltaAltitude = 3.5107812222559
+		Normal = 0.0008054202,0.9999995,-0.0007805242
+		Rotation = 0.1855834,0.2351787,0.6832135,0.6659349
+	}
+	Item
+	{
+		LocationName = MC_BldgB_MainEntrance
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_2
+		Queueing = 0
+		ForwardAzimuth = 62.156969088086839
+		Distance = 461.1097926786818
+		DeltaAltitude = 3.5668308086460456
+		Normal = 0.000418573618,0.999999881,-0.000639975071
+		Rotation = -0.61858511,0.313194007,-0.344282925,-0.633033454
+	}
+	Item
+	{
+		LocationName = MC_Main_E1A
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_3
+		Queueing = 0
+        ForwardAzimuth = 62.4954180157727
+        Distance = 476.9017504315 
+        DeltaAltitude = 3.4007076342823
+		Normal = -0.0005832035,0.9999996,-0.0006761407
+		Rotation = -0.681421,0.6684705,0.1918954,-0.2280108
+	}
+	Item
+	{
+		LocationName = MC_Main_E1B
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_3
+		Queueing = 0
+        ForwardAzimuth = 66.4332208277662
+        Distance = 460.964177032061 
+        DeltaAltitude = 3.3869890104979
+		Normal = -0.000627082,0.9999998,-0.000513851
+		Rotation = -0.6776298,0.6726729,0.2048979,-0.2152809
+	}
+	Item
+	{
+		LocationName = MC_Main_N5A
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_3
+		Queueing = 0
+        ForwardAzimuth = 61.5727471248999
+        Distance = 463.221548804424 
+        DeltaAltitude = 19.4273486289894
+		Normal = 0.0006775467,0.9999997,-0.0002886135
+		Rotation = 0.1651815,0.2545866,0.6884509,0.6587383
+	}
+	Item
+	{
+		LocationName = MC_Main_N5B
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_3
+		Queueing = 0
+        ForwardAzimuth = 58.3502225489934
+        Distance = 471.661411975061 
+        DeltaAltitude = 19.8080375099089
+		Normal = -0.001029153,0.9999992,-0.0007042639
+		Rotation = -0.3528027,0.6376133,0.6132411,0.3048198
+	}
+	Item
+	{
+		LocationName = MC_Main_S5A
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_3
+		Queueing = 0
+        ForwardAzimuth = 65.637624397292
+        Distance = 447.068535387038 
+        DeltaAltitude = 19.4134747522185
+		Normal = 0.000564379,0.9999998,-0.0002509177
+		Rotation = 0.1996421,0.2210085,0.6792305,0.6707788
+	}
+	Item
+	{
+		LocationName = MC_Main_S5B
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_3
+		Queueing = 0
+        ForwardAzimuth = 68.4876855768436
+        Distance = 431.019686897721 
+        DeltaAltitude = 19.7935434660176
+		Normal = 0.0002267313,1,-0.0003241778
+		Rotation = 0.6177682,-0.3118184,0.3455113,0.6338405
+	}
+	Item
+	{
+		LocationName = MC_Main_W1A
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_3
+		Queueing = 0
+        ForwardAzimuth = 60.3476909461789
+        Distance = 445.944684870051 
+        DeltaAltitude = 3.4098012364702
+		Normal = 0.0004107026,0.9999998,-0.0007047658
+		Rotation = 0.2138208,0.2072015,0.6747842,0.6752886
+	}
+	Item
+	{
+		LocationName = MC_Main_W1B
+		FacilityName = SpaceCenter/MissionControl
+		AvailableAtLevels = Level_3
+		Queueing = 0
+        ForwardAzimuth = 64.5160253475417
+        Distance = 429.126229499142 
+        DeltaAltitude = 3.39597970456821
+		Normal = 0.0006199988,0.9999998,-0.0002535912
+		Rotation = 0.2034776,0.2172082,0.6780507,0.6720601
+	}
+}

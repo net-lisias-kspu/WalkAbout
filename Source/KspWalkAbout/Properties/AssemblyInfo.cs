@@ -8,10 +8,10 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("WalkAbout")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("WalkAbout")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCompany(KspWalkAbout.LegalMamboJambo.Company)]
+[assembly: AssemblyProduct(KspWalkAbout.LegalMamboJambo.Product)]
+[assembly: AssemblyCopyright(KspWalkAbout.LegalMamboJambo.Copyright)]
+[assembly: AssemblyTrademark(KspWalkAbout.LegalMamboJambo.Trademark)]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 

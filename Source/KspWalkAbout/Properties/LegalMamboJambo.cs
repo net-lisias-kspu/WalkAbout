@@ -1,7 +1,6 @@
 ﻿/*
 	This file is part of Walk About /L Unleashed
 		© 2023 Lisias T : http://lisias.net <support@lisias.net>
-		© 2016-2017 Antipodes (Clive Pottinger)
 
 	Walk About /L Unleashed is licensed as follows:
 		* GPL 3.0 : https://www.gnu.org/licenses/gpl-3.0.txt
@@ -14,16 +13,15 @@
 	along with Walk About /L Unleashed. If not, see <https://www.gnu.org/licenses/>.
 
 */
+using System;
 
-namespace KspWalkAbout.Entities
+namespace KspWalkAbout
 {
-    /// <summary>Represents a request to create a location.</summary>
-    internal class LocationRequest
-    {
-        /// <summary>The name of the KSP facility that the location is associated with.</summary>
-        public string AssociatedFacility { get; set; }
-
-        /// <summary>The textual identifier of the location.</summary>
-        public string Name { get; set; }
-    }
+	public static class LegalMamboJambo
+	{
+		public const string Company = "/L Aerospace KSP Division";
+		public const string Copyright = "© 2023 LisiasT";
+		public const string Product = "Walk About";
+		public const string Trademark = "KspWalkAbout™ Clive Pottinger; Walk About /L Unleashed™ by LisiasT";
+	}
 }

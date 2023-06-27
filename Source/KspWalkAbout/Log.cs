@@ -26,6 +26,11 @@ namespace KspWalkAbout
 	{
 		private static readonly Logger log = Logger.CreateForType<Startup>();
 
+		internal static bool isDebug {
+			get => log.level > Level.INFO ;
+			set => log.level = value ? Level.DETAIL : Level.INFO ;
+		}
+
 		internal static void force(string msg, params object[] @params)
 		{
 			log.force(msg, @params);

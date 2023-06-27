@@ -15,7 +15,6 @@
 
 */
 
-using KspWalkAbout.Extensions;
 using KspWalkAbout.Values;
 using KspWalkAbout.WalkAboutFiles;
 using System.Collections.Generic;
@@ -71,7 +70,7 @@ namespace KspWalkAbout.Entities
             {
                 _modConfig = new WalkAboutSettings();
                 bool loaded = _modConfig.Load($"{WalkAbout.GetModDirectory()}/Settings.cfg", Constants.DefaultSettings);
-                _modConfig.StatusMessage.Log();
+                Log.detail(_modConfig.StatusMessage);
 
                 if (!loaded) { return null; }
             }

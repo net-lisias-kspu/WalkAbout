@@ -17,7 +17,6 @@
 
 using KspAccess;
 using KspWalkAbout.Entities;
-using KspWalkAbout.Extensions;
 using KspWalkAbout.Guis;
 using KspWalkAbout.Values;
 using KspWalkAbout.WalkAboutFiles;
@@ -44,24 +43,24 @@ namespace KspWalkAbout
         /// </summary>
         public void Start()
         {
-            $"Started [Version={Constants.Version}, Debug={DebugExtensions.DebugIsOn}]".Log();
+            Log.info("Started [Version={0}, Debug={1}]", Constants.Version, Log.isDebug);
 
-            _config = GetModConfig(); "obtained config".Debug();
+            _config = GetModConfig(); Log.detail("obtained config");
             if (_config == null)
             {
                 return;
             }
 
-            _map = GetLocationMap(); "obtained map object".Debug();
+            _map = GetLocationMap(); Log.detail("obtained map object");
             _map.RefreshLocations(); // needed to avoid holding on to other games' data 
-            _items = GetAllItems(); "obtained items object".Debug();
+            _items = GetAllItems(); Log.detail("obtained items object");
 
             _mainGui = PlaceKerbalGui.Instance;
             _mainGui.GuiCoordinates = _config.GetScreenPosition();
             _mainGui.TopFew = _config.TopFew;
             _mainGui.MaxItems = _config.MaxInventoryItems;
             _mainGui.MaxVolume = _config.MaxInventoryVolume;
-            $"created MainGui object".Debug();
+            Log.detail("created MainGui object");
 
             GetCentrum(); // Initialize the centrum to avoid errors if AddUtility is opened before WalkAbout.
 
@@ -100,9 +99,9 @@ namespace KspWalkAbout
 
             if (_mainGui?.RequestedPlacement == null) return;
 
-            "placing kerbal".Debug();
+            Log.detail("placing kerbal");
             WalkAboutKspAccess.PlaceKerbal(_mainGui.RequestedPlacement);
-            "Saving game".Log();
+            Log.info("Saving game");
             GamePersistence.SaveGame("persistent", HighLogic.SaveFolder, SaveMode.OVERWRITE);
 
             PerformPostPlacementAction();
@@ -150,7 +149,7 @@ namespace KspWalkAbout
         {
             if (data.target == RDTech.OperationResult.Successful)
             {
-                $"Refreshing items due to new technologies".Debug();
+                Log.detail("Refreshing items due to new technologies");
                 _items.RefreshItems();
             }
         }
@@ -160,7 +159,7 @@ namespace KspWalkAbout
         /// </summary>
         private void MapRefresh(UpgradeableFacility data0, int data1)
         {
-            $"Refreshing map due to new facility upgrade".Debug();
+            Log.detail("Refreshing map due to new facility upgrade");
             _map.RefreshLocations();
         }
 
@@ -181,7 +180,7 @@ namespace KspWalkAbout
             if (_config.IsChanged && !GuiResizer.IsResizing && !Input.GetMouseButton(0))
             {
                 _config.Save();
-                $"saved settings to {_config.FilePath}".Log();
+                Log.info("saved settings to {0}", _config.FilePath);
             }
 
             if (_map.IsChanged)
@@ -200,25 +199,25 @@ namespace KspWalkAbout
             switch (_config.PostPlacementAction)
             {
                 case PostPlacementMode.noreload:
-                    "Suppressed reload of SPACECENTER".Log();
+                    Log.info("Suppressed reload of SPACECENTER");
                     break;
 
                 case PostPlacementMode.jumpto:
                     Vessel vessel = FindVesselByName(_mainGui.RequestedPlacement.Kerbal.name);
                     if (vessel == null)
                     {
-                        $"Unable to jump to vessel - no vessel found".Log();
+                        Log.info("Unable to jump to vessel - no vessel found");
                     }
                     else
                     {
-                        $"Loading Flight scene for {vessel.name}".Log();
+                        Log.info("Loading Flight scene for {0}", vessel.name);
                         FlightDriver.StartAndFocusVessel("persistent", FlightGlobals.Vessels.IndexOf(vessel));
                     }
                     break;
 
                 case PostPlacementMode.reload:
                 default:
-                    "Reloading SPACECENTER".Log();
+                    Log.info("Reloading SPACECENTER");
                     HighLogic.LoadScene(GameScenes.SPACECENTER);
                     break;
             }

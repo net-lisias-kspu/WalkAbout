@@ -16,10 +16,10 @@
 */
 
 using KspWalkAbout.Entities;
-using KspWalkAbout.Extensions;
 using System.Collections.Generic;
 using System.Reflection;
 using static KspAccess.CommonKspAccess;
+using KspWalkAbout;
 
 namespace KspAccess
 {
@@ -35,8 +35,8 @@ namespace KspAccess
         /// </summary>
         internal static void PlaceKerbal(PlacementRequest request)
         {
-            $"{request.Kerbal.name} will be placed outside {request.Location.LocationName}".Debug();
-            $"placement lat:{request.Location.Coordinates.Latitude} long:{request.Location.Coordinates.Longitude} alt:{request.Location.Coordinates.Altitude}".Debug();
+            Log.detail("{0} will be placed outside {1}", request.Kerbal.name, request.Location.LocationName);
+            Log.detail("placement lat:{0} long:{1} alt:{2}", request.Location.Coordinates.Latitude, request.Location.Coordinates.Longitude, request.Location.Coordinates.Altitude);
             Orbit orbit = CreateOrbitForKerbal(request);
             ConfigNode vesselNode = CreateVesselNode(request, orbit);
 
@@ -59,11 +59,11 @@ namespace KspAccess
                 if (_isKisModPresent)
                 {
                     _KisMod = GetMod("KIS");
-                    $"obtained KIS mod assembly [{_KisMod}]".Debug();
+                    Log.info("obtained KIS mod assembly [{0}]", _KisMod);
                 }
                 else
                 {
-                    "KIS mod not detected".Debug();
+                    Log.info("KIS mod not detected");
                 }
                 _isKisModChecked = true;
             }
@@ -91,7 +91,7 @@ namespace KspAccess
                     request.Location.Coordinates.Altitude);
             Orbit orbit = new Orbit(0, 0, 0, 0, 0, 0, 0, Homeworld);
             orbit.UpdateFromStateVectors(pos, Homeworld.getRFrmVel(pos), Homeworld, Planetarium.GetUniversalTime());
-            $"created orbit for {Homeworld.name}".Debug();
+            Log.detail("created orbit for {0}", Homeworld.name);
             return orbit;
         }
 
@@ -100,15 +100,15 @@ namespace KspAccess
             // create an id for the flight object that will represent the kerbal's EVA
             string genderQualifier = request.Kerbal.gender == ProtoCrewMember.Gender.Female ? "female" : string.Empty;
             uint flightId = ShipConstruction.GetUniqueFlightID(HighLogic.CurrentGame.flightState);
-            $"created flightId {flightId}".Debug();
+            Log.detail("created flightId {0}", flightId);
 
             // create a ship consisting of just the kerbal - this is how EVAs are represented in KSP
             ConfigNode[] partNodes = new ConfigNode[1];
             partNodes[0] =
                 ProtoVessel.CreatePartNode($"kerbalEVA{genderQualifier}", flightId, request.Kerbal);
-            "created partNodes".Debug();
+            Log.detail("created partNodes");
             ConfigNode vesselNode = ProtoVessel.CreateVesselNode(request.Kerbal.name, VesselType.EVA, orbit, 0, partNodes);
-            "created vesselNode".Debug();
+            Log.detail("created vesselNode");
             return vesselNode;
         }
 
@@ -123,12 +123,12 @@ namespace KspAccess
             vesselNode.SetValue("hgt", "0.28");
             vesselNode.SetValue("nrm", $"{request.Location.Normal.x},{request.Location.Normal.y},{request.Location.Normal.z}");
             vesselNode.SetValue("rot", $"{request.Location.Rotation.x},{request.Location.Rotation.y},{request.Location.Rotation.z},{request.Location.Rotation.w}");
-            "adjusted vesselNode location".Debug();
+            Log.detail("adjusted vesselNode location");
         }
 
         private static void AddVesselToGame(PlacementRequest request, ConfigNode vesselNode)
         {
-            $"{request.Kerbal.name} is being placed at {request.Location.LocationName}".Log();
+            Log.detail("{0} is being placed at {1}", request.Kerbal.name, request.Location.LocationName);
             ScreenMessages.PostScreenMessage(new ScreenMessage($"{request.Kerbal.name} is being placed at {request.Location.LocationName}", 4.0f, ScreenMessageStyle.UPPER_LEFT));
             HighLogic.CurrentGame.AddVessel(vesselNode);
             request.Kerbal.rosterStatus = ProtoCrewMember.RosterStatus.Assigned;
@@ -150,11 +150,11 @@ namespace KspAccess
 
         private static void AllocateInventoryItem(string name, InventoryItem item)
         {
-            $"Recording that {item.Title} is to be added to {name}'s inventory".Debug();
+            Log.detail("Recording that {0} is to be added to {1}'s inventory", item.Title, name);
             WalkAboutPersistent.AllocatedItems[name].Add(item.Name);
             if (Funding.Instance != null)
             {
-                $"Subtracting {item.Cost * -1} funds for inventory items".Debug();
+                Log.detail("Subtracting {0} funds for inventory items", item.Cost * -1);
                 Funding.Instance.AddFunds((double)item.Cost, TransactionReasons.Vessels);
             }
         }
@@ -172,7 +172,7 @@ namespace KspAccess
                     if (WalkAboutPersistent.EvaResources.Contains(resourceName))
                     {
                         resourceNode.SetValue("amount", resourceNode.GetValue("maxAmount"), true);
-                        $"Setting resource [{resourceName}] amount to maximum".Debug();
+                        Log.detail("Setting resource [{0}] amount to maximum", resourceName);
                     }
                 }
             }

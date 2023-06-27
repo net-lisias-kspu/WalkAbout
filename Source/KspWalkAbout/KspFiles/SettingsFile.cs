@@ -15,7 +15,6 @@
 
 */
 
-using KspWalkAbout.Extensions;
 using System;
 using System.IO;
 
@@ -58,7 +57,7 @@ namespace KspWalkAbout.KspFiles
             bool isLoaded = false;
             try
             {
-                DirectoryInfo di = new DirectoryInfo(settingsFilePath); $"Load called for {settingsFilePath}".Debug();
+                DirectoryInfo di = new DirectoryInfo(settingsFilePath); Log.detail("Load called for {0}", settingsFilePath);
                 FilePath = di.FullName;
                 if (File.Exists(FilePath))
                 {
@@ -97,7 +96,7 @@ namespace KspWalkAbout.KspFiles
         public bool Save()
         {
             bool saved = ConfigNode.CreateConfigFromObject(this, new ConfigNode()).Save(FilePath);
-            $"Saved {FilePath} = {saved}".Debug();
+            Log.detail("Saved {0} = {1}", FilePath, saved);
             IsChanged = IsChanged && !saved;
             return saved;
         }

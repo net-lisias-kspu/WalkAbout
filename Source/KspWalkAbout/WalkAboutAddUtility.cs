@@ -16,7 +16,6 @@
 */
 
 using KspWalkAbout.Entities;
-using KspWalkAbout.Extensions;
 using KspWalkAbout.Guis;
 using KspWalkAbout.WalkAboutFiles;
 using UnityEngine;
@@ -42,28 +41,28 @@ namespace KspWalkAbout
         {
             if (!(FlightGlobals.ActiveVessel?.isEVA ?? false))
             {
-                "Add Location utility deactivated: not an EVA".Debug();
+                Log.detail("Add Location utility deactivated: not an EVA");
                 return;
             }
             System.Collections.Generic.List<ProtoCrewMember> crew = FlightGlobals.ActiveVessel.GetVesselCrew();
             if ((crew?.Count ?? 0) != 1)
             {
-                "Add Location utility deactivated: invalid crew count".Debug();
+                Log.detail("Add Location utility deactivated: invalid crew count");
                 return;
             }
 
-            _config = GetModConfig(); "Add Location utility obtained config".Debug();
+            _config = GetModConfig(); Log.detail("Add Location utility obtained config");
             if (_config == null) { return; }
 
             if (_config.Mode != "utility")
             {
-                "Add Location utility deactivated: not in utility mode".Debug();
+                Log.detail("Add Location utility deactivated: not in utility mode");
                 return;
             }
 
-            $"Add Location utility activated on EVA for {FlightGlobals.ActiveVessel.GetVesselCrew()[0].name}".Debug();
+            Log.detail("Add Location utility activated on EVA for {0}", FlightGlobals.ActiveVessel.GetVesselCrew()[0].name);
 
-            _map = GetLocationMap(); "Add Location utility obtained map object".Debug();
+            _map = GetLocationMap(); Log.detail("Add Location utility obtained map object");
             _addUtilityGui = AddUtilityGui.Instance;
         }
 
@@ -98,7 +97,7 @@ namespace KspWalkAbout
 
             if (_addUtilityGui?.RequestedLocation == null) return;
 
-            $"Request for new location {_addUtilityGui.RequestedLocation.Name} detected".Debug();
+            Log.detail("Request for new location {0} detected", _addUtilityGui.RequestedLocation.Name);
             _map.AddLocation(_addUtilityGui.RequestedLocation);
             _addUtilityGui.RequestedLocation = null;
         }
@@ -126,7 +125,7 @@ namespace KspWalkAbout
         {
             if (_map.IsChanged)
             {
-                "Saving map changes".Debug();
+                Log.detail("Saving map changes");
                 _map.Save();
             }
         }

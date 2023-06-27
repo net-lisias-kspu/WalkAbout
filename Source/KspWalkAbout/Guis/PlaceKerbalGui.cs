@@ -17,7 +17,6 @@
 
 using KspAccess;
 using KspWalkAbout.Entities;
-using KspWalkAbout.Extensions;
 using KspWalkAbout.Values;
 using System;
 using System.Collections.Generic;
@@ -79,7 +78,7 @@ namespace KspWalkAbout.Guis
             get { return _coordinates; }
             set
             {
-                if (value == new Rect()) "given empty screen position - defaulting to 1/4 screen".Debug();
+                if (value == new Rect()) Log.detail("given empty screen position - defaulting to 1/4 screen");
                 _coordinates = (value == new Rect())
                     ? new Rect(Screen.width / 4, Screen.height / 4, Screen.width / 3, Screen.height / 4)
                     : value;
@@ -166,7 +165,7 @@ namespace KspWalkAbout.Guis
                                 : _elementStyles.ValidButton;
                             if (GUILayout.Button(crew.name, buttonStyle))
                             {
-                                _selectedKerbal = crew; $"selected {_selectedKerbal.name}".Debug();
+                                _selectedKerbal = crew; Log.detail("selected {0}", _selectedKerbal.name);
                                 if (!_itemsSelected.ContainsKey(_selectedKerbal.name))
                                 {
                                     _itemsSelected.Add(_selectedKerbal.name, new List<InventoryItem>());
@@ -192,14 +191,14 @@ namespace KspWalkAbout.Guis
                     foreach (KeyValuePair<string, FacilityLevels> facility in GetLocationMap().AvailableFacilitiesLevel)
                     {
                         string buttonText = facility.Key.Substring(facility.Key.IndexOf('/') + 1) +
-                                         (DebugExtensions.DebugIsOn ? $" ({facility.Value})" : string.Empty);
+                                         (Log.isDebug ? $" ({facility.Value})" : string.Empty);
                         GUIStyle buttonStyle = (facility.Key == (_selectedFacility ?? string.Empty))
                             ? _elementStyles.SelectedButton
                             : _elementStyles.ValidButton;
                         if (GUILayout.Button(buttonText, buttonStyle))
                         {
                             _selectedFacility = (facility.Key == _selectedFacility) ? null : facility.Key;
-                            $"selected {_selectedFacility}".Debug();
+                            Log.detail("selected {0}", _selectedFacility);
                         }
                     }
                 }
@@ -235,7 +234,7 @@ namespace KspWalkAbout.Guis
                                 if (GUILayout.Button(location.LocationName, buttonStyle))
                                 {
                                     _selectedLocation = location;
-                                    $"selected {_selectedLocation.LocationName}".Debug();
+                                    Log.detail("selected {0}", _selectedLocation.LocationName);
                                 }
                                 if ((++locationButtonsDrawn == TopFew) && _showTopFewOnly) break;
                             }
@@ -275,7 +274,7 @@ namespace KspWalkAbout.Guis
                                 Location = _selectedLocation,
                                 Items = _itemsSelected[_selectedKerbal.name],
                             };
-                        "PlacementRequest created - deactivating GUI".Debug();
+                        Log.detail("PlacementRequest created - deactivating GUI");
                         IsActive = false;
                         _selectedKerbal = null;
                     }
@@ -405,14 +404,14 @@ namespace KspWalkAbout.Guis
         /// <param name="guiCoordinates">The screen coordinates of the main GUI dialogue window.</param>
         private void DrawDebugButton(Rect guiCoordinates)
         {
-			GUIStyle style = (DebugExtensions.DebugIsOn) ? _elementStyles.HighlightedButton : _elementStyles.SelectedButton;
+			GUIStyle style = (Log.isDebug) ? _elementStyles.HighlightedButton : _elementStyles.SelectedButton;
             if (GUI.Button(
                 new Rect(0, guiCoordinates.height - 10, 10, 10), "*", style))
             {
-                $"Debugging messages are being turned OFF".Debug();
-                DebugExtensions.SetDebug(!DebugExtensions.DebugIsOn);
-                $"Debugging messages have been turned ON".Debug();
-                string state = (DebugExtensions.DebugIsOn) ? "ON" : "OFF";
+                Log.detail("Debugging messages are being turned OFF");
+                Log.isDebug = !Log.isDebug;
+                Log.detail("Debugging messages have been turned ON");
+                string state = (Log.isDebug) ? "ON" : "OFF";
                 ScreenMessages.PostScreenMessage(new ScreenMessage($"WalkAbout debugging is {state}", 4.0f, ScreenMessageStyle.UPPER_LEFT));
             }
         }

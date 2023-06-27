@@ -15,7 +15,6 @@
 
 */
 
-using KspWalkAbout.Extensions;
 using KspWalkAbout.Values;
 using KspWalkAbout.WalkAboutFiles;
 using System;
@@ -67,14 +66,14 @@ namespace KspWalkAbout.Entities
                 if (locationFile.IsChanged)
                 {
                     locationFile.Save();
-                    $"saved locations to {locationFile.FilePath}".Log();
+                    Log.info("saved locations to {0}", locationFile.FilePath);
                 }
                 else
                 {
-                    $"no save required for {locationFile.FilePath}".Debug();
+                    Log.detail("no save required for {0}", locationFile.FilePath);
                 }
             }
-            $"{Count} location files checked for saving".Debug();
+            Log.detail("{0} location files checked for saving", Count);
             IsChanged = false;
         }
 
@@ -83,7 +82,7 @@ namespace KspWalkAbout.Entities
         /// </summary>
         internal void RefreshLocations()
         {
-            "Refresh()".Debug();
+            Log.detail("Refresh()");
             _allLocations = new List<Location>();
             AvailableLocations = new List<Location>();
             AvailableFacilitiesLevel = new Dictionary<string, FacilityLevels>();
@@ -118,7 +117,7 @@ namespace KspWalkAbout.Entities
             }
 
             AvailableLocations.Sort(CompareLocations);
-            $"available = {AvailableLocations.Count} of {_allLocations.Count} locations".Debug();
+            Log.detail("available = {0} of {1} locations", AvailableLocations.Count, _allLocations.Count);
         }
 
         /// <summary>
@@ -147,11 +146,11 @@ namespace KspWalkAbout.Entities
             int finalQueueing = (originalQueueing == 0) ? 1 : Math.Min(maxQueueing, maxQueueing - (maxQueueing - originalQueueing) / 2 + 1);
             if (finalQueueing == originalQueueing)
             {
-                $"Requeueing {originalLocation.LocationName} from {originalQueueing}: no change".Debug();
+                Log.detail("Requeueing {0} from {1}: no change", originalLocation.LocationName, originalQueueing);
                 return;
             }
 
-            $"Requeueing {originalLocation.LocationName} from {originalQueueing} to {finalQueueing} ".Debug();
+            Log.detail("Requeueing {0} from {1} to {2}", originalLocation.LocationName, originalQueueing, finalQueueing);
             originalLocation.Queueing = finalQueueing;
             originalLocation.File.IsChanged = true;
             _allLocations.Sort(CompareLocations);
@@ -180,18 +179,18 @@ namespace KspWalkAbout.Entities
         internal void AddLocation(LocationRequest request)
         {
             Location location = CreateRequestedLocation(request);
-            $"Requested location {location.LocationName} created".Debug();
+            Log.detail("Requested location {0} created", location.LocationName);
 
             LocationFile userLocationFile = GetUserLocationFile();
-            $"userLocationFile = {userLocationFile.Filename}".Debug();
+            Log.detail("userLocationFile = {0}", userLocationFile.Filename);
             userLocationFile.Locations.Add(location);
 
-            userLocationFile.IsChanged = true; $"location file {userLocationFile.FilePath} needs saving".Debug();
+            userLocationFile.IsChanged = true; Log.detail("location file {0} needs saving", userLocationFile.FilePath);
             IsChanged = true;
 
             RefreshLocations();
 
-            $"{request.Name} added to known locations.".Debug();
+            Log.detail("{0} added to known locations.", request.Name);
             ScreenMessages.PostScreenMessage(new ScreenMessage($"{request.Name} added to known locations.", 4.0f, ScreenMessageStyle.UPPER_LEFT));
         }
 
@@ -211,19 +210,19 @@ namespace KspWalkAbout.Entities
 
             if (userLocationFile == null)
             {
-                $"{Constants.UserLocationFilename} not found - creating...".Debug();
+                Log.detail("{0} not found - creating...", Constants.UserLocationFilename);
                 string locPath = $"{WalkAbout.GetModDirectory()}/{Constants.UserLocationSubdirectory}/{Constants.UserLocationFilename}";
                 userLocationFile = new LocationFile();
                 bool loaded = userLocationFile.Load(
                     locPath,
                     ConfigNode.CreateConfigFromObject(new LocationFile()));
                 userLocationFile.Locations = new List<Location>();
-                $"location file {locPath} loaded = {loaded}".Debug();
+                Log.detail("location file {0} loaded = {1}", locPath, loaded);
                 Add(userLocationFile);
             }
             else
             {
-                $"Found {userLocationFile?.FilePath} file".Debug();
+                Log.detail("Found {0} file", userLocationFile?.FilePath);
             }
 
             return userLocationFile;
@@ -356,14 +355,14 @@ namespace KspWalkAbout.Entities
             foreach (System.IO.FileInfo file in di.GetFiles($"*.{LocationFileExtension}"))
             {
                 LocationFile locationFile = new LocationFile();
-                bool loaded = locationFile.Load(file.FullName); $"loading locations file {file.FullName} = {loaded}".Debug();
+                bool loaded = locationFile.Load(file.FullName); Log.detail("loading locations file {0} = {1}", file.FullName, loaded);
                 if (loaded)
                 {
                     Add(locationFile);
                 }
-                locationFile.StatusMessage.Log();
+                Log.info(locationFile.StatusMessage);
             }
-            $"{Count} location files loaded".Debug();
+            Log.detail("{0} location files loaded", Count);
         }
 
         /// <summary>

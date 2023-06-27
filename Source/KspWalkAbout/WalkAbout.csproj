@@ -47,7 +47,6 @@
     <Compile Include="Entities\InventoryItem.cs" />
     <Compile Include="Values\Constants.cs" />
     <Compile Include="Values\Enums.cs" />
-    <Compile Include="Extensions\DebugExtensions.cs" />
     <Compile Include="Guis\AddUtilityGui.cs" />
     <Compile Include="Guis\PlaceKerbalGui.cs" />
     <Compile Include="Guis\GuiResizer.cs" />
@@ -143,12 +142,12 @@
       <HintPath>..\..\..\..\..\..\LIB\plugins\KSPe.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>"C:\Games\Tools\pdb2mdb\pdb2mdb.exe" "$(TargetFileName)"
-xcopy /Y "$(TargetPath)" "E:\Games\Steam64\SteamApps\common\Kerbal Space Program - ModTest\GameData\WalkAbout\Plugins\"
-xcopy /Y "$(TargetDir)$(TargetName).pdb" "E:\Games\Steam64\SteamApps\common\Kerbal Space Program - ModTest\GameDataa\WalkAbout\Plugins\"
-xcopy /Y "$(TargetDir)$(TargetName).dll.mdb" "E:\Games\Steam64\SteamApps\common\Kerbal Space Program - ModTest\GameData\WalkAbout\Plugins\"</PostBuildEvent>
+    <PostBuildEvent></PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

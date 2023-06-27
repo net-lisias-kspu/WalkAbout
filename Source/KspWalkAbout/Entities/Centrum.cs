@@ -15,7 +15,6 @@
 
 */
 
-using KspWalkAbout.Extensions;
 using System;
 using static KspWalkAbout.Values.Constants;
 
@@ -27,13 +26,13 @@ namespace KspWalkAbout.Entities
         public Centrum()
         {
             Coordinates = WorldCoordinates.GetFacilityCoordinates<FlagPoleFacility>();
-            $" KSC flag = lat:{Coordinates.Latitude} long:{Coordinates.Longitude} alt:{Coordinates.Altitude} radius:{Coordinates.WorldRadius}".Debug();
+            Log.detail("KSC flag = lat:{0} long:{1} alt:{2} radius:{3}", Coordinates.Latitude, Coordinates.Longitude, Coordinates.Altitude, Coordinates.WorldRadius);
 
-            $"VAB = lat:{VABPosition.Latitude} long:{VABPosition.Longitude} alt:{VABPosition.Altitude}".Debug();
             WorldCoordinates VABPosition = WorldCoordinates.GetFacilityCoordinates<VehicleAssemblyBuilding>();
+            Log.detail("VAB = lat:{0} long:{1} alt:{2}", VABPosition.Latitude, VABPosition.Longitude, VABPosition.Altitude);
 
-            $"Route from Flag to VAB = bearing:{route.ForwardAzimuth} dist:{route.DistanceAtOrigAlt} alt:{route.DeltaASL}".Debug();
             GreatCircle route = new GreatCircle(Coordinates, VABPosition);
+            Log.detail("Route from Flag to VAB = bearing:{0} dist:{1} alt:{2}", route.ForwardAzimuth, route.DistanceAtOrigAlt, route.DeltaASL);
 
             AngularOffset =
                 Math.Round(route.ForwardAzimuth - BaseBearingFlagToVAB, RoundingAccuracy, MidpointRounding.AwayFromZero);
@@ -41,7 +40,7 @@ namespace KspWalkAbout.Entities
                 Math.Round(route.DistanceAtOrigAlt / BaseDistanceFlagToVAB, RoundingAccuracy, MidpointRounding.AwayFromZero);
             VerticalScale =
                 Math.Round(route.DeltaASL / BaseDeltaAltFlagToVAB, RoundingAccuracy, MidpointRounding.AwayFromZero);
-            $"Offset:{AngularOffset} degrees, Scaling:{HorizontalScale}(h) x {VerticalScale}(v)".Debug();
+            Log.detail("Offset:{0} degrees, Scaling:{1}(h) x {2}(v)", AngularOffset, HorizontalScale, VerticalScale);
         }
 
         public double AngularOffset { get; private set; }

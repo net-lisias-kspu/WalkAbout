@@ -17,7 +17,6 @@
 
 using KspAccess;
 using KspWalkAbout.Entities;
-using KspWalkAbout.Extensions;
 using KspWalkAbout.Values;
 using UnityEngine;
 using static KspAccess.CommonKspAccess;
@@ -40,7 +39,7 @@ namespace KspWalkAbout
             KerbalEVA kerbalEva = GetKerbalEva();
             if (kerbalEva == null)
             {
-                "WalkAboutEva deactivated: not a valid Kerbal EVA".Debug();
+                Log.detail("WalkAboutEva deactivated: not a valid Kerbal EVA");
                 return;
             }
 
@@ -52,15 +51,15 @@ namespace KspWalkAbout
             };
 
             ProtoCrewMember kerbalPcm = FlightGlobals.ActiveVessel.GetVesselCrew()[0];
-            $"Flight scene started for {kerbalPcm.name}".Debug();
+            Log.detail("Flight scene started for {0}", kerbalPcm.name);
 
             System.Reflection.Assembly KisMod = null;
             if (!WalkAboutKspAccess.TryGetKisMod(ref KisMod))
             {
-                $"KIS not installed".Debug();
+                Log.detail("KIS not installed");
                 return;
             }
-            $"obtained KIS mod assembly [{KisMod}]".Debug();
+            Log.detail("obtained KIS mod assembly [{0}]", KisMod);
 
             if (WalkAboutPersistent.AllocatedItems.ContainsKey(kerbalPcm.name))
             {
@@ -68,7 +67,7 @@ namespace KspWalkAbout
             }
             else
             {
-                $"{kerbalPcm.name} has no items to add to inventory".Debug();
+                Log.detail("{0} has no items to add to inventory", kerbalPcm.name);
             }
         }
 
@@ -115,17 +114,17 @@ namespace KspWalkAbout
                     Key = GetModConfig().PmActivationHotKey,
                     Modifiers = GetModConfig().PmActivationHotKeyModifiers
                 };
-                $"Perpetual Motion Key set to {(_perpetualMotionKeys?.Key ?? KeyCode.None)}".Debug();
+                Log.detail("Perpetual Motion Key set to {0}", _perpetualMotionKeys?.Key ?? KeyCode.None);
             }
         }
 
         private void AddInventoryItems(ProtoCrewMember kerbalPcm, System.Reflection.Assembly KIS)
         {
-            $"{kerbalPcm.name} has {WalkAboutPersistent.AllocatedItems[kerbalPcm.name].Count} items to be assigned".Debug();
+            Log.detail("{0} has {1} items to be assigned", kerbalPcm.name, WalkAboutPersistent.AllocatedItems[kerbalPcm.name].Count);
             System.Type ModuleKISInventoryType = KIS.GetType("KIS.ModuleKISInventory");
-            "found KIS inventory type".Debug();
+            Log.detail("found KIS inventory type");
             Component inventory = FlightGlobals.ActiveVessel.GetComponent(ModuleKISInventoryType);
-            "obtained modules for the active vessel".Debug();
+            Log.detail("obtained modules for the active vessel");
 
             if (inventory != null)
             {
@@ -140,16 +139,16 @@ namespace KspWalkAbout
 
         private void AddItemToInventory(ProtoCrewMember kerbalPcm, string itemName, System.Type KisType, Component inventory)
         {
-            $"{kerbalPcm.name} has a {itemName} to be added".Debug();
+            Log.detail("{0} has a {1} to be added", kerbalPcm.name, itemName);
 
             Part part = PartLoader.getPartInfoByName(itemName)?.partPrefab;
             if (part == null)
             {
-                "Cannot add item to inventory".Debug();
+                Log.detail("Cannot add item to inventory");
                 return;
             }
 
-            $"invoking AddItem member using (part [{part.GetType()}])".Debug();
+            Log.detail("invoking AddItem member using (part [{0}])", part.GetType());
             object item =
                 KisType.InvokeMember(
                     "AddItem",
@@ -157,7 +156,7 @@ namespace KspWalkAbout
                     null,
                     inventory,
                     new object[] { part, 1f, -1 });
-            $"{itemName} is in the inventory as {item}".Debug();
+            Log.detail("{0} is in the inventory as {1}", itemName, item);
         }
 
         private bool AreFlightConditionsMet(KerbalEVA kerbalEva)
@@ -173,7 +172,7 @@ namespace KspWalkAbout
             if (IsKeyCombinationPressed(perpetualMotionKeys))
             {
                 motion.State = (motion.State == MotionState.perpetual) ? MotionState.stopping : MotionState.perpetual;
-                $"Set motion state to {motion.State}".Debug();
+                Log.detail("Set motion state to {0}", motion.State);
             }
 
             if (GameSettings.EVA_Run.GetKeyDown())
@@ -187,7 +186,7 @@ namespace KspWalkAbout
             if ((TimeWarp.WarpMode == TimeWarp.Modes.HIGH) && (TimeWarp.CurrentRate != 1))
             {
                 int rate = Mathf.Min(4, TimeWarp.CurrentRateIndex);
-                $"Forcing TimeWarp from mode:HIGH rate:{TimeWarp.CurrentRateIndex} to mode:LOW, rate {rate}".Debug();
+                Log.detail("Forcing TimeWarp from mode:HIGH rate:{0} to mode:LOW, rate {1}", TimeWarp.CurrentRateIndex, rate);
                 TimeWarp.fetch.Mode = TimeWarp.Modes.LOW;
                 TimeWarp.SetRate(rate, true, true);
             }

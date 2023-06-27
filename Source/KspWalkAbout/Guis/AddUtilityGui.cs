@@ -17,7 +17,6 @@
 
 using KspAccess;
 using KspWalkAbout.Entities;
-using KspWalkAbout.Extensions;
 using KspWalkAbout.Values;
 using UnityEngine;
 using static KspWalkAbout.Entities.WalkAboutPersistent;
@@ -210,12 +209,12 @@ namespace KspWalkAbout.Guis
                 ((string.IsNullOrEmpty(label) || _existingName) ? _elementStyles.SelectedButton : _elementStyles.InvalidButton))
                 && string.IsNullOrEmpty(label))
             {
-                $"Action selected: create location {_enteredLocationName} for {_selectedFacility}".Debug();
+                Log.detail("Action selected: create location {0} for {1}", _enteredLocationName, _selectedFacility);
                 RequestedLocation = new LocationRequest { Name = _enteredLocationName, AssociatedFacility = _selectedFacility };
                 _enteredLocationName = _unenteredText;
                 _selectedFacility = string.Empty;
                 IsActive = false;
-                "Location request created - closing GUI".Debug();
+                Log.detail("Location request created - closing GUI");
             }
         }
 

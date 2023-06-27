@@ -15,7 +15,6 @@
 
 */
 
-using KspWalkAbout.Extensions;
 using KspWalkAbout.Values;
 using KspWalkAbout.WalkAboutFiles;
 using UnityEngine;
@@ -101,7 +100,10 @@ namespace KspWalkAbout.Entities
                         ForwardAzimuth + centrum.AngularOffset,
                         Distance * centrum.HorizontalScale,
                         DeltaAltitude * centrum.VerticalScale);
-                    $"set location {LocationName} to lat:[{ForwardAzimuth} + {centrum.AngularOffset}]={_coordinates.Latitude} long:[{Distance} * {centrum.HorizontalScale}]={_coordinates.Longitude} delta alt:[{DeltaAltitude} * {centrum.VerticalScale}]={_coordinates.Altitude}".Debug();
+                    Log.detail(
+                            "set location {0} to lat:[{1} + {2}]={3} long:[{4} * {5}]={6} delta alt:[{7} * {8}]={9}",
+                            LocationName, ForwardAzimuth, centrum.AngularOffset, _coordinates.Latitude, Distance, centrum.HorizontalScale, _coordinates.Longitude, DeltaAltitude, centrum.VerticalScale, _coordinates.Altitude
+                        );
                 }
 
                 return _coordinates;

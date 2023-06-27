@@ -16,7 +16,6 @@
 */
 
 using KspAccess;
-using KspWalkAbout.Extensions;
 using KspWalkAbout.Values;
 using KspWalkAbout.WalkAboutFiles;
 using System;
@@ -63,7 +62,7 @@ namespace KspWalkAbout.Entities
             {
                 if (item.Queueing > 0)
                 {
-                    $"Adding item {item.Name} (queueing={item.Queueing}) to InventoryItems to save".Debug();
+                    Log.detail("Adding item {0} (queueing={1}) to InventoryItems to save", item.Name, item.Queueing);
                     _file.Items.Add(item);
                 }
             }
@@ -95,11 +94,11 @@ namespace KspWalkAbout.Entities
         /// </remarks>
         internal void UpdateQueueing(List<InventoryItem> items)
         {
-            if (DebugExtensions.DebugIsOn)
+            if (Log.isDebug)
             {
                 foreach (InventoryItem item in items)
                 {
-                    $"requeueing item {item.Name} from queue {this[item.Name].Queueing}".Debug();
+                    Log.detail("requeueing item {0} from queue {1}", item.Name, this[item.Name].Queueing);
                 }
             }
 
@@ -107,26 +106,26 @@ namespace KspWalkAbout.Entities
             {
                 int origQueueing = this[item.Name].Queueing;
                 int newQueueing = (origQueueing == 0) ? 1 : Math.Min(_maxQueueing, _maxQueueing - (_maxQueueing - origQueueing) / 2 + 1);
-                $"requeuing operation to change {item.Name} from {origQueueing} to {newQueueing} ".Debug();
+                Log.detail("requeuing operation to change {0} from {1} to {2} ", item.Name, origQueueing, newQueueing);
                 if (origQueueing == 0)
                 {
-                    $"increasing queueing for items between {0} and {_maxQueueing - 1}".Debug();
+                    Log.detail("increasing queueing for items between [0..{1}[", _maxQueueing);
                     for (int index = 0; index < _maxQueueing; index++, this[_sortedItems[index].Name].Queueing++)
                     {
-                        $"{this[_sortedItems[index].Name]} set to {this[_sortedItems[index].Name].Queueing}".Debug();
+                        Log.detail("{0} set to {1}", this[_sortedItems[index].Name], this[_sortedItems[index].Name].Queueing);
                     }
                     _maxQueueing++;
                 }
                 else
                 {
-                    $"decreasing queueing for items between {newQueueing} and {origQueueing - 1}".Debug();
+                    Log.detail("decreasing queueing for items between [{0}..{1}[", newQueueing, origQueueing);
                     for (int index = newQueueing; index < origQueueing; index++, this[_sortedItems[index].Name].Queueing--)
                     {
-                        $"{this[_sortedItems[index].Name]} set to {this[_sortedItems[index].Name].Queueing}".Debug();
+                        Log.detail("{0} set to {1}", this[_sortedItems[index].Name], this[_sortedItems[index].Name].Queueing);
                     }
                 }
                 this[item.Name].Queueing = newQueueing;
-                $"{item.Name} set to {newQueueing}".Debug();
+                Log.detail("{0} set to {1}", item.Name, newQueueing);
 
                 SortItems();
             }
@@ -144,14 +143,14 @@ namespace KspWalkAbout.Entities
             {
                 return;
             }
-            $"KIS detected - refreshing".Debug();
+            Log.detail("KIS detected - refreshing");
 
             if (Count == 0)
             {
                 LoadItemsFromFile();
             }
 
-            $"examining {PartLoader.LoadedPartsList.Count} parts from PartLoader".Debug();
+            Log.detail("examining {0} parts from PartLoader", PartLoader.LoadedPartsList.Count);
             foreach (AvailablePart part in PartLoader.LoadedPartsList)
             {
                 float volume = CalculatePartVolume(part.partPrefab);
@@ -165,13 +164,16 @@ namespace KspWalkAbout.Entities
                     ProtoTechNode tech = AssetBase.RnDTechTree.FindTech(part.TechRequired);
                     if (tech == null)
                     {
-                        $"unable to find tech for {part.name}".Debug();
+                        Log.detail("unable to find tech for {0}", part.name);
                         continue;
                     }
 
                     bool available = GetPartAvailability(part);
 
-                    $"info for part {part.name}: cost={part.cost} volume={volume} title={part.title} required tech={(part?.TechRequired) ?? "null"} available={available}".Debug();
+                    Log.detail(
+                            "info for part {0}: cost={1} volume={2} title={3} required tech={4} available={4}", 
+                            part.name, part.cost, volume, part.title, (part?.TechRequired) ?? "null", available
+                        );
 
                     if (ContainsKey(part.name))
                     {
@@ -216,7 +218,7 @@ namespace KspWalkAbout.Entities
                 string volumeText = module.Fields["volumeOverride"].originalValue.ToString();
                 if (!float.TryParse(volumeText, out volume))
                 {
-                    $"Part [{part.name}]: unable to translate KIS volumeOverride value [{volumeText}] to a valid number".Debug();
+                    Log.detail("Part [{0}]: unable to translate KIS volumeOverride value [{1}] to a valid number", part.name, volumeText);
                 }
             }
 
@@ -275,21 +277,21 @@ namespace KspWalkAbout.Entities
         /// </summary>
         private void LoadItemsFromFile()
         {
-            $"Refresh: No items detected - loading (_file={_file})".Debug();
-            $"Refresh: loaded={loaded} status={_file.StatusMessage}".Debug();
+            Log.detail("Refresh: No items detected - loading (_file={0})", _file);
             bool loaded = _file.Load($"{WalkAbout.GetModDirectory()}/Items.cfg", Constants.DefaultItems);
+            Log.detail("Refresh: loaded={0} status={1}", loaded, _file.StatusMessage);
             if (loaded)
             {
                 if (_file.Items == null)
                 {
                     _file.Items = new List<InventoryItem>();
-                    "Initialized items to null list due to unresolved bug in Settings".Debug();
+                    Log.detail("Initialized items to null list due to unresolved bug in Settings");
                 }
 
                 foreach (InventoryItem item in _file.Items)
                 {
                     Add(item.Name, item);
-                    $"added previously selected part [{item.Name}]".Debug();
+                    Log.detail("added previously selected part [{0}]", item.Name);
                 }
             }
         }

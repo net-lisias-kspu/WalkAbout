@@ -15,7 +15,6 @@
 
 */
 
-using KspWalkAbout.Extensions;
 using KspWalkAbout.KspFiles;
 using KspWalkAbout.Values;
 using System.Collections.Generic;
@@ -154,7 +153,7 @@ namespace KspWalkAbout.WalkAboutFiles
                 ScreenY = (int)newPosition.yMin;
                 ScreenWidth = (int)newPosition.width;
                 ScreenHeight = (int)newPosition.height;
-                $"IsChanged = {IsChanged} - screen moved from {oldPosition} to {newPosition}".Debug();
+                Log.detail("IsChanged = {0} - screen moved from {1} to {2}", IsChanged, oldPosition, newPosition);
             }
         }
     }

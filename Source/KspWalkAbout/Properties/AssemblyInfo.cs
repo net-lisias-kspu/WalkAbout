@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("WalkAbout")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("The WalkAbout mod allows you to take an available kerbal from the Astronaut Complex and have him/her placed outside any door at the KSC.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany(KspWalkAbout.LegalMamboJambo.Company)]
 [assembly: AssemblyProduct(KspWalkAbout.LegalMamboJambo.Product)]
@@ -32,6 +32,8 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.7.*")]
-[assembly: AssemblyFileVersion("1.7.1")]
-
+[assembly: AssemblyVersion(KspWalkAbout.Version.Number)]
+[assembly: AssemblyFileVersion(KspWalkAbout.Version.Number)]
+[assembly: KSPAssembly("KspWalkAbout", KspWalkAbout.Version.major, KspWalkAbout.Version.minor)]
+[assembly: KSPAssemblyDependency("KSPe", 2, 5)]
+[assembly: KSPAssemblyDependency("KSPe.UI", 2, 5)]

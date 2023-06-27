@@ -1,7 +1,6 @@
 ﻿/*
 	This file is part of Walk About /L Unleashed
 		© 2023 Lisias T : http://lisias.net <support@lisias.net>
-		© 2016-2017 Antipodes (Clive Pottinger)
 
 	Walk About /L Unleashed is licensed as follows:
 		* GPL 3.0 : https://www.gnu.org/licenses/gpl-3.0.txt
@@ -14,20 +13,26 @@
 	along with Walk About /L Unleashed. If not, see <https://www.gnu.org/licenses/>.
 
 */
+using UnityEngine;
 
-using KspWalkAbout.Entities;
-using KspWalkAbout.KspFiles;
-using System.Collections.Generic;
-
-namespace KspWalkAbout.WalkAboutFiles
+namespace KspWalkAbout
 {
-    /// <summary>
-    /// Represents a settings file containing information on all parts that can be used with the mod.
-    /// </summary>
-    public class ItemsFile : SettingsFile
-    {
-        /// <summary>Collection of all items that a kerbal may possibly have in inventory.</summary>
-        [Persistent]
-        public List<InventoryItem> Items;
-    }
+	[KSPAddon(KSPAddon.Startup.Instantly, true)]
+	internal class Startup:MonoBehaviour
+	{
+		private void Start()
+		{
+			Log.force("Version {0}", Version.Text);
+
+			try
+			{
+				KSPe.Util.Installation.Check<Startup>("KerbalElectric", "Kerbal Electric", null);
+			}
+			catch (KSPe.Util.InstallmentException e)
+			{
+				Log.error(e, this);
+				KSPe.Common.Dialogs.ShowStopperAlertBox.Show(e);
+			}
+		}
+	}
 }

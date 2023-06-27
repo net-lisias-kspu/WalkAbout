@@ -1,18 +1,18 @@
 {
-	"NAME"		: "NavBall Docking Alignment Indicator /L Unleashed",
-	"URL"		: "https://raw.githubusercontent.com/net-lisias-kspu/NavBallDockingAlignmentIndicator/master/NavBallDockingAlignmentIndicator.version",
-	"DOWNLOAD"	: "https://github.com/net-lisias-kspu/NavBallDockingAlignmentIndicator/releases",
-	"CHANGE_LOG"	: "https://raw.githubusercontent.com/net-lisias-kspu/NavBallDockingAlignmentIndicator/master/CHANGE_LOG.md",
-	"CHANGE_LOG_URL": "https://raw.githubusercontent.com/net-lisias-kspu/NavBallDockingAlignmentIndicator/master/CHANGES.md",
+	"NAME"		: "Walk About /L Unleashed",
+	"URL"		: "https://raw.githubusercontent.com/net-lisias-kspu/WalkAbout/master/WalkAbout.version",
+	"DOWNLOAD"	: "https://github.com/net-lisias-kspu/WalkAbout/releases",
+	"CHANGE_LOG"	: "https://raw.githubusercontent.com/net-lisias-kspu/WalkAbout/master/CHANGE_LOG.md",
+	"CHANGE_LOG_URL": "https://raw.githubusercontent.com/net-lisias-kspu/WalkAbout/master/CHANGES.md",
 	"VERSION":{
 		"MAJOR":1,
-		"MINOR":1,
+		"MINOR":7,
 		"PATCH":1,
-		"BUILD":4
+		"BUILD":0
 		},
 	"KSP_VERSION_MIN":{
 		"MAJOR":1,
-		"MINOR":5,
-		"PATCH":0
+		"MINOR":3,
+		"PATCH":1
 		}
 }

@@ -1,7 +1,6 @@
 ﻿/*
 	This file is part of Walk About /L Unleashed
 		© 2023 Lisias T : http://lisias.net <support@lisias.net>
-		© 2016-2017 Antipodes (Clive Pottinger)
 
 	Walk About /L Unleashed is licensed as follows:
 		* GPL 3.0 : https://www.gnu.org/licenses/gpl-3.0.txt
@@ -14,21 +13,16 @@
 	along with Walk About /L Unleashed. If not, see <https://www.gnu.org/licenses/>.
 
 */
-
-using KspWalkAbout.Entities;
-using KspWalkAbout.KspFiles;
 using System.Collections.Generic;
-using System.IO;
 
-namespace KspWalkAbout.WalkAboutFiles
+namespace KspWalkAbout
 {
-    /// <summary>Represents a settings file containing a set of locations for use with the mod.</summary>
-    public class LocationFile : SettingsFile
-    {
-        /// <summary>Collection of all locations where kerbals may be placed.</summary>
-        [Persistent]
-        public List<Location> Locations;
-
-        public object Filename { get { return Path.GetFileName(this.FilePath); } }
-    }
+	public class ModuleManagerSupport : UnityEngine.MonoBehaviour
+	{
+		public static IEnumerable<string> ModuleManagerAddToModList()
+		{
+			string[] r = { typeof(ModuleManagerSupport).Namespace };
+			return r;
+		}
+	}
 }

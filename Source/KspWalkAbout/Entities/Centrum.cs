@@ -29,11 +29,11 @@ namespace KspWalkAbout.Entities
             Coordinates = WorldCoordinates.GetFacilityCoordinates<FlagPoleFacility>();
             $" KSC flag = lat:{Coordinates.Latitude} long:{Coordinates.Longitude} alt:{Coordinates.Altitude} radius:{Coordinates.WorldRadius}".Debug();
 
-            var VABPosition = WorldCoordinates.GetFacilityCoordinates<VehicleAssemblyBuilding>();
             $"VAB = lat:{VABPosition.Latitude} long:{VABPosition.Longitude} alt:{VABPosition.Altitude}".Debug();
+            WorldCoordinates VABPosition = WorldCoordinates.GetFacilityCoordinates<VehicleAssemblyBuilding>();
 
-            var route = new GreatCircle(Coordinates, VABPosition);
             $"Route from Flag to VAB = bearing:{route.ForwardAzimuth} dist:{route.DistanceAtOrigAlt} alt:{route.DeltaASL}".Debug();
+            GreatCircle route = new GreatCircle(Coordinates, VABPosition);
 
             AngularOffset =
                 Math.Round(route.ForwardAzimuth - BaseBearingFlagToVAB, RoundingAccuracy, MidpointRounding.AwayFromZero);

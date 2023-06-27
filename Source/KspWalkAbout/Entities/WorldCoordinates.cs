@@ -63,22 +63,22 @@ namespace KspWalkAbout.Entities
 
         public WorldCoordinates Add(double bearing, double distance, double deltaASL = 0d)
         {
-            var startLat = Latitude * Constants.DegreesToRadiansFactor;   // φ1
-            var startLong = Longitude * Constants.DegreesToRadiansFactor; // λ1
-            var radius = WorldRadius + Altitude;                          // R
-            var angularDist = distance / radius;                          // δ 
+            double startLat = Latitude * Constants.DegreesToRadiansFactor;   // φ1
+            double startLong = Longitude * Constants.DegreesToRadiansFactor; // λ1
+            double radius = WorldRadius + Altitude;                          // R
+            double angularDist = distance / radius;                          // δ 
 
             // φ2 = asin( sin φ1 ⋅ cos δ + cos φ1 ⋅ sin δ ⋅ cos θ )
-            var angle = bearing * Constants.DegreesToRadiansFactor;                // θ
-            var endLat =
+            double angle = bearing * Constants.DegreesToRadiansFactor;       // θ
+            double endLat =
                 Math.Asin(
                     Math.Sin(startLat) * Math.Cos(angularDist) +                   // sin φ1 ⋅ cos δ
                     Math.Cos(startLat) * Math.Sin(angularDist) * Math.Cos(angle)); // cos φ1 ⋅ sin δ ⋅ cos θ 
 
             // λ2 = λ1 + atan2( sin θ ⋅ sin δ ⋅ cos φ1, cos δ − sin φ1 ⋅ sin φ2 )
-            var a = Math.Sin(angle) * Math.Sin(angularDist) * Math.Cos(startLat);  // sin θ ⋅ sin δ ⋅ cos φ1
-            var b = Math.Cos(angularDist) - Math.Sin(startLat) * Math.Sin(endLat); // cos δ − sin φ1 ⋅ sin φ2
-            var endLong = startLong + Math.Atan2(a, b);
+            double a = Math.Sin(angle) * Math.Sin(angularDist) * Math.Cos(startLat);  // sin θ ⋅ sin δ ⋅ cos φ1
+            double b = Math.Cos(angularDist) - Math.Sin(startLat) * Math.Sin(endLat); // cos δ − sin φ1 ⋅ sin φ2
+            double endLong = startLong + Math.Atan2(a, b);
 
             return new WorldCoordinates
             {
@@ -96,12 +96,12 @@ namespace KspWalkAbout.Entities
 
         public static WorldCoordinates GetFacilityCoordinates<T>() where T : SpaceCenterBuilding
         {
-            var facilityVectorPosition =
+            UnityEngine.Vector3 facilityVectorPosition =
                    ((T)(SpaceCenter.FindObjectOfType(typeof(T))))
                    .transform
                    .position;
 
-            var facilityCoordinates = new WorldCoordinates
+            WorldCoordinates facilityCoordinates = new WorldCoordinates
             {
                 Latitude = Homeworld.GetLatitude(facilityVectorPosition),
                 Longitude = Homeworld.GetLongitude(facilityVectorPosition),

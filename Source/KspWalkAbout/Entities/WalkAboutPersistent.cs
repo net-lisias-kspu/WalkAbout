@@ -70,7 +70,7 @@ namespace KspWalkAbout.Entities
             if (_modConfig == null)
             {
                 _modConfig = new WalkAboutSettings();
-                var loaded = _modConfig.Load($"{WalkAbout.GetModDirectory()}/Settings.cfg", Constants.DefaultSettings);
+                bool loaded = _modConfig.Load($"{WalkAbout.GetModDirectory()}/Settings.cfg", Constants.DefaultSettings);
                 _modConfig.StatusMessage.Log();
 
                 if (!loaded) { return null; }

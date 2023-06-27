@@ -45,7 +45,7 @@ namespace KspWalkAbout
                 "Add Location utility deactivated: not an EVA".Debug();
                 return;
             }
-            var crew = FlightGlobals.ActiveVessel.GetVesselCrew();
+            System.Collections.Generic.List<ProtoCrewMember> crew = FlightGlobals.ActiveVessel.GetVesselCrew();
             if ((crew?.Count ?? 0) != 1)
             {
                 "Add Location utility deactivated: invalid crew count".Debug();
@@ -108,7 +108,7 @@ namespace KspWalkAbout
         /// </summary>
         private bool CheckForModUtilityActivation()
         {
-            var wasActive = _addUtilityGui.IsActive;
+            bool wasActive = _addUtilityGui.IsActive;
             _addUtilityGui.IsActive |= IsKeyCombinationPressed(_config.AUActivationHotKey, _config.AUActivationHotKeyModifiers);
 
             if (wasActive != _addUtilityGui.IsActive)

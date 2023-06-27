@@ -125,7 +125,7 @@ namespace KspWalkAbout.Guis
         /// </summary>
         private void DrawLocationNameInput()
         {
-            var textWasDefault = (_enteredLocationName == _unenteredText);
+            bool textWasDefault = (_enteredLocationName == _unenteredText);
 
             GUILayout.BeginHorizontal();
             {
@@ -145,9 +145,9 @@ namespace KspWalkAbout.Guis
             }
             else if (textWasDefault)
             {
-                foreach (var letter in _unenteredText)
+                foreach (char letter in _unenteredText)
                 {
-                    var index = _enteredLocationName.IndexOf(letter);
+                    int index = _enteredLocationName.IndexOf(letter);
                     if (index != -1)
                     {
                         _enteredLocationName = _enteredLocationName.Remove(index, 1);
@@ -170,14 +170,15 @@ namespace KspWalkAbout.Guis
                 {
                     GUILayout.BeginVertical();
                     {
-                        foreach (var facilityName in ScenarioUpgradeableFacilities.protoUpgradeables.Keys)
+                        foreach (string facilityName in ScenarioUpgradeableFacilities.protoUpgradeables.Keys)
                         {
-                            var buttonStyle = (facilityName == (_selectedFacility ?? string.Empty))
+                            GUIStyle buttonStyle = (facilityName == (_selectedFacility ?? string.Empty))
                                 ? _elementStyles.SelectedButton
                                 : _elementStyles.ValidButton;
                             if (GUILayout.Button(facilityName, buttonStyle))
                             {
-                                _selectedFacility = facilityName; $"selected {_selectedFacility}".Debug();
+                                _selectedFacility = facilityName;
+                                Log.detail("selected {0}", _selectedFacility);
                             }
                         }
                     }
@@ -235,12 +236,12 @@ namespace KspWalkAbout.Guis
         /// </summary>
         private void DrawClosestLocation()
         {
-            var closest = _map.FindClosest(FlightGlobals.ActiveVessel.latitude,
+            KnownPlaces.Locale[] closest = _map.FindClosest(FlightGlobals.ActiveVessel.latitude,
                                            FlightGlobals.ActiveVessel.longitude,
                                            FlightGlobals.ActiveVessel.altitude);
-            var text = "Closest known locations:";
-            var suffix = " none found";
-            for (var level = 1; level < closest.Length; level++)
+            string text = "Closest known locations:";
+            string suffix = " none found";
+            for (int level = 1; level < closest.Length; level++)
             {
                 if (string.IsNullOrEmpty(closest[level].Name)) continue;
 

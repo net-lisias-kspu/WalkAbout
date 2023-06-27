@@ -37,7 +37,7 @@ namespace KspWalkAbout
         /// <summary>Detects if the scene is for a kerbal on EVA and adds any outstanding inventory items.</summary>
         public void Start()
         {
-            var kerbalEva = GetKerbalEva();
+            KerbalEVA kerbalEva = GetKerbalEva();
             if (kerbalEva == null)
             {
                 "WalkAboutEva deactivated: not a valid Kerbal EVA".Debug();
@@ -51,7 +51,7 @@ namespace KspWalkAbout
                 IsRunning = false,
             };
 
-            var kerbalPcm = FlightGlobals.ActiveVessel.GetVesselCrew()[0];
+            ProtoCrewMember kerbalPcm = FlightGlobals.ActiveVessel.GetVesselCrew()[0];
             $"Flight scene started for {kerbalPcm.name}".Debug();
 
             System.Reflection.Assembly KisMod = null;
@@ -75,7 +75,7 @@ namespace KspWalkAbout
         /// <summary>Called each time the game state is updated.</summary>
         public void FixedUpdate()
         {
-            var kerbalEva = GetKerbalEva();
+            KerbalEVA kerbalEva = GetKerbalEva();
             if (!AreFlightConditionsMet(kerbalEva))
             {
                 return;
@@ -97,7 +97,7 @@ namespace KspWalkAbout
                 return null;
             }
 
-            var crew = FlightGlobals.ActiveVessel.GetVesselCrew();
+            System.Collections.Generic.List<ProtoCrewMember> crew = FlightGlobals.ActiveVessel.GetVesselCrew();
             if ((crew?.Count ?? 0) != 1)
             {
                 return null;
@@ -122,14 +122,14 @@ namespace KspWalkAbout
         private void AddInventoryItems(ProtoCrewMember kerbalPcm, System.Reflection.Assembly KIS)
         {
             $"{kerbalPcm.name} has {WalkAboutPersistent.AllocatedItems[kerbalPcm.name].Count} items to be assigned".Debug();
-            var ModuleKISInventoryType = KIS.GetType("KIS.ModuleKISInventory");
+            System.Type ModuleKISInventoryType = KIS.GetType("KIS.ModuleKISInventory");
             "found KIS inventory type".Debug();
-            var inventory = FlightGlobals.ActiveVessel.GetComponent(ModuleKISInventoryType);
+            Component inventory = FlightGlobals.ActiveVessel.GetComponent(ModuleKISInventoryType);
             "obtained modules for the active vessel".Debug();
 
             if (inventory != null)
             {
-                foreach (var itemName in WalkAboutPersistent.AllocatedItems[kerbalPcm.name])
+                foreach (string itemName in WalkAboutPersistent.AllocatedItems[kerbalPcm.name])
                 {
                     AddItemToInventory(kerbalPcm, itemName, ModuleKISInventoryType, inventory);
                 }
@@ -142,7 +142,7 @@ namespace KspWalkAbout
         {
             $"{kerbalPcm.name} has a {itemName} to be added".Debug();
 
-            var part = PartLoader.getPartInfoByName(itemName)?.partPrefab;
+            Part part = PartLoader.getPartInfoByName(itemName)?.partPrefab;
             if (part == null)
             {
                 "Cannot add item to inventory".Debug();
@@ -150,7 +150,7 @@ namespace KspWalkAbout
             }
 
             $"invoking AddItem member using (part [{part.GetType()}])".Debug();
-            var item =
+            object item =
                 KisType.InvokeMember(
                     "AddItem",
                     System.Reflection.BindingFlags.InvokeMethod,
@@ -186,7 +186,7 @@ namespace KspWalkAbout
         {
             if ((TimeWarp.WarpMode == TimeWarp.Modes.HIGH) && (TimeWarp.CurrentRate != 1))
             {
-                var rate = Mathf.Min(4, TimeWarp.CurrentRateIndex);
+                int rate = Mathf.Min(4, TimeWarp.CurrentRateIndex);
                 $"Forcing TimeWarp from mode:HIGH rate:{TimeWarp.CurrentRateIndex} to mode:LOW, rate {rate}".Debug();
                 TimeWarp.fetch.Mode = TimeWarp.Modes.LOW;
                 TimeWarp.SetRate(rate, true, true);
@@ -208,8 +208,8 @@ namespace KspWalkAbout
 
             currentMotion = GetNewMotionSettings(kerbalEva, currentMotion);
 
-            var orientation = kerbalEva.part.vessel.transform.rotation;
-            var deltaPosition = orientation * Vector3.forward.normalized * (TimeWarp.deltaTime * currentMotion.Speed);
+            Quaternion orientation = kerbalEva.part.vessel.transform.rotation;
+            Vector3 deltaPosition = orientation * Vector3.forward.normalized * (TimeWarp.deltaTime * currentMotion.Speed);
 
             currentAnimation.CrossFade(currentMotion.Animation);
             rigidbody.interpolation = RigidbodyInterpolation.Extrapolate;
@@ -218,8 +218,8 @@ namespace KspWalkAbout
 
         private MotionSettings GetNewMotionSettings(KerbalEVA kerbal, MotionSettings currentMotion)
         {
-            var gforce = FlightGlobals.currentMainBody.GeeASL;
-            var newMotion = new MotionSettings
+            double gforce = FlightGlobals.currentMainBody.GeeASL;
+            MotionSettings newMotion = new MotionSettings
             {
                 Animation = currentMotion.Animation,
                 IsRunning = currentMotion.IsRunning,

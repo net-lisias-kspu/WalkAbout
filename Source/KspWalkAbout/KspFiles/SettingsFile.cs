@@ -55,14 +55,14 @@ namespace KspWalkAbout.KspFiles
         /// </returns>
         public bool Load(string settingsFilePath, ConfigNode defaultNode = null)
         {
-            var isLoaded = false;
+            bool isLoaded = false;
             try
             {
-                var di = new DirectoryInfo(settingsFilePath); $"Load called for {settingsFilePath}".Debug();
+                DirectoryInfo di = new DirectoryInfo(settingsFilePath); $"Load called for {settingsFilePath}".Debug();
                 FilePath = di.FullName;
                 if (File.Exists(FilePath))
                 {
-                    var loadNode = ConfigNode.Load(FilePath);
+                    ConfigNode loadNode = ConfigNode.Load(FilePath);
                     isLoaded = ConfigNode.LoadObjectFromConfig(this, loadNode);
                     StatusMessage = isLoaded
                         ? $"Loaded [{FilePath}]"
@@ -96,7 +96,7 @@ namespace KspWalkAbout.KspFiles
         /// </returns>
         public bool Save()
         {
-            var saved = ConfigNode.CreateConfigFromObject(this, new ConfigNode()).Save(FilePath);
+            bool saved = ConfigNode.CreateConfigFromObject(this, new ConfigNode()).Save(FilePath);
             $"Saved {FilePath} = {saved}".Debug();
             IsChanged = IsChanged && !saved;
             return saved;

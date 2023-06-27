@@ -104,7 +104,7 @@ namespace KspWalkAbout.WalkAboutFiles
         /// <returns>A value indicating whether the settings were read (or set from default).</returns>
         internal new bool Load(string filePath, ConfigNode defaultNode = null)
         {
-            var result = base.Load(filePath, defaultNode);
+            bool result = base.Load(filePath, defaultNode);
 
             // Set values that may be missing in older config files.
             if (TopFew == 0)
@@ -145,7 +145,7 @@ namespace KspWalkAbout.WalkAboutFiles
         /// <param name="newPosition">A rectangle corresponding to the desired position and dimensions of the GUI.</param>
         internal void SetScreenPosition(Rect newPosition)
         {
-            var oldPosition = GetScreenPosition();
+            Rect oldPosition = GetScreenPosition();
             IsChanged |= (newPosition != oldPosition);
             if (newPosition != oldPosition)
             {

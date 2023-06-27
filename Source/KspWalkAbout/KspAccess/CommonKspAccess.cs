@@ -45,8 +45,8 @@ namespace KspAccess
         {
             try
             {
-                var searchText = $"{modName},";
-                foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+                string searchText = $"{modName},";
+                foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
                 {
                     if (assembly.FullName.StartsWith(searchText))
                     {
@@ -68,8 +68,8 @@ namespace KspAccess
         {
             try
             {
-                var searchText = $"{modName},";
-                foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+                string searchText = $"{modName},";
+                foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
                 {
                     if (assembly.FullName.StartsWith(searchText))
                     {
@@ -93,13 +93,13 @@ namespace KspAccess
 
         internal static bool IsKeyCombinationPressed(KeyCode key, List<KeyCode> modifiers = null)
         {
-            var requiredKeysPressed = (modifiers?.Count ?? 0) == 0;
+            bool requiredKeysPressed = (modifiers?.Count ?? 0) == 0;
 
             if (Input.GetKeyDown(key))
             {
                 if (!requiredKeysPressed)
                 {
-                    foreach (var modifier in modifiers)
+                    foreach (KeyCode modifier in modifiers)
                     {
                         requiredKeysPressed |= Input.GetKey(modifier);
                     }

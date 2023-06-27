@@ -37,8 +37,8 @@ namespace KspAccess
         {
             $"{request.Kerbal.name} will be placed outside {request.Location.LocationName}".Debug();
             $"placement lat:{request.Location.Coordinates.Latitude} long:{request.Location.Coordinates.Longitude} alt:{request.Location.Coordinates.Altitude}".Debug();
-            var orbit = CreateOrbitForKerbal(request);
-            var vesselNode = CreateVesselNode(request, orbit);
+            Orbit orbit = CreateOrbitForKerbal(request);
+            ConfigNode vesselNode = CreateVesselNode(request, orbit);
 
             SetVesselLocation(request, vesselNode);
             AddVesselToGame(request, vesselNode);
@@ -76,7 +76,7 @@ namespace KspAccess
         /// </summary>
         internal static bool TryGetKisMod(ref Assembly mod)
         {
-            var isModPresent = IsKisModDetected();
+            bool isModPresent = IsKisModDetected();
             mod = _KisMod;
 
             return isModPresent;
@@ -84,12 +84,12 @@ namespace KspAccess
 
         private static Orbit CreateOrbitForKerbal(PlacementRequest request)
         {
-            var pos =
+            Vector3d pos =
                 Homeworld.GetWorldSurfacePosition(
                     request.Location.Coordinates.Latitude,
                     request.Location.Coordinates.Longitude,
                     request.Location.Coordinates.Altitude);
-            var orbit = new Orbit(0, 0, 0, 0, 0, 0, 0, Homeworld);
+            Orbit orbit = new Orbit(0, 0, 0, 0, 0, 0, 0, Homeworld);
             orbit.UpdateFromStateVectors(pos, Homeworld.getRFrmVel(pos), Homeworld, Planetarium.GetUniversalTime());
             $"created orbit for {Homeworld.name}".Debug();
             return orbit;
@@ -98,16 +98,16 @@ namespace KspAccess
         private static ConfigNode CreateVesselNode(PlacementRequest request, Orbit orbit)
         {
             // create an id for the flight object that will represent the kerbal's EVA
-            var genderQualifier = request.Kerbal.gender == ProtoCrewMember.Gender.Female ? "female" : string.Empty;
-            var flightId = ShipConstruction.GetUniqueFlightID(HighLogic.CurrentGame.flightState);
+            string genderQualifier = request.Kerbal.gender == ProtoCrewMember.Gender.Female ? "female" : string.Empty;
+            uint flightId = ShipConstruction.GetUniqueFlightID(HighLogic.CurrentGame.flightState);
             $"created flightId {flightId}".Debug();
 
             // create a ship consisting of just the kerbal - this is how EVAs are represented in KSP
-            var partNodes = new ConfigNode[1];
+            ConfigNode[] partNodes = new ConfigNode[1];
             partNodes[0] =
                 ProtoVessel.CreatePartNode($"kerbalEVA{genderQualifier}", flightId, request.Kerbal);
             "created partNodes".Debug();
-            var vesselNode = ProtoVessel.CreateVesselNode(request.Kerbal.name, VesselType.EVA, orbit, 0, partNodes);
+            ConfigNode vesselNode = ProtoVessel.CreateVesselNode(request.Kerbal.name, VesselType.EVA, orbit, 0, partNodes);
             "created vesselNode".Debug();
             return vesselNode;
         }
@@ -141,7 +141,7 @@ namespace KspAccess
             if (request.Items.Count > 0)
             {
                 WalkAboutPersistent.AllocatedItems.Add(request.Kerbal.name, new List<string>());
-                foreach (var item in request.Items)
+                foreach (InventoryItem item in request.Items)
                 {
                     AllocateInventoryItem(request.Kerbal.name, item);
                 }
@@ -161,14 +161,14 @@ namespace KspAccess
 
         private static void AllocateEvaResources(ConfigNode vesselNode)
         {
-            var partNodes = vesselNode.GetNodes("PART");
+            ConfigNode[] partNodes = vesselNode.GetNodes("PART");
             if ((partNodes != null) && (partNodes[0] != null))
             {
-                var resourceNodes = partNodes[0].GetNodes("RESOURCE");
+                ConfigNode[] resourceNodes = partNodes[0].GetNodes("RESOURCE");
 
-                foreach (var resourceNode in resourceNodes)
+                foreach (ConfigNode resourceNode in resourceNodes)
                 {
-                    var resourceName = resourceNode.GetValue("name");
+                    string resourceName = resourceNode.GetValue("name");
                     if (WalkAboutPersistent.EvaResources.Contains(resourceName))
                     {
                         resourceNode.SetValue("amount", resourceNode.GetValue("maxAmount"), true);

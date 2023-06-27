@@ -96,7 +96,7 @@ namespace KspWalkAbout.Entities
             {
                 if (_coordinates == null)
                 {
-                    var centrum = GetCentrum();
+                    Centrum centrum = GetCentrum();
                     _coordinates = centrum.Coordinates.Add(
                         ForwardAzimuth + centrum.AngularOffset,
                         Distance * centrum.HorizontalScale,

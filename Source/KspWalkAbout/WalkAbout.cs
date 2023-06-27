@@ -128,9 +128,9 @@ namespace KspWalkAbout
         private static Vessel FindVesselByName(string name)
         {
             Vessel found = null;
-            var searchName = $"{name} (unloaded)";
+            string searchName = $"{name} (unloaded)";
 
-            foreach (var vessel in FlightGlobals.Vessels)
+            foreach (Vessel vessel in FlightGlobals.Vessels)
             {
                 if ((vessel.name == name) || (vessel.name == searchName))
                 {
@@ -204,7 +204,7 @@ namespace KspWalkAbout
                     break;
 
                 case PostPlacementMode.jumpto:
-                    var vessel = FindVesselByName(_mainGui.RequestedPlacement.Kerbal.name);
+                    Vessel vessel = FindVesselByName(_mainGui.RequestedPlacement.Kerbal.name);
                     if (vessel == null)
                     {
                         $"Unable to jump to vessel - no vessel found".Log();

@@ -62,7 +62,7 @@ namespace KspWalkAbout.Entities
         /// </summary>
         internal void Save()
         {
-            foreach (var locationFile in this)
+            foreach (LocationFile locationFile in this)
             {
                 if (locationFile.IsChanged)
                 {
@@ -93,9 +93,9 @@ namespace KspWalkAbout.Entities
                 LoadLocationFiles();
             }
 
-            foreach (var locationFile in this)
+            foreach (LocationFile locationFile in this)
             {
-                foreach (var location in locationFile.Locations)
+                foreach (Location location in locationFile.Locations)
                 {
                     _allLocations.Add(location);
 
@@ -140,11 +140,11 @@ namespace KspWalkAbout.Entities
         /// </remarks>
         internal void UpdateQueuing(string name)
         {
-            var originalLocation = AvailableLocations[FindIndex(name, AvailableLocations)];
-            var originalQueueing = originalLocation.Queueing;
-            var maxQueueing = AvailableLocations[0].Queueing;
+            Location originalLocation = AvailableLocations[FindIndex(name, AvailableLocations)];
+            int originalQueueing = originalLocation.Queueing;
+            int maxQueueing = AvailableLocations[0].Queueing;
 
-            var finalQueueing = (originalQueueing == 0) ? 1 : Math.Min(maxQueueing, maxQueueing - (maxQueueing - originalQueueing) / 2 + 1);
+            int finalQueueing = (originalQueueing == 0) ? 1 : Math.Min(maxQueueing, maxQueueing - (maxQueueing - originalQueueing) / 2 + 1);
             if (finalQueueing == originalQueueing)
             {
                 $"Requeueing {originalLocation.LocationName} from {originalQueueing}: no change".Debug();
@@ -159,7 +159,7 @@ namespace KspWalkAbout.Entities
             int nextQueueing = 0;
             for (int index = _allLocations.Count - 1; index >= 0; index--)
             {
-                var currentQueueing = _allLocations[index].Queueing;
+                int currentQueueing = _allLocations[index].Queueing;
                 if (currentQueueing != 0)
                 {
                     _allLocations[index].Queueing = ++nextQueueing;
@@ -197,24 +197,24 @@ namespace KspWalkAbout.Entities
 
         private LocationFile GetUserLocationFile()
         {
-            var searchFor = $"\\{Constants.UserLocationFilename}".ToLower();
+            string searchFor = $"\\{Constants.UserLocationFilename}".ToLower();
 
             LocationFile userLocationFile = null;
-            foreach (var file in this)
+            foreach (LocationFile file in this)
             {
                 if (file.FilePath.ToLower().EndsWith("user.loc"))
                 {
                     userLocationFile = file;
                 }
             }
-            //var userLocationFile = this.Where(f => f.FilePath.ToLower().EndsWith(searchFor)).FirstOrDefault();
+            //LocationFile userLocationFile = this.Where(f => f.FilePath.ToLower().EndsWith(searchFor)).FirstOrDefault();
 
             if (userLocationFile == null)
             {
                 $"{Constants.UserLocationFilename} not found - creating...".Debug();
-                var locPath = $"{WalkAbout.GetModDirectory()}/{Constants.UserLocationSubdirectory}/{Constants.UserLocationFilename}";
+                string locPath = $"{WalkAbout.GetModDirectory()}/{Constants.UserLocationSubdirectory}/{Constants.UserLocationFilename}";
                 userLocationFile = new LocationFile();
-                var loaded = userLocationFile.Load(
+                bool loaded = userLocationFile.Load(
                     locPath,
                     ConfigNode.CreateConfigFromObject(new LocationFile()));
                 userLocationFile.Locations = new List<Location>();
@@ -236,7 +236,7 @@ namespace KspWalkAbout.Entities
         /// <returns>A value indicating whether the given id is a known location.</returns>
         internal bool HasLocation(string name)
         {
-            foreach (var locationFile in this)
+            foreach (LocationFile locationFile in this)
             {
                 if (FindIndex(name, locationFile.Locations) != -1)
                 {
@@ -261,7 +261,7 @@ namespace KspWalkAbout.Entities
         /// </returns>
         internal Locale[] FindClosest(double targetLatitude, double targetLongitude, double targetAltitude)
         {
-            var closestLocale = new Locale[]
+            Locale[] closestLocale = new Locale[]
             {
                 new Locale { },
                 new Locale { Distance = double.MaxValue },
@@ -269,7 +269,7 @@ namespace KspWalkAbout.Entities
                 new Locale { Distance = double.MaxValue }
             };
 
-            var startpoint = new WorldCoordinates()
+            WorldCoordinates startpoint = new WorldCoordinates()
             {
                 Latitude = targetLatitude,
                 Longitude = targetLongitude,
@@ -277,14 +277,14 @@ namespace KspWalkAbout.Entities
                 World = Homeworld,
             };
 
-            foreach (var location in _allLocations)
+            foreach (Location location in _allLocations)
             {
-                var gc = new GreatCircle(startpoint, location.Coordinates);
+                GreatCircle gc = new GreatCircle(startpoint, location.Coordinates);
 
                 for (int level = 1; level < 4; level++)
                 {
-                    var facilityLevel = (FacilityLevels)(int)Math.Pow(2, level - 1);
-                    var locationIsAvailable = ((location.AvailableAtLevels & facilityLevel) != FacilityLevels.None);
+                    FacilityLevels facilityLevel = (FacilityLevels)(int)Math.Pow(2, level - 1);
+                    bool locationIsAvailable = ((location.AvailableAtLevels & facilityLevel) != FacilityLevels.None);
                     if (locationIsAvailable && (gc.DistanceWithAltChange < closestLocale[level].Distance))
                     {
                         closestLocale[level] =
@@ -309,11 +309,11 @@ namespace KspWalkAbout.Entities
         /// <returns>A value indicating the current upgrade level.</returns>
         private static FacilityLevels GetFacilityLevel(string facilityName)
         {
-            var levelCount = ScenarioUpgradeableFacilities.GetFacilityLevelCount(facilityName);
-            var facility = PSystemSetup.Instance.GetSpaceCenterFacility(facilityName.Split('/').Last());
-            var rawLevel = facility.GetFacilityLevel();
+            int levelCount = ScenarioUpgradeableFacilities.GetFacilityLevelCount(facilityName);
+            PSystemSetup.SpaceCenterFacility facility = PSystemSetup.Instance.GetSpaceCenterFacility(facilityName.Split('/').Last());
+            float rawLevel = facility.GetFacilityLevel();
 
-            var level = (levelCount == 1) ? FacilityLevels.Level_3 : LevelConversion[rawLevel];
+            FacilityLevels level = (levelCount == 1) ? FacilityLevels.Level_3 : LevelConversion[rawLevel];
             //$"Facility {facilityName} levelCount={levelCount} raw level={rawLevel} level={level}".Debug();
             return level;
         }
@@ -325,13 +325,13 @@ namespace KspWalkAbout.Entities
         /// <returns>A new location.</returns>
         private static Location CreateRequestedLocation(LocationRequest request)
         {
-            var requestCoordinates =
+            WorldCoordinates requestCoordinates =
                 new WorldCoordinates(
                     Homeworld,
                     FlightGlobals.ActiveVessel.latitude,
                     FlightGlobals.ActiveVessel.longitude,
                     FlightGlobals.ActiveVessel.altitude);
-            var displacement = new GreatCircle(GetCentrum().Coordinates, requestCoordinates);
+            GreatCircle displacement = new GreatCircle(GetCentrum().Coordinates, requestCoordinates);
 
             return new Location
             {
@@ -352,11 +352,11 @@ namespace KspWalkAbout.Entities
         /// </summary>
         private void LoadLocationFiles()
         {
-            var di = new System.IO.DirectoryInfo($"{WalkAbout.GetModDirectory()}/{Constants.UserLocationSubdirectory}");
-            foreach (var file in di.GetFiles($"*.{LocationFileExtension}"))
+            System.IO.DirectoryInfo di = new System.IO.DirectoryInfo($"{WalkAbout.GetModDirectory()}/{Constants.UserLocationSubdirectory}");
+            foreach (System.IO.FileInfo file in di.GetFiles($"*.{LocationFileExtension}"))
             {
-                var locationFile = new LocationFile();
-                var loaded = locationFile.Load(file.FullName); $"loading locations file {file.FullName} = {loaded}".Debug();
+                LocationFile locationFile = new LocationFile();
+                bool loaded = locationFile.Load(file.FullName); $"loading locations file {file.FullName} = {loaded}".Debug();
                 if (loaded)
                 {
                     Add(locationFile);
@@ -375,9 +375,9 @@ namespace KspWalkAbout.Entities
         /// <returns>The index of the matching location (-1 if not found).</returns>
         private int FindIndex(string name, List<Location> targetList)
         {
-            var searchName = name.ToUpper();
+            string searchName = name.ToUpper();
 
-            for (var index = 0; index < targetList.Count; index++)
+            for (int index = 0;index < targetList.Count;index++)
             {
                 if (targetList[index].LocationName.ToUpper() == searchName)
                 {
@@ -395,8 +395,8 @@ namespace KspWalkAbout.Entities
         /// <param name="b">The location to be compared to the base location.</param>
         /// <returns>A value indicating whether location b comes before or after location a.</returns>
         private int CompareLocations(Location a, Location b)
-        {
-            var queueOrder = (b?.Queueing ?? 0).CompareTo(a?.Queueing ?? 0);
+		{
+            int queueOrder = (b?.Queueing ?? 0).CompareTo(a?.Queueing ?? 0);
 
             return queueOrder == 0
                 ? string.Compare(a?.FacilityName + a?.LocationName, b?.FacilityName + b?.LocationName, StringComparison.Ordinal)

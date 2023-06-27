@@ -120,8 +120,8 @@ namespace KspWalkAbout.Guis
         /// <param name="id">Required parameter: purpose unknown.</param>
         private void DrawSelectorHandler(int id)
         {
-            var haveKerbals = false;
-            var haveLocations = false;
+            bool haveKerbals = false;
+            bool haveLocations = false;
 
             GUILayout.BeginHorizontal();
             {
@@ -152,16 +152,16 @@ namespace KspWalkAbout.Guis
         /// <returns>A value indicating whether any buttons for selecting kerbals were drawn.</returns>
         private bool DrawKerbalSelector()
         {
-            var drewKerbalButtons = false;
+            bool drewKerbalButtons = false;
             _kerbalSelectorScrollPosition = GUILayout.BeginScrollView(_kerbalSelectorScrollPosition);
             {
                 GUILayout.BeginVertical();
                 {
-                    foreach (var crew in HighLogic.CurrentGame.CrewRoster.Crew)
+                    foreach (ProtoCrewMember crew in HighLogic.CurrentGame.CrewRoster.Crew)
                     {
                         if (crew.rosterStatus == ProtoCrewMember.RosterStatus.Available)
                         {
-                            var buttonStyle = (crew.name == ((_selectedKerbal?.name) ?? string.Empty))
+                            GUIStyle buttonStyle = (crew.name == ((_selectedKerbal?.name) ?? string.Empty))
                                 ? _elementStyles.SelectedButton
                                 : _elementStyles.ValidButton;
                             if (GUILayout.Button(crew.name, buttonStyle))
@@ -189,11 +189,11 @@ namespace KspWalkAbout.Guis
             {
                 GUILayout.BeginVertical();
                 {
-                    foreach (var facility in GetLocationMap().AvailableFacilitiesLevel)
+                    foreach (KeyValuePair<string, FacilityLevels> facility in GetLocationMap().AvailableFacilitiesLevel)
                     {
-                        var buttonText = facility.Key.Substring(facility.Key.IndexOf('/') + 1) +
+                        string buttonText = facility.Key.Substring(facility.Key.IndexOf('/') + 1) +
                                          (DebugExtensions.DebugIsOn ? $" ({facility.Value})" : string.Empty);
-                        var buttonStyle = (facility.Key == (_selectedFacility ?? string.Empty))
+                        GUIStyle buttonStyle = (facility.Key == (_selectedFacility ?? string.Empty))
                             ? _elementStyles.SelectedButton
                             : _elementStyles.ValidButton;
                         if (GUILayout.Button(buttonText, buttonStyle))
@@ -212,7 +212,7 @@ namespace KspWalkAbout.Guis
         /// <returns>A value indicating whether any buttons for selecting locations were drawn.</returns>
         private bool DrawLocationSelector()
         {
-            var locationButtonsDrawn = 0;
+            int locationButtonsDrawn = 0;
 
             GUILayout.BeginVertical();
             {
@@ -224,11 +224,11 @@ namespace KspWalkAbout.Guis
                 {
                     GUILayout.BeginVertical();
                     {
-                        foreach (var location in GetLocationMap().AvailableLocations)
+                        foreach (Location location in GetLocationMap().AvailableLocations)
                         {
                             if (string.IsNullOrEmpty(_selectedFacility) || (location.FacilityName == _selectedFacility))
                             {
-                                var buttonStyle =
+                                GUIStyle buttonStyle =
                                     (location.LocationName == ((_selectedLocation?.LocationName) ?? string.Empty))
                                     ? _elementStyles.SelectedButton
                                     : _elementStyles.ValidButton;
@@ -292,7 +292,7 @@ namespace KspWalkAbout.Guis
         {
             if (_isKisPresent && (_selectedKerbal != null))
             {
-                var prefix = (_itemSelectorIsOpen)
+                string prefix = (_itemSelectorIsOpen)
                     ? "Close"
                     : (_itemsSelected[_selectedKerbal.name].Count == 0) ? "Add items to" : "Change";
 
@@ -321,17 +321,17 @@ namespace KspWalkAbout.Guis
             {
                 GUILayout.BeginVertical();
                 {
-                    var numItems = _itemsSelected[_selectedKerbal.name].Count;
-                    var itemsRemaining = MaxItems - numItems;
-                    var volumeRemaining = MaxVolume;
+                    int numItems = _itemsSelected[_selectedKerbal.name].Count;
+                    int itemsRemaining = MaxItems - numItems;
+                    float volumeRemaining = MaxVolume;
 
                     double fundsRemaining = double.MaxValue;
                     if (Funding.Instance != null)
                     {
                         fundsRemaining = Funding.Instance.Funds;
-                        foreach (var kerbal in _itemsSelected.Keys)
+                        foreach (string kerbal in _itemsSelected.Keys)
                         {
-                            foreach (var item in _itemsSelected[kerbal])
+                            foreach (InventoryItem item in _itemsSelected[kerbal])
                             {
                                 fundsRemaining -= item.Cost;
                             }
@@ -340,18 +340,18 @@ namespace KspWalkAbout.Guis
 
                     if (numItems > 0)
                     {
-                        var pluralization = (numItems == 1) ? string.Empty : "s";
-                        var cost = 0f;
-                        foreach (var item in _itemsSelected[_selectedKerbal.name])
+                        string pluralization = (numItems == 1) ? string.Empty : "s";
+                        float cost = 0f;
+                        foreach (InventoryItem item in _itemsSelected[_selectedKerbal.name])
                         {
                             cost += item.Cost;
                         }
                         fundsRemaining -= cost;
-                        var costText = (Funding.Instance == null) ? string.Empty : $", {Math.Round(cost, 2, MidpointRounding.ToEven)} funds";
+                        string costText = (Funding.Instance == null) ? string.Empty : $", {Math.Round(cost, 2, MidpointRounding.ToEven)} funds";
                         GUILayout.Label($"Selected: {numItems} item{pluralization}{costText}");
-                    }
+					}
 
-                    foreach (var item in _itemsSelected[_selectedKerbal.name].ToArray())
+                    foreach (InventoryItem item in _itemsSelected[_selectedKerbal.name].ToArray())
                     {
                         volumeRemaining -= item.Volume;
 
@@ -363,7 +363,7 @@ namespace KspWalkAbout.Guis
                     }
 
                     {
-                        var pluralization = (itemsRemaining == 1) ? string.Empty : "s";
+                        string pluralization = (itemsRemaining == 1) ? string.Empty : "s";
                         GUILayout.Label($"Remaining: {itemsRemaining} item{pluralization}, {Math.Round(volumeRemaining, 2, MidpointRounding.ToEven)} L");
                     }
 
@@ -371,16 +371,16 @@ namespace KspWalkAbout.Guis
                     {
                         GUILayout.BeginVertical();
                         {
-                            foreach (var item in GetAllItems().GetSorted())
+                            foreach (InventoryItem item in GetAllItems().GetSorted())
                             {
                                 if (item.IsAvailable)
                                 {
-                                    var canPurchase = (
+                                    bool canPurchase = (
                                         (itemsRemaining > 0) &&
                                         (item.Volume <= volumeRemaining) &&
                                         (item.Cost <= fundsRemaining));
 
-                                    var buttonStyle = (canPurchase)
+                                    GUIStyle buttonStyle = (canPurchase)
                                         ? _elementStyles.ValidButton
                                         : _elementStyles.InvalidButton;
                                     if (GUILayout.Button($"{item.Title}", buttonStyle))
@@ -405,14 +405,14 @@ namespace KspWalkAbout.Guis
         /// <param name="guiCoordinates">The screen coordinates of the main GUI dialogue window.</param>
         private void DrawDebugButton(Rect guiCoordinates)
         {
-            var style = (DebugExtensions.DebugIsOn) ? _elementStyles.HighlightedButton : _elementStyles.SelectedButton;
+			GUIStyle style = (DebugExtensions.DebugIsOn) ? _elementStyles.HighlightedButton : _elementStyles.SelectedButton;
             if (GUI.Button(
                 new Rect(0, guiCoordinates.height - 10, 10, 10), "*", style))
             {
                 $"Debugging messages are being turned OFF".Debug();
                 DebugExtensions.SetDebug(!DebugExtensions.DebugIsOn);
                 $"Debugging messages have been turned ON".Debug();
-                var state = (DebugExtensions.DebugIsOn) ? "ON" : "OFF";
+                string state = (DebugExtensions.DebugIsOn) ? "ON" : "OFF";
                 ScreenMessages.PostScreenMessage(new ScreenMessage($"WalkAbout debugging is {state}", 4.0f, ScreenMessageStyle.UPPER_LEFT));
             }
         }

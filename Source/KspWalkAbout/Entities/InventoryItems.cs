@@ -59,7 +59,7 @@ namespace KspWalkAbout.Entities
 
             _file.Items.Clear();
 
-            foreach (var item in Values)
+            foreach (InventoryItem item in Values)
             {
                 if (item.Queueing > 0)
                 {
@@ -97,21 +97,21 @@ namespace KspWalkAbout.Entities
         {
             if (DebugExtensions.DebugIsOn)
             {
-                foreach (var item in items)
+                foreach (InventoryItem item in items)
                 {
                     $"requeueing item {item.Name} from queue {this[item.Name].Queueing}".Debug();
                 }
             }
 
-            foreach (var item in items)
+            foreach (InventoryItem item in items)
             {
-                var origQueueing = this[item.Name].Queueing;
-                var newQueueing = (origQueueing == 0) ? 1 : Math.Min(_maxQueueing, _maxQueueing - (_maxQueueing - origQueueing) / 2 + 1);
+                int origQueueing = this[item.Name].Queueing;
+                int newQueueing = (origQueueing == 0) ? 1 : Math.Min(_maxQueueing, _maxQueueing - (_maxQueueing - origQueueing) / 2 + 1);
                 $"requeuing operation to change {item.Name} from {origQueueing} to {newQueueing} ".Debug();
                 if (origQueueing == 0)
                 {
                     $"increasing queueing for items between {0} and {_maxQueueing - 1}".Debug();
-                    for (var index = 0; index < _maxQueueing; index++, this[_sortedItems[index].Name].Queueing++)
+                    for (int index = 0; index < _maxQueueing; index++, this[_sortedItems[index].Name].Queueing++)
                     {
                         $"{this[_sortedItems[index].Name]} set to {this[_sortedItems[index].Name].Queueing}".Debug();
                     }
@@ -120,7 +120,7 @@ namespace KspWalkAbout.Entities
                 else
                 {
                     $"decreasing queueing for items between {newQueueing} and {origQueueing - 1}".Debug();
-                    for (var index = newQueueing; index < origQueueing; index++, this[_sortedItems[index].Name].Queueing--)
+                    for (int index = newQueueing; index < origQueueing; index++, this[_sortedItems[index].Name].Queueing--)
                     {
                         $"{this[_sortedItems[index].Name]} set to {this[_sortedItems[index].Name].Queueing}".Debug();
                     }
@@ -152,9 +152,9 @@ namespace KspWalkAbout.Entities
             }
 
             $"examining {PartLoader.LoadedPartsList.Count} parts from PartLoader".Debug();
-            foreach (var part in PartLoader.LoadedPartsList)
+            foreach (AvailablePart part in PartLoader.LoadedPartsList)
             {
-                var volume = CalculatePartVolume(part.partPrefab);
+                float volume = CalculatePartVolume(part.partPrefab);
                 if (volume == 0.0f)
                 {
                     volume = EstimatePartVolume(part.partPrefab);
@@ -162,14 +162,14 @@ namespace KspWalkAbout.Entities
 
                 if (volume <= GetModConfig().MaxInventoryVolume)
                 {
-                    var tech = AssetBase.RnDTechTree.FindTech(part.TechRequired);
+                    ProtoTechNode tech = AssetBase.RnDTechTree.FindTech(part.TechRequired);
                     if (tech == null)
                     {
                         $"unable to find tech for {part.name}".Debug();
                         continue;
                     }
 
-                    var available = GetPartAvailability(part);
+                    bool available = GetPartAvailability(part);
 
                     $"info for part {part.name}: cost={part.cost} volume={volume} title={part.title} required tech={(part?.TechRequired) ?? "null"} available={available}".Debug();
 
@@ -208,12 +208,12 @@ namespace KspWalkAbout.Entities
 
         private static float CalculatePartVolume(Part part)
         {
-            var volume = 0.0f;
+            float volume = 0.0f;
 
-            var module = GetPartKisModule(part);
+            PartModule module = GetPartKisModule(part);
             if (module != null)
             {
-                var volumeText = module.Fields["volumeOverride"].originalValue.ToString();
+                string volumeText = module.Fields["volumeOverride"].originalValue.ToString();
                 if (!float.TryParse(volumeText, out volume))
                 {
                     $"Part [{part.name}]: unable to translate KIS volumeOverride value [{volumeText}] to a valid number".Debug();
@@ -229,9 +229,9 @@ namespace KspWalkAbout.Entities
 
             if ((part.Modules != null) && (part.Modules.Count > 0))
             {
-                foreach (var KisModuleName in WalkAboutPersistent.KisModuleNames)
+                foreach (string KisModuleName in WalkAboutPersistent.KisModuleNames)
                 {
-                    foreach (var partModule in part.Modules)
+                    foreach (PartModule partModule in part.Modules)
                     {
                         if ((!string.IsNullOrEmpty(partModule.moduleName)) && (partModule.moduleName.Contains(KisModuleName)))
                         {
@@ -247,8 +247,8 @@ namespace KspWalkAbout.Entities
 
         private static float EstimatePartVolume(Part part)
         {
-            var boundsSize = PartGeometryUtil.MergeBounds(part.GetRendererBounds(), part.transform).size;
-            var volume = boundsSize.x * boundsSize.y * boundsSize.z * 1000f;
+            UnityEngine.Vector3 boundsSize = PartGeometryUtil.MergeBounds(part.GetRendererBounds(), part.transform).size;
+            float volume = boundsSize.x * boundsSize.y * boundsSize.z * 1000f;
 
             return volume;
         }
@@ -260,7 +260,7 @@ namespace KspWalkAbout.Entities
         /// <returns>A value indicating if the part is available.</returns>
         private static bool GetPartAvailability(AvailablePart part)
         {
-            var available = true;
+            bool available = true;
             if ((HighLogic.CurrentGame.Mode == Game.Modes.CAREER) ||
                 (HighLogic.CurrentGame.Mode == Game.Modes.SCIENCE_SANDBOX))
             {
@@ -276,8 +276,8 @@ namespace KspWalkAbout.Entities
         private void LoadItemsFromFile()
         {
             $"Refresh: No items detected - loading (_file={_file})".Debug();
-            var loaded = _file.Load($"{WalkAbout.GetModDirectory()}/Items.cfg", Constants.DefaultItems);
             $"Refresh: loaded={loaded} status={_file.StatusMessage}".Debug();
+            bool loaded = _file.Load($"{WalkAbout.GetModDirectory()}/Items.cfg", Constants.DefaultItems);
             if (loaded)
             {
                 if (_file.Items == null)
@@ -286,7 +286,7 @@ namespace KspWalkAbout.Entities
                     "Initialized items to null list due to unresolved bug in Settings".Debug();
                 }
 
-                foreach (var item in _file.Items)
+                foreach (InventoryItem item in _file.Items)
                 {
                     Add(item.Name, item);
                     $"added previously selected part [{item.Name}]".Debug();
@@ -311,7 +311,7 @@ namespace KspWalkAbout.Entities
         /// <returns>A value indicating whether item b comes before or after item a.</returns>
         private int CompareItems(InventoryItem a, InventoryItem b)
         {
-            var queueOrder = (b?.Queueing ?? 0).CompareTo(a?.Queueing ?? 0);
+            int queueOrder = (b?.Queueing ?? 0).CompareTo(a?.Queueing ?? 0);
             return queueOrder == 0
                 ? (a?.Volume ?? 0).CompareTo(b?.Volume ?? 0)
                 : queueOrder;

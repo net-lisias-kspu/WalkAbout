@@ -96,17 +96,17 @@ namespace KspWalkAbout.Entities
 
         private void CalculateGreatCircleValues()
         {
-            var startLat = Origin.Latitude * Constants.DegreesToRadiansFactor;      // φ1 
-            var startLong = Origin.Longitude * Constants.DegreesToRadiansFactor;    // λ1
-            var endLat = Destination.Latitude * Constants.DegreesToRadiansFactor;   // φ2
-            var endLong = Destination.Longitude * Constants.DegreesToRadiansFactor; // λ2
+            double startLat = Origin.Latitude * Constants.DegreesToRadiansFactor;      // φ1 
+            double startLong = Origin.Longitude * Constants.DegreesToRadiansFactor;    // λ1
+            double endLat = Destination.Latitude * Constants.DegreesToRadiansFactor;   // φ2
+            double endLong = Destination.Longitude * Constants.DegreesToRadiansFactor; // λ2
 
             // Haversine great-circle: 
-            var a =                                                  // a = sin²(Δφ/2) + cos φ1 ⋅ cos φ2 ⋅ sin²(Δλ/2)
+            double a =                                               // a = sin²(Δφ/2) + cos φ1 ⋅ cos φ2 ⋅ sin²(Δλ/2)
                 Math.Pow(Math.Sin((endLat - startLat) / 2), 2) +     //     sin²(Δφ/2)
                 Math.Cos(startLat) * Math.Cos(endLat) *              //     cos φ1 ⋅ cos φ2
                 Math.Pow(Math.Sin((endLong - startLong) / 2), 2);    //     sin²(Δλ/2)
-            var c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));  // c = 2 ⋅ atan2( √a, √(1−a) )
+            double c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));  // c = 2 ⋅ atan2( √a, √(1−a) )
             DistanceAtSeaLevel = WorldRadius * c;                    // d = R ⋅ c
 
             // Accounting for a difference in altitude:
@@ -117,10 +117,10 @@ namespace KspWalkAbout.Entities
             DistanceWithAltChange = (DistanceAtOrigAlt + DistanceAtDestAlt) / 2;
 
             // Initial bearing: θ = atan2( sin Δλ ⋅ cos φ2 , cos φ1 ⋅ sin φ2 − sin φ1 ⋅ cos φ2 ⋅ cos Δλ )
-            var y = Math.Sin(endLong - startLong) * Math.Cos(endLat);                      // sin Δλ ⋅ cos φ2 
-            var x = Math.Cos(startLat) * Math.Sin(endLat) -                                // cos φ1 ⋅ sin φ2
+            double y = Math.Sin(endLong - startLong) * Math.Cos(endLat);                   // sin Δλ ⋅ cos φ2 
+            double x = Math.Cos(startLat) * Math.Sin(endLat) -                             // cos φ1 ⋅ sin φ2
                     Math.Sin(startLat) * Math.Cos(endLat) * Math.Cos(endLong - startLong); // sin φ1 ⋅ cos φ2 ⋅ cos Δλ
-            var t = Math.Atan2(y, x) * Constants.RadiansToDegreesFactor;
+            double t = Math.Atan2(y, x) * Constants.RadiansToDegreesFactor;
             ForwardAzimuth = (t + 360) % 360;
         }
     }

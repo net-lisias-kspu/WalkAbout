@@ -12,7 +12,7 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
-    <BaseIntermediateOutputPath>..\..\obj</BaseIntermediateOutputPath>
+    <BaseIntermediateOutputPath>..\..\obj\WalkAbout</BaseIntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -65,10 +65,10 @@
       <DependentUpon>Version.tt</DependentUpon>
     </Compile>
     <Compile Include="Log.cs" />
-    <Compile Include="ModuleManagerSupport.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\LegalMamboJambo.cs" />
     <Compile Include="Support\EVASupport.cs" />
+    <Compile Include="Support\ModuleManagerSupport.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="KspAccess\CommonKspAccess.cs" />
